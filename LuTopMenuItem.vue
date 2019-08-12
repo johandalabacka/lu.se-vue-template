@@ -4,7 +4,7 @@
       aria-haspopup="true">{{ item.label }}</router-link>
     <a v-else :href="item.url" class="nav-link text-nowrap dropdown-toggle " id="dropdown-studera"
       aria-haspopup="true">{{ item.label }}</a>
-    <div class="dropdown-menu font-size-base" aria-labelledby="dropdown-studera">
+    <div class="dropdown-menu font-size-base" :class="[lastItem ? 'dropdown-menu-right' : '']" aria-labelledby="dropdown-studera">
       <lu-dropdown-item v-for="subMenuItem in item.children" :key="subMenuItem.id" :item="subMenuItem"/>
     </div>
   </li>
@@ -20,7 +20,7 @@ import LuDropdownItem from './LuDropdownItem'
 
 export default {
   name: 'LuTopMenuItem',
-  props: ['item'],
+  props: ['item', 'lastItem'],
   data () {
     return {
     }
