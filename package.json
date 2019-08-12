@@ -1,0 +1,18 @@
+{
+  "name": "@lu.se/vue-template",
+  "version": "1.0.0",
+  "description": "Components for LU template",
+  "license": "MIT",
+  "author": {
+    "name": "Johan Dahl",
+    "email": "johan.dahl@lth.lu.se"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/johandalabacka/lu.se-vue-template"
+  },
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.1"
+  }
+}

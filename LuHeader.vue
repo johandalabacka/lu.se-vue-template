@@ -1,0 +1,110 @@
+<template>
+  <header class="header nav-undecorated">
+    <lu-navbar v-if="navbarmenu" :menu="navbarmenu"></lu-navbar>
+    <div class="border-bottom">
+      <div class="container-fluid mw-xl">
+        <div class="row m-0 py-3 py-lg-5">
+          <div class="col p-0">
+            <div class="d-flex justify-content-between align-items-center h-100">
+              <div class="header-logo  header-logo-lu flex-grow-1 flex-lg-grow-0">
+                <a href="#" title="Lunds universitet">
+                  <img src="lumall/images/logo/logo_lth@1x.png"
+                    srcset="lumall/images/logo/logo_lth@1x.png 1x, lumall/images/logo/logo_lth@2x.png 2x"
+                    alt="Lunds universitet" class=" mw-100">
+
+                </a>
+              </div>
+              <div
+                class="flex-shrink-1 flex-lg-shrink-0 flex-grow-0 d-flex flex-column justify-content-between h-100 mh-120">
+                <div
+                  class="h-lg-auto flex-column justify-content-between align-items-end font-size-sm font-size-sm-base flex-grow-0">
+                  <nav class="nav text-center h-100 h-lg-auto align-items-center d-lg-none flex-nowrap">
+                    <div class="nav-item">
+                      <a class="ml-2 p-1 d-block nav-undecorated" href="#header-search-form" data-toggle="collapse"
+                        aria-controls="header-search-form" aria-expanded="false" aria-label="Visa och dölj sökfölt">
+                        <i class="fal fa-search"></i><br>Sök </a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="ml-2 p-1 d-block nav-undecorated" href="#" data-toggle="modal" data-target="#nav-mobile"
+                        aria-controls="nav-mobile" aria-expanded="false" aria-label="Visa meny">
+                        <i class="fal fa-bars"></i><br>Meny </a>
+                    </div>
+                  </nav>
+                  <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
+                    <nav class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
+                      <div class="nav-item flex-xl-grow-1">
+                        <form class="form-inline pr-xl-3">
+                          <div class="input-group input-group-round input-group-sm w-100 flex">
+                            <input type="search" class="form-control form-control-sm border-right-0"
+                              id="header-search-field">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary px-2" type="submit">
+                                <span class="mr-2">Sök</span>
+                                <i class="fal fa-search"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </nav>
+                    <nav class="nav align-items-center justify-content-end">
+                      <div class="nav-item d-none d-lg-block">
+                        <a class="nav-link px-0 ml-4" href="#"><span class="mr-1"><i
+                              class="fal fa-lg fa-globe"></i></span> English</a>
+                      </div>
+                      <div class="nav-item">
+                        <a class="nav-link px-0 ml-4" href="#"><span class="mr-1"><i
+                              class="fal fa-lg fa-volume"></i></span> Lyssna</a>
+                      </div>
+                      <div class="nav-item d-none d-lg-block d-xl-none border-left ml-3 pl-3">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#nav-mobile"
+                          aria-controls="nav-mobile" aria-expanded="false" aria-label="Visa meny"><i
+                            class="fal fa-bars"></i> Meny</a>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+                <lu-top-menu v-if="topmenu" :menu="topmenu"></lu-top-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-search-form collapse collapse-lg pb-2 px-2" id="header-search-form">
+        <form class="form-inline px-lg-3">
+          <div class="input-group input-group-round input-group-sm w-100 flex">
+            <input type="search" class="form-control form-control-sm border-right-0" id="header-search-field-mobile">
+            <div class="input-group-append">
+              <button class="btn btn-primary px-2" type="submit">
+                <span class="mr-2">Sök</span>
+                <i class="fal fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </header>
+</template>
+
+<script>
+import LuNavbar from './LuNavbar'
+import LuTopMenu from './LuTopMenu'
+
+export default {
+  name: 'LuHeader',
+  props: [
+    'topmenu',
+    'navbarmenu'
+  ],
+  data () {
+    return {
+    }
+  },
+  components: {
+    LuNavbar,
+    LuTopMenu
+  }
+}
+</script>
