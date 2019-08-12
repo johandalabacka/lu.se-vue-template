@@ -2,7 +2,7 @@
   <li v-if="item.children && item.path" class="mobile-nav-item">
     <div class="mobile-nav-container">
       <router-link :to="item.path"  class="nav-link" data-dismiss="modal">{{ item.label }}</router-link>
-      <a :href="'#sm-' + item.id" class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
+      <div class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
          :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded">
         <span v-show="! expanded" class="collapse-show">
           <i class="fal fa-plus-circle"></i>
@@ -10,7 +10,7 @@
         <span v-show="expanded" class="collapse-hide">
           <i class="fal fa-minus-circle"></i>
         </span>
-      </a>
+      </div>
     </div>
     <transition name="slide">
       <ul v-show="expanded" class="mobile-nav collapse show" :id="'sm-' + item.id">
