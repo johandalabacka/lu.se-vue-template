@@ -23,7 +23,7 @@
                     <div class="nav-item">
                       <a class="ml-2 p-1 d-block nav-undecorated" href="#header-search-form" data-toggle="collapse"
                         aria-controls="header-search-form" aria-expanded="false" :aria-label="$t('showHideSearch')">
-                        <i class="fal fa-search"></i><br>{{ $t('search')}} </a>
+                        <i class="fal fa-search"></i><br>{{ $t('search') }} </a>
                     </div>
                     <div class="nav-item">
                       <a class="ml-2 p-1 d-block nav-undecorated" href="#" data-toggle="modal" data-target="#nav-mobile"
@@ -57,12 +57,12 @@
                       </div>
                       <div class="nav-item">
                         <a class="nav-link px-0 ml-4" href="#"><span class="mr-1"><i
-                              class="fal fa-lg fa-volume"></i></span> {{ $t('listen')}}</a>
+                              class="fal fa-lg fa-volume"></i></span> {{ $t('listen') }}</a>
                       </div>
                       <div class="nav-item d-none d-lg-block d-xl-none border-left ml-3 pl-3">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#nav-mobile"
                           aria-controls="nav-mobile" aria-expanded="false" :aria-label="$t('showMenu')"><i
-                            class="fal fa-bars"></i> {{ $t('menu')}}</a>
+                            class="fal fa-bars"></i> {{ $t('menu') }}</a>
                       </div>
                     </nav>
                   </div>
@@ -79,7 +79,7 @@
             <input type="search" class="form-control form-control-sm border-right-0" id="header-search-field-mobile">
             <div class="input-group-append">
               <button class="btn btn-primary px-2" type="submit">
-                <span class="mr-2">{ $t('search')}}</span>
+                <span class="mr-2">{{ $t('search') }}</span>
                 <i class="fal fa-search"></i>
               </button>
             </div>
