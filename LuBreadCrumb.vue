@@ -2,11 +2,11 @@
   <div class="container pt-2 pt-lg-3 ">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb m-0 p-0 mb-0 font-size-sm  bg-transparent">
-        <li v-for="part in parts" :key="part.path" class="breadcrumb-item text-truncate mb-0">
+        <li v-for="part in partsButLast" :key="part.path" class="breadcrumb-item text-truncate mb-0">
           <router-link :to="part.path">{{ part.label }}</router-link>
         </li>
-        <!-- <li class="breadcrumb-item text-truncate mb-0"><a href="/static/lumall/#.html">Start</a></li>
-        <li class="breadcrumb-item text-truncate mb-0 active" aria-current="page">Företagsekonomi</li> -->
+        <!-- <li class="breadcrumb-item text-truncate mb-0"><a href="/static/lumall/#.html">Start</a></li> -->
+        <li class="breadcrumb-item text-truncate mb-0 active" aria-current="page">{{  partsLast.label }}</li>
       </ol>
     </nav>
   </div>
@@ -18,6 +18,20 @@ export default {
   data () {
     return {
       parts: []
+    }
+  },
+  computed: {
+    partsButLast () {
+      if (this.parts.length === 0) {
+        return []
+      }
+      return this.parts.slice(0, -1)
+    },
+    partsLast () {
+      if (this.parts.length === 0) {
+        return {label: ''}
+      }
+      return this.parts[this.parts.length - 1]
     }
   },
   watch: {
