@@ -5,7 +5,7 @@
   <li v-if="item.children && item.path" >
     <router-link @click.native="toggleExpanded" :to="item.path"  class="nav-link collapse" :class="[expanded ? 'show' : 'collapsed']">
       <div class="float-right ml-2"><i class="fal" :class="[expanded ? 'fa-chevron-down' : 'fa-chevron-right']"></i></div>
-      {{ item.label }}
+      {{ $t(item.label) }}
     </router-link>
     <ul class="nav-accordion collapse" :class="[expanded ? 'show': '']">
       <lu-left-menu-item
@@ -16,12 +16,12 @@
   </li>
   <li v-else-if="item.path">
     <router-link :to="item.path" class="nav-link">
-      {{ item.label }}
+      {{ $t(item.label) }}
     </router-link>
   </li>
   <li v-else>
     <a :href="item.url" class="nav-link">
-      {{ item.label }}
+      {{ $t(item.label) }}
     </a>
   </li>
 </template>

@@ -7,12 +7,17 @@
     "name": "Johan Dahl",
     "email": "johan.dahl@lth.lu.se"
   },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type" : "git",
     "url" : "https://github.com/johandalabacka/lu.se-vue-template"
   },
   "dependencies": {
     "vue": "^2.6.10",
-    "vue-router": "^3.1.1"
+    "vue-router": "^3.1.1",
+    "vue-i18n": "^8.14.0"
   }
 }

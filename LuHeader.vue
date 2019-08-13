@@ -8,9 +8,10 @@
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo  header-logo-lu flex-grow-1 flex-lg-grow-0">
                 <a href="#" title="Lunds universitet">
-                  <img src="lumall/images/logo/logo_lth@1x.png"
-                    srcset="lumall/images/logo/logo_lth@1x.png 1x, lumall/images/logo/logo_lth@2x.png 2x"
+                  <img :src="'lumall/images/logo/logo_lth_' + $root.$i18n.locale +'@1x.png'"
                     alt="Lunds universitet" class=" mw-100">
+                     <!--
+                    srcset="lumall/images/logo/logo_lth@1x.png 1x, lumall/images/logo/logo_lth@2x.png 2x" -->
 
                 </a>
               </div>
@@ -21,13 +22,13 @@
                   <nav class="nav text-center h-100 h-lg-auto align-items-center d-lg-none flex-nowrap">
                     <div class="nav-item">
                       <a class="ml-2 p-1 d-block nav-undecorated" href="#header-search-form" data-toggle="collapse"
-                        aria-controls="header-search-form" aria-expanded="false" aria-label="Visa och dölj sökfölt">
-                        <i class="fal fa-search"></i><br>Sök </a>
+                        aria-controls="header-search-form" aria-expanded="false" :aria-label="$t('showHideSearch')">
+                        <i class="fal fa-search"></i><br>{{ $t('search')}} </a>
                     </div>
                     <div class="nav-item">
                       <a class="ml-2 p-1 d-block nav-undecorated" href="#" data-toggle="modal" data-target="#nav-mobile"
-                        aria-controls="nav-mobile" aria-expanded="false" aria-label="Visa meny">
-                        <i class="fal fa-bars"></i><br>Meny </a>
+                        aria-controls="nav-mobile" aria-expanded="false" :aria-label="$t('showMenu')">
+                        <i class="fal fa-bars"></i><br>{{ $t('menu') }} </a>
                     </div>
                   </nav>
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
@@ -39,7 +40,7 @@
                               id="header-search-field">
                             <div class="input-group-append">
                               <button class="btn btn-primary px-2" type="submit">
-                                <span class="mr-2">Sök</span>
+                                <span class="mr-2">{{ $t('search') }}</span>
                                 <i class="fal fa-search"></i>
                               </button>
                             </div>
@@ -49,17 +50,19 @@
                     </nav>
                     <nav class="nav align-items-center justify-content-end">
                       <div class="nav-item d-none d-lg-block">
-                        <a class="nav-link px-0 ml-4" href="#"><span class="mr-1"><i
+                        <a v-if="$root.$i18n.locale == 'sv'" class="nav-link px-0 ml-4" href="#" @click.prevent="switchLocale"><span class="mr-1"><i
                               class="fal fa-lg fa-globe"></i></span> English</a>
+                        <a v-else class="nav-link px-0 ml-4" href="#" @click.prevent="switchLocale"><span class="mr-1"><i
+                              class="fal fa-lg fa-globe"></i></span> Svenska</a>
                       </div>
                       <div class="nav-item">
                         <a class="nav-link px-0 ml-4" href="#"><span class="mr-1"><i
-                              class="fal fa-lg fa-volume"></i></span> Lyssna</a>
+                              class="fal fa-lg fa-volume"></i></span> {{ $t('listen')}}</a>
                       </div>
                       <div class="nav-item d-none d-lg-block d-xl-none border-left ml-3 pl-3">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#nav-mobile"
-                          aria-controls="nav-mobile" aria-expanded="false" aria-label="Visa meny"><i
-                            class="fal fa-bars"></i> Meny</a>
+                          aria-controls="nav-mobile" aria-expanded="false" :aria-label="$t('showMenu')"><i
+                            class="fal fa-bars"></i> {{ $t('menu')}}</a>
                       </div>
                     </nav>
                   </div>
@@ -76,7 +79,7 @@
             <input type="search" class="form-control form-control-sm border-right-0" id="header-search-field-mobile">
             <div class="input-group-append">
               <button class="btn btn-primary px-2" type="submit">
-                <span class="mr-2">Sök</span>
+                <span class="mr-2">{ $t('search')}}</span>
                 <i class="fal fa-search"></i>
               </button>
             </div>
@@ -105,6 +108,29 @@ export default {
   components: {
     LuNavbar,
     LuTopMenu
+  },
+  methods: {
+    switchLocale () {
+      this.$root.$i18n.locale = this.$root.$i18n.locale == 'sv' ? 'en' : 'sv'
+    }
+  },
+  i18n: { 
+    messages: {
+      sv: {
+        menu: 'Meny',
+        search: 'Sök',
+        showHideSearch: 'Visa och dölj sökfält',
+        showMenu: 'Visa meny',
+        listen: 'Lyssna'
+      },
+      en: {
+        menu: 'Menu',
+        search: 'Search',
+        showHideSearch: 'Show and hide search field',
+        showMenu: 'Show menu',
+        listen: 'Listen'
+      }
+    }
   }
 }
 </script>

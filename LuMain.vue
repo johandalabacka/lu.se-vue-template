@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
-                Sidansvarig: <a :href="pageManagerMail">{{ pageManagerMail }}</a>
+                {{ $t('pageManager')}}: <a :href="pageManagerMail">{{ pageManagerMail }}</a>
                 &nbsp;|&nbsp; <strong>{{ lastUpdated }}</strong>
               </div>
             </div>
@@ -41,6 +41,16 @@ export default {
   },
   components: {
     LuLeftMenu
+  },
+  i18n: { 
+    messages: {
+      sv: {
+        pageManager: 'Sidansvarig'
+      },
+      en: {
+        pageManager: 'Page Manager'
+      }
+    }
   }
 }
 </script>

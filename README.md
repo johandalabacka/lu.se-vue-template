@@ -76,7 +76,17 @@ slots
 
 ### LuFooter
 
-No configuration yet
+props
+    contact -- Object
+        name --
+        box -- 
+        zip --
+        phone --
+        mail -- 
+
+    socialMedia - object with possible attributes. null if not shown
+        {facebook: "https://facebook...", instagram: ..., linkedin: twitter: ..., youtube: ... }
+    
 
 ## Menu example
 
