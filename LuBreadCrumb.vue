@@ -5,7 +5,6 @@
         <li v-for="part in partsButLast" :key="part.path" class="breadcrumb-item text-truncate mb-0">
           <router-link :to="part.path">{{ part.label }}</router-link>
         </li>
-        <!-- <li class="breadcrumb-item text-truncate mb-0"><a href="/static/lumall/#.html">Start</a></li> -->
         <li class="breadcrumb-item text-truncate mb-0 active" aria-current="page">{{  partsLast.label }}</li>
       </ol>
     </nav>
