@@ -11,7 +11,9 @@ import LuTopMenuItem from './LuTopMenuItem'
 
 export default {
   name: 'LuTopMenu',
-  props: ['menu'],
+  props: {
+    menu: Array
+  },
   data () {
     return {
     }

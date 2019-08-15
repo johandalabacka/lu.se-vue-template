@@ -24,9 +24,9 @@ import LuNavMobileItem from './LuNavMobileItem'
 
 export default {
   name: 'LuNavMobile',
-  props: [
-    'menu'
-  ],
+  props: {
+    menu: Array
+  },
   data () {
     return {
     }

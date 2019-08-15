@@ -11,9 +11,9 @@ import LuLeftMenuItem from './LuLeftMenuItem'
 
 export default {
   name: 'LuLeftMenu',
-  props: [
-    'menu'
-  ],
+  props: {
+    menu: Array
+  },
   data () {
     return {
     }

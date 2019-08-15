@@ -97,10 +97,11 @@ import LuTopMenu from './LuTopMenu'
 
 export default {
   name: 'LuHeader',
-  props: [
-    'topmenu',
-    'navbarmenu'
-  ],
+  props: {
+    topmenu: Array,
+    navbarmenu: Array,
+    listen: Boolean
+  },
   data () {
     return {
     }

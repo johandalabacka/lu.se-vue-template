@@ -29,9 +29,9 @@
 <script>
 export default {
   name: 'LuLeftMenuItem',
-  props: [
-    'item'
-  ],
+  props: {
+    item: Object
+  },
   data () {
     return {
       expanded: false

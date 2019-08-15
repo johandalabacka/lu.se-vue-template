@@ -21,7 +21,9 @@ import LuDropdownItem from './LuDropdownItem'
 
 export default {
   name: 'LuTopMenuItem',
-  props: ['item'],
+  props: {
+    item: Object
+  },
   data () {
     return {
     }

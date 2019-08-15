@@ -6,7 +6,9 @@
 <script>
 export default {
   name: 'LuDropdownItem',
-  props: ['item'],
+  props: {
+    item: Object
+  },
   data () {
     return {}
   }

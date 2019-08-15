@@ -30,11 +30,11 @@ import LuLeftMenu from './LuLeftMenu'
 
 export default {
   name: 'LuMain',
-  props: [
-    'leftmenu',
-    'pageManagerMail',
-    'lastUpdated'
-  ],
+  props: {
+    leftmenu: Array,
+    pageManagerMail: String,
+    lastUpdated: String
+  },
   data () {
     return {
     }

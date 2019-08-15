@@ -69,10 +69,10 @@
 <script>
 export default {
   name: 'LuFooter',
-  props: [
-    'contact',
-    'socialMedia'
-  ],
+  props: {
+    contact: Object,
+    socialMedia: Object
+  },
   data () {
     return {
     }

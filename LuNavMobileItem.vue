@@ -33,9 +33,9 @@
 <script>
 export default {
   name: 'LuNavMobileItem',
-  props: [
-    'item'
-  ],
+  props: {
+    item: Object
+  },
   data () {
     return {
       expanded: false

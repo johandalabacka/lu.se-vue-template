@@ -20,7 +20,10 @@ import LuDropdownItem from './LuDropdownItem'
 
 export default {
   name: 'LuTopMenuItem',
-  props: ['item', 'lastItem'],
+  props: {
+    item: Object,
+    lastItem: Boolean
+  },
   data () {
     return {
     }

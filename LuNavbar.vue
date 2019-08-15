@@ -16,9 +16,9 @@
 import LuNavbarItem from './LuNavbarItem'
 export default {
   name: 'LuNavbar',
-  props: [
-    'menu'
-  ],
+  props: {
+    menu: Array
+  },
   data () {
     return {
     }
