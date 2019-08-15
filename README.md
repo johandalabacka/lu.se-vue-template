@@ -9,7 +9,7 @@ For an example using this module see https://github.com/johandalabacka/vue-templ
 ## Example
 
 App.vue
-```js
+```html
 <template>
   <div>
     <lu-nav-mobile :menu="menu"/>
