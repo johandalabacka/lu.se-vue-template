@@ -13,7 +13,7 @@ App.vue
 <template>
   <div>
     <lu-nav-mobile :menu="menu"/>
-    <lu-header :navbarmenu="menu" :topmenu="menu"/>
+    <lu-header :navbarmenu="menu" :topmenu="menu" has-listen/>
 
     <!-- key is hack to redraw component then locale changes -->
     <lu-bread-crumb :key="$i18n.locale"/>
@@ -100,6 +100,7 @@ Name|Description|Default value
 ----|-----------|-------------
 topmenu | menu on top of the page. If not set, will the menu not show| undefined
 navbarmenu | menu below header. If not set, will the menu not show| undefined
+hasListen | should page use browsealoud | false
 
 
 ### LuBreadCrumb

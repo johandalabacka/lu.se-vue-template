@@ -55,8 +55,8 @@
                         <a v-else class="nav-link px-0 ml-4" href="#" @click.prevent="switchLocale"><span class="mr-1"><i
                               class="fal fa-lg fa-globe"></i></span> Svenska</a>
                       </div>
-                      <div class="nav-item">
-                        <a class="nav-link px-0 ml-4" href="#"><span class="mr-1"><i
+                      <div v-if="hasListen" class="nav-item">
+                        <a class="nav-link px-0 ml-4" href="#" @click.prevent="listen"><span class="mr-1"><i
                               class="fal fa-lg fa-volume"></i></span> {{ $t('listen') }}</a>
                       </div>
                       <div class="nav-item d-none d-lg-block d-xl-none border-left ml-3 pl-3">
@@ -100,7 +100,7 @@ export default {
   props: {
     topmenu: Array,
     navbarmenu: Array,
-    listen: Boolean
+    hasListen: Boolean
   },
   data () {
     return {
@@ -113,7 +113,28 @@ export default {
   methods: {
     switchLocale () {
       this.$root.$i18n.locale = this.$root.$i18n.locale == 'sv' ? 'en' : 'sv'
+    },
+    listen () {
+      // function imported from browsealoud. Why such generic name :(
+      toggleBar();
     }
+  },
+  watch: {
+    '$route' (to) {
+      document.title = this.$t(to.name)
+    }
+  },
+  mounted () {
+    if (this.hasListen) {
+      const baScript = document.createElement("script");
+      baScript.setAttribute(
+        "src",
+        "//www.browsealoud.com/plus/scripts/ba.js"
+      );
+      baScript.async = true;
+      document.head.appendChild(baScript);
+    }
+    document.title = this.$t(this.$router.currentRoute.name)
   },
   i18n: { 
     messages: {
