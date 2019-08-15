@@ -126,13 +126,14 @@ export default {
   },
   mounted () {
     if (this.hasListen) {
-      const baScript = document.createElement("script");
+      window._baMode = " "
+      const baScript = document.createElement("script")
       baScript.setAttribute(
         "src",
         "//www.browsealoud.com/plus/scripts/ba.js"
       );
-      baScript.async = true;
-      document.head.appendChild(baScript);
+      baScript.async = true
+      document.head.appendChild(baScript)
     }
     document.title = this.$t(this.$router.currentRoute.name)
   },
