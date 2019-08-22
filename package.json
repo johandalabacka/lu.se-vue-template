@@ -1,6 +1,6 @@
 {
   "name": "@lu.se/vue-template",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Components for LU template",
   "license": "MIT",
   "author": {
@@ -12,8 +12,8 @@
     "access": "public"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/johandalabacka/lu.se-vue-template"
+    "type": "git",
+    "url": "https://github.com/johandalabacka/lu.se-vue-template"
   },
   "dependencies": {
     "vue": "^2.6.10",
