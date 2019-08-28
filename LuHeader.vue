@@ -20,6 +20,14 @@
                 <div
                   class="h-lg-auto flex-column justify-content-between align-items-end font-size-sm font-size-sm-base flex-grow-0">
                   <nav class="nav text-center h-100 h-lg-auto align-items-center d-lg-none flex-nowrap">
+                    <div v-if="hasLogin" class="nav-item">
+                      <a v-if="isLoggedIn" class="ml-2 p-1 d-block nav-undecorated" href="/logout"
+                        aria-controls="header-logout" aria-expanded="false" :aria-label="$t('logout')">
+                        <i class="fal fa-sign-out"></i><br>{{ $t('logout') }} </a>
+                      <a v-else class="ml-2 p-1 d-block nav-undecorated" href="/login"
+                        aria-controls="header-login" aria-expanded="false" :aria-label="$t('login')">
+                        <i class="fal fa-sign-in"></i><br>{{ $t('login') }} </a>
+                    </div>
                     <div class="nav-item">
                       <a class="ml-2 p-1 d-block nav-undecorated" href="#header-search-form" data-toggle="collapse"
                         aria-controls="header-search-form" aria-expanded="false" :aria-label="$t('showHideSearch')">
@@ -49,6 +57,12 @@
                       </div>
                     </nav>
                     <nav class="nav align-items-center justify-content-end">
+                      <div v-if="hasLogin" class="nav-item d-none d-lg-block">
+                        <a v-if="isLoggedIn" class="nav-link px-0 ml-4" href="/logout"><span class="mr-1"><i
+                              class="fal fa-lg fa-sign-out"></i></span> {{ $t('logout') }}</a>
+                        <a v-else class="nav-link px-0 ml-4" href="/login"><span class="mr-1"><i
+                              class="fal fa-lg fa-sign-in"></i></span> {{ $t('login') }}</a>
+                      </div>
                       <div class="nav-item d-none d-lg-block">
                         <a v-if="$root.$i18n.locale == 'sv'" class="nav-link px-0 ml-4" href="#" @click.prevent="switchLocale"><span class="mr-1"><i
                               class="fal fa-lg fa-globe"></i></span> English</a>
@@ -100,7 +114,8 @@ export default {
   props: {
     topmenu: Array,
     navbarmenu: Array,
-    hasListen: Boolean
+    hasListen: Boolean,
+    hasLogin: Boolean
   },
   data () {
     return {
@@ -109,6 +124,16 @@ export default {
   components: {
     LuNavbar,
     LuTopMenu
+  },
+  computed: {
+    apiToken () {
+      console.log(document.querySelector("meta[name='api-token']"))
+      let metaTag = document.querySelector("meta[name='api-token']")
+      return metaTag ? metaTag.getAttribute("content") : '';
+    },
+    isLoggedIn () {
+      return this.hasLogin && this.apiToken !== '';
+    }
   },
   methods: {
     switchLocale () {
@@ -144,14 +169,18 @@ export default {
         search: 'Sök',
         showHideSearch: 'Visa och dölj sökfält',
         showMenu: 'Visa meny',
-        listen: 'Lyssna'
+        listen: 'Lyssna',
+        login: 'Logga in',
+        logout: 'Logga ut'
       },
       en: {
         menu: 'Menu',
         search: 'Search',
         showHideSearch: 'Show and hide search field',
         showMenu: 'Show menu',
-        listen: 'Listen'
+        listen: 'Listen',
+        login: 'Log in',
+        logout: 'Log out'
       }
     }
   }
