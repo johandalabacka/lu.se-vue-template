@@ -127,12 +127,11 @@ export default {
   },
   computed: {
     apiToken () {
-      console.log(document.querySelector("meta[name='api-token']"))
       let metaTag = document.querySelector("meta[name='api-token']")
-      return metaTag ? metaTag.getAttribute("content") : '';
+      return metaTag ? metaTag.getAttribute("content") : ''
     },
     isLoggedIn () {
-      return this.hasLogin && this.apiToken !== '';
+      return this.hasLogin && this.apiToken !== ''
     }
   },
   methods: {
