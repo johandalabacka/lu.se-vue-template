@@ -121,6 +121,17 @@ Name|Description
 ----|-----------
 default | content of page
 
+### LuRow
+
+A row is inside LuMain. You can have several rows stacked on eachother. They can have a optional right column
+
+#### slots
+
+Name|Description
+----|-----------
+default | central content
+right-column | content to the right. Goes below default content on smaller screens
+
 ### LuFooter
 
 #### props
@@ -129,7 +140,23 @@ Name|Description|Default value
 ----|-----------|-------------
 contact | Object with the following properties name, box (number), zip, phone and mail | undefined
 socialMedia | object with possible attributes. null if not shown {facebook: "https://facebook...", instagram: ..., linkedin: twitter: ..., youtube: ... } | undefined
-    
+
+### LuInfobox
+
+A box which is usually inside the right-column slot of a LuRow
+
+#### props
+
+Name|Description|Default value
+----|-----------|-------------
+title | The title of the box | undefined
+
+#### slots
+
+Name|Description
+----|-----------
+default | content of the box
+
 
 ## Menu example
 
