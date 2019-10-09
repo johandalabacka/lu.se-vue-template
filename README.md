@@ -157,6 +157,15 @@ Name|Description
 ----|-----------
 default | content of the box
 
+### LuSpinner
+
+A spinner
+
+#### props
+
+Name|Description|Default value
+----|-----------|-------------
+text | text to show | undefined
 
 ## Menu example
 

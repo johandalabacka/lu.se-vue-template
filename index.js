@@ -5,6 +5,7 @@ import LuMain from './LuMain'
 import LuRow from './LuRow'
 import LuFooter from './LuFooter'
 import LuInfobox from './LuInfobox'
+import LuSpinner from './LuSpinner'
 
 
 export {
@@ -14,5 +15,6 @@ export {
     LuMain,
     LuRow,
     LuFooter,
-    LuInfobox
+    LuInfobox,
+    LuSpinner
 }
