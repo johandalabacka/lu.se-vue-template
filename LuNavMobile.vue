@@ -1,29 +1,27 @@
 <template>
-  <div class="modal fade" id="nav-mobile" tabindex="-1" role="dialog" aria-labelledby="nav-mobile-label"
-    aria-hidden="true">
-    <div class="modal-dialog my-0 mx-auto" role="document">
-      <div class="modal-content border-0 rounded-0">
-        <nav class="nav border-bottom p-3 flex-row justify-content-between align-items-center sticky-top bg-white">
-          <div id="nav-mobile-label" class="h3 m-0"><span class="sr-only">Lunds universitet</span>
-          </div>
-          <button type="button" class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2" data-dismiss="modal"
-            aria-controls="mobileMenu" aria-expanded="false" aria-label="Dölj meny">
-            <span aria-hidden="true"><i class="fal fa-times fa-lg"></i></span>
-          </button>
-        </nav>
-        <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">
-          <lu-nav-mobile-item v-for="item in menu" :key="item.id" :item="item"/>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <b-modal ref="navMobile" id="nav-mobile" dialog-class="my-0 mx-auto" content-class="border-0 rounded-0" body-class="nav-mobile-body" :hide-header="true" :hide-footer="true">
+      <nav class="nav border-bottom p-3 flex-row justify-content-between align-items-center sticky-top bg-white">
+        <div id="nav-mobile-label" class="h3 m-0"><span class="sr-only">Lunds universitet</span>
+        </div>
+        <button type="button" class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2" @click="hide"
+          aria-controls="mobileMenu" aria-expanded="false" aria-label="Dölj meny">
+          <span aria-hidden="true"><i class="fal fa-times fa-lg"></i></span>
+        </button>
+      </nav>
+      <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">
+        <lu-nav-mobile-item v-for="item in menu" :key="item.id" :item="item" @link-selected="hide"/>
+      </ul>
+  </b-modal>
 </template>
 
 <script>
 import LuNavMobileItem from './LuNavMobileItem'
 
 export default {
-  name: 'LuNavMobile',
+  name: 'LuNavMobile2.vue',
+  components: {
+    LuNavMobileItem
+  },
   props: {
     menu: Array
   },
@@ -31,8 +29,22 @@ export default {
     return {
     }
   },
-  components: {
-    LuNavMobileItem
+  methods: {
+    show() {
+      this.$refs.navMobile.show()
+    },
+    hide() {
+      this.$refs.navMobile.hide()
+    }
   }
 }
 </script>
+
+<style>
+  .nav-mobile-body {
+    padding: 0px;
+  }
+  .modal-backdrop {
+    opacity: 0.7;
+  }
+</style>

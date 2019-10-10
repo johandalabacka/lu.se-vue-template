@@ -14,7 +14,7 @@
     </div>
     <transition name="slide">
       <ul v-show="expanded" class="mobile-nav collapse show" :id="'sm-' + item.id">
-        <lu-nav-mobile-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" @link-selected="setExpanded()"/>
+        <lu-nav-mobile-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" @link-selected="childSelected"/>
       </ul>
     </transition>
   </li>
@@ -53,15 +53,17 @@ export default {
     toggleExpanded () {
       this.expanded = !this.expanded
     },
-    setExpanded () {
+    childSelected () {
       this.expanded = true
+      // Resend event upwards
+      this.$emit('link-selected')
     }
   }
 }
 </script>
 
 <style scoped>
-.slide-enter-active {
+/* .slide-enter-active {
    transition-duration: 0.5s;
    transition-timing-function: ease-in;
 }
@@ -79,5 +81,5 @@ export default {
 .slide-enter, .slide-leave-to {
    overflow: hidden;
    max-height: 0;
-}
+} */
 </style>

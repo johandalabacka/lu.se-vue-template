@@ -34,7 +34,7 @@
                         <i class="fal fa-search"></i><br>{{ $t('search') }} </a>
                     </div>
                     <div class="nav-item">
-                      <a class="ml-2 p-1 d-block nav-undecorated" href="#" data-toggle="modal" data-target="#nav-mobile"
+                      <a class="ml-2 p-1 d-block nav-undecorated" href="#" @click.prevent="showNavMobile"
                         aria-controls="nav-mobile" aria-expanded="false" :aria-label="$t('showMenu')">
                         <i class="fal fa-bars"></i><br>{{ $t('menu') }} </a>
                     </div>
@@ -74,7 +74,7 @@
                               class="fal fa-lg fa-volume"></i></span> {{ $t('listen') }}</a>
                       </div>
                       <div class="nav-item d-none d-lg-block d-xl-none border-left ml-3 pl-3">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#nav-mobile"
+                        <a class="nav-link" href="#" @click.prevent="showNavMobile"
                           aria-controls="nav-mobile" aria-expanded="false" :aria-label="$t('showMenu')"><i
                             class="fal fa-bars"></i> {{ $t('menu') }}</a>
                       </div>
@@ -100,7 +100,11 @@
           </div>
         </form>
       </div>
-
+    </div>
+    <lu-nav-mobile ref="navMobile" :menu="mobilemenu" />
+    <div style="display: none">
+      <!-- bury the button for browsealoud -->
+      <div id="__ba_launchpad"></div>
     </div>
   </header>
 </template>
@@ -108,11 +112,13 @@
 <script>
 import LuNavbar from './LuNavbar'
 import LuTopMenu from './LuTopMenu'
+import LuNavMobile from './LuNavMobile'
 
 export default {
   name: 'LuHeader',
   props: {
     topmenu: Array,
+    mobilemenu: Array,
     navbarmenu: Array,
     hasListen: Boolean,
     hasLogin: Boolean
@@ -123,7 +129,8 @@ export default {
   },
   components: {
     LuNavbar,
-    LuTopMenu
+    LuTopMenu,
+    LuNavMobile
   },
   computed: {
     apiToken () {
@@ -141,6 +148,9 @@ export default {
     listen () {
       // function imported from browsealoud. Why such generic name :(
       toggleBar();
+    },
+    showNavMobile () {
+      this.$refs.navMobile.show()
     }
   },
   watch: {
@@ -150,7 +160,7 @@ export default {
   },
   mounted () {
     if (this.hasListen) {
-      window._baMode = " "
+      // window._baMode = " "
       const baScript = document.createElement("script")
       baScript.setAttribute(
         "src",

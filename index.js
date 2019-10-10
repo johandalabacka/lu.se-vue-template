@@ -1,4 +1,3 @@
-import LuNavMobile from './LuNavMobile'
 import LuHeader from './LuHeader'
 import LuBreadCrumb from './LuBreadCrumb'
 import LuMain from './LuMain'
@@ -9,7 +8,6 @@ import LuSpinner from './LuSpinner'
 
 
 export {
-    LuNavMobile,
     LuHeader,
     LuBreadCrumb,
     LuMain,

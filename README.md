@@ -12,8 +12,7 @@ App.vue
 ```html
 <template>
   <div>
-    <lu-nav-mobile :menu="menu"/>
-    <lu-header :navbarmenu="menu" :topmenu="menu" has-listen has-login/>
+    <lu-header :navbarmenu="menu" :topmenu="menu" :mobilemenu="menu" has-listen has-login/>
 
     <!-- key is hack to redraw component then locale changes -->
     <lu-bread-crumb :key="$i18n.locale"/>
@@ -34,7 +33,7 @@ App.vue
 </template>
 
 <script>
-import {LuNavMobile, LuHeader, LuBreadCrumb, LuMain, LuFooter} from '@lu.se/vue-template'
+import {LuHeader, LuBreadCrumb, LuMain, LuFooter} from '@lu.se/vue-template'
 
 import menu from './menu.js'
 
@@ -46,7 +45,6 @@ export default {
     }
   },
   components: {
-    LuNavMobile,
     LuHeader,
     LuBreadCrumb,
     LuMain,
@@ -72,18 +70,8 @@ export default {
 
 ## Components
 
-LuNavMobile, LuHeader, LuBredCrumb, LuMain, LuFooter is to be at toplevel in your app.
+LuHeader, LuBredCrumb, LuMain, LuFooter is to be at toplevel in your app.
 The other components are used by them and you don't need to import them.
-
-### LuNavMobile
-
-
-#### props
-This is the menu that will be shown on mobile or narrow windows
-Name|Description|Default value
-----|-----------|-------------
-menu | hamburgermenu. If not set, will the menu not show| undefined
-
 
 ### LuHeader
 
@@ -96,6 +84,7 @@ Name|Description|Default value
 ----|-----------|-------------
 topmenu | menu on top of the page. If not set, will the menu not show| undefined
 navbarmenu | menu below header. If not set, will the menu not show| undefined
+mobilemenu | menu shown on mobile narrow pages | false
 hasListen | should page use browsealoud | false
 hasLogin | A login/logout button is added. Goes to /login or /logout | false
 
@@ -246,8 +235,6 @@ Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall 
 <body>
   <div id="app"></div>
 
-  <script src="./lumall/scripts/bootstrap.js" defer></script>
-  <script src="./lumall/scripts/main.js" defer></script>
   <script src="./lumall/scripts/fontawesome.js" defer></script>
 </body>
 </html>
