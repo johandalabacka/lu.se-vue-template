@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-/* .slide-enter-active {
+.slide-enter-active {
    transition-duration: 0.5s;
    transition-timing-function: ease-in;
 }
@@ -81,5 +81,5 @@ export default {
 .slide-enter, .slide-leave-to {
    overflow: hidden;
    max-height: 0;
-} */
+}
 </style>
