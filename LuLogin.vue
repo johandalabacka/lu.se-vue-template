@@ -10,15 +10,15 @@
   >
     <template v-slot:modal-title>{{ $t('login') }}</template>
     <b-alert :show="loginFailed" variant="warning">{{ $t('login_failed') }}</b-alert>
-    <b-form @submit.stop.prevent="login">
+    <b-form @submit.prevent="login">
       <b-form-row>
         <b-form-group class="col-12" :label="$t('username')">
-          <b-input ref="username" spellcheck="false" v-model="username" />
+          <b-input ref="username" spellcheck="false" v-model="username" @keydown.enter.native="login"/>
         </b-form-group>
       </b-form-row>
       <b-form-row>
         <b-form-group class="col-12" :label="$t('password')">
-          <b-input type="password" v-model="password" />
+          <b-input type="password" v-model="password" @keydown.enter.native="login"/>
         </b-form-group>
       </b-form-row>
       <b-form-row v-if="options.length > 0">
@@ -45,6 +45,7 @@ export default {
     shown() {
       this.username = ''
       this.password = ''
+      this.$refs.username.focus()
     },
     show() {
       this.$refs.loginModal.show()
@@ -56,7 +57,8 @@ export default {
       this.username = ''
       this.password = ''
     },
-    login() {
+    login(event) {
+      event.preventDefault()
       this.$emit('login', { username: this.username, password: this.password })
     }
   },
