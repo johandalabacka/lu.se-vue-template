@@ -5,10 +5,12 @@
     :ok-disabled="! username || ! password"
     :ok-title="$t('login')"
     @shown="shown"
+    @hidden="hidden"
+    @ok="login"
   >
     <template v-slot:modal-title>{{ $t('login') }}</template>
     <b-alert :show="loginFailed" variant="warning">{{ $t('login_failed') }}</b-alert>
-    <b-form @submit.prevent="login">
+    <b-form @submit.stop.prevent="login">
       <b-form-row>
         <b-form-group class="col-12" :label="$t('username')">
           <b-input ref="username" spellcheck="false" v-model="username" />
@@ -19,7 +21,7 @@
           <b-input type="password" v-model="password" />
         </b-form-group>
       </b-form-row>
-      <b-form-row>
+      <b-form-row v-if="options.length > 0">
         <b-select v-model="username" :options="options"></b-select>
       </b-form-row>
     </b-form>
@@ -50,6 +52,10 @@ export default {
     hide() {
       this.$refs.loginModal.hide()
     },
+    hidden () {
+      this.username = ''
+      this.password = ''
+    },
     login() {
       this.$emit('login', { username: this.username, password: this.password })
     }
@@ -59,12 +65,14 @@ export default {
       sv: {
         login: 'Logga in',
         username: 'Användarnamn',
-        password: 'Lösenord'
+        password: 'Lösenord',
+        login_failed: 'Inloggningen misslyckades'
       },
       en: {
         login: 'Login',
         username: 'Username',
-        password: 'Password'
+        password: 'Password',
+        login_failed: 'Inloggningen misslyckades'
       }
     }
   }
