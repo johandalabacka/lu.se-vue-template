@@ -57,7 +57,8 @@
                     <div class="nav-item">
                       <a
                         class="ml-2 p-1 d-block nav-undecorated"
-                        href="#header-search-form"
+                        href="#"
+                        @click.prevent="toggleSearch"
                         data-toggle="collapse"
                         aria-controls="header-search-form"
                         aria-expanded="false"
@@ -86,10 +87,11 @@
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
                     <nav class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
                       <div class="nav-item flex-xl-grow-1">
-                        <form class="form-inline pr-xl-3">
+                        <form @submit.prevent="search" class="form-inline pr-xl-3">
                           <div class="input-group input-group-round input-group-sm w-100 flex">
                             <input
                               type="search"
+                              v-model="searchField"
                               class="form-control form-control-sm border-right-0"
                               id="header-search-field"
                             />
@@ -175,23 +177,27 @@
           </div>
         </div>
       </div>
-      <div class="header-search-form collapse collapse-lg pb-2 px-2" id="header-search-form">
-        <form class="form-inline px-lg-3">
-          <div class="input-group input-group-round input-group-sm w-100 flex">
-            <input
-              type="search"
-              class="form-control form-control-sm border-right-0"
-              id="header-search-field-mobile"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-primary px-2" type="submit">
-                <span class="mr-2">{{ $t('search') }}</span>
-                <i class="fal fa-search"></i>
-              </button>
+      <transition name="slide">
+        <div v-show="! searchCollapsed" class="header-search-form collapse-lg pb-2 px-2" id="header-search-form" >
+          <form @submit.prevent="search" class="form-inline px-lg-3">
+            <div class="input-group input-group-round input-group-sm w-100 flex">
+              <input
+                type="search"
+                v-model="searchField"
+                class="form-control form-control-sm border-right-0"
+                ref="searchFieldMobile"
+                id="header-search-field-mobile"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary px-2" type="submit">
+                  <span class="mr-2">{{ $t('search') }}</span>
+                  <i class="fal fa-search"></i>
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </transition>
     </div>
     <lu-nav-mobile ref="navMobile" :menu="mobilemenu" />
     <div style="display: none">
@@ -217,7 +223,10 @@ export default {
     isLoggedIn: Boolean
   },
   data() {
-    return {};
+    return {
+      searchField: '',
+      searchCollapsed: true
+    };
   },
   components: {
     LuNavbar,
@@ -234,6 +243,19 @@ export default {
     },
     showNavMobile() {
       this.$refs.navMobile.show();
+    },
+    toggleSearch() {
+      this.searchCollapsed = ! this.searchCollapsed
+      if (! this.searchCollapsed) {
+        // Wait until rendered to set fokus
+        this.$nextTick(() => this.$refs.searchFieldMobile.focus())
+      }
+    },
+    search() {
+      if (this.searchField.trim()) {
+        this.$emit('search', this.searchField)
+        this.searchField = ''
+      }
     }
   },
   watch: {
@@ -275,3 +297,25 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.slide-enter-active {
+   transition-duration: 0.2s;
+   transition-timing-function: linear;
+}
+
+.slide-leave-active {
+   transition-duration: 0.2s;
+   transition-timing-function: linear;
+}
+
+.slide-enter-to, .slide-leave {
+   max-height: 50px;
+   overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+   overflow: hidden;
+   max-height: 0;
+}
+</style>

@@ -87,7 +87,15 @@ navbarmenu | menu below header. If not set, will the menu not show| undefined
 mobilemenu | menu shown on mobile narrow pages | false
 hasListen | should page use browsealoud | false
 hasLogin | A login/logout button is added. Goes to /login or /logout | false
+isLoggedIn | Is user logged in (show login or logout) | false
 
+### events
+
+Name|Payload|Description
+----|-----------|-------------
+@login | {username: 'xxx', password: 'xxx'} | User has tried logging in
+@logout | -- | User has clicked log out
+@search | "search string" | User has made a search
 
 ### LuBreadCrumb
 
@@ -222,12 +230,12 @@ Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall 
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Article Page: Default | Lunds universitet</title>
-  <link media="all" rel="stylesheet" href="./lumall/styles/main.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="./lumall/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./lumall/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./lumall/favicon-16x16.png">
-  <link rel="manifest" href="./lumall/site.webmanifest">
-  <link rel="mask-icon" href="./lumall/safari-pinned-tab.svg" color="#875e29">
+  <link media="all" rel="stylesheet" href="/lumall/styles/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/lumall/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/lumall/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/lumall/favicon-16x16.png">
+  <link rel="manifest" href="/lumall/site.webmanifest">
+  <link rel="mask-icon" href="/lumall/safari-pinned-tab.svg" color="#875e29">
   <meta name="msapplication-TileColor" content="#875e29">
   <meta name="theme-color" content="#875e29">
 </head>
@@ -235,7 +243,7 @@ Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall 
 <body>
   <div id="app"></div>
 
-  <script src="./lumall/scripts/fontawesome.js" defer></script>
+  <script src="/lumall/scripts/fontawesome.js" defer></script>
 </body>
 </html>
 
