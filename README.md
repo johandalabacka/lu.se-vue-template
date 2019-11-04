@@ -108,7 +108,7 @@ It uses no props and takes all information from the router.
 
 Name|Description|Default value
 ----|-----------|-------------
-leftmenu | Menu to the left. If not set will the menu not show | undefined
+leftmenu | Menu to the left. If not set will the menu not show and content will use the whole width. | undefined
 lastUpdated | Date of last update | undefined
 pageManagerMail | Mail address of page manager | undefined
 
@@ -120,7 +120,7 @@ default | content of page
 
 ### LuRow
 
-A row is inside LuMain. You can have several rows stacked on eachother. They can have a optional right column
+A row with space for an optional right column. Is used inside LuMain. You can have several rows stacked on eachother.
 
 #### slots
 

@@ -1,11 +1,11 @@
 <template>
   <main class="main">
     <div class="container">
-      <div class="row">
+      <div v-if="leftmanu" class="row">
         <lu-left-menu v-if="leftmenu" :menu="leftmenu"/>
         <div class="col-12 col-xl-9 mb-6 mb-xl-0">
           <slot></slot>
-          <div class="row">
+          <div v-if="pageManagerMail" class="row">
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
                 {{ $t('pageManager')}}: <a :href="pageManagerMail">{{ pageManagerMail }}</a>
@@ -14,6 +14,17 @@
             </div>
           </div>
         </div>
+      </div>
+      <div v-else>
+        <slot></slot>
+        <div v-if="pageManagerMail" class="row">
+            <div class="col-12 col-lg-8">
+              <div class=" border-top border-dark mt-5 py-3">
+                {{ $t('pageManager')}}: <a :href="pageManagerMail">{{ pageManagerMail }}</a>
+                &nbsp;|&nbsp; <strong>{{ lastUpdated }}</strong>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </main>
