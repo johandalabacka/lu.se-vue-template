@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <div class="container">
-      <div v-if="leftmanu" class="row">
+      <div v-if="leftmenu" class="row">
         <lu-left-menu v-if="leftmenu" :menu="leftmenu"/>
         <div class="col-12 col-xl-9 mb-6 mb-xl-0">
           <slot></slot>
