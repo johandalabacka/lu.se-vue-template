@@ -31,14 +31,14 @@
 <script>
 export default {
   props: {
-    loginFailed: Boolean
+    loginFailed: Boolean,
+    options: Array
   },
   data() {
     return {
       username: '',
       password: '',
-      login_failed: '',
-      options: []
+      login_failed: ''
     };
   },
   methods: {
