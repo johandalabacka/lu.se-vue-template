@@ -93,6 +93,7 @@
                               type="search"
                               v-model="searchField"
                               class="form-control form-control-sm border-right-0"
+                              ref="headerSearchField"
                               id="header-search-field"
                             />
                             <div class="input-group-append">
@@ -254,7 +255,8 @@ export default {
     search() {
       if (this.searchField.trim()) {
         this.$emit('search', this.searchField)
-        this.searchField = ''
+        this.$refs.searchFieldMobile.select()
+        this.$refs.headerSearchField.select()
       }
     }
   },
