@@ -95,6 +95,7 @@
                               class="form-control form-control-sm border-right-0"
                               ref="headerSearchField"
                               id="header-search-field"
+                              :placeholder="searchPlaceholder"
                             />
                             <div class="input-group-append">
                               <button class="btn btn-primary px-2" type="submit">
@@ -188,6 +189,7 @@
                 class="form-control form-control-sm border-right-0"
                 ref="searchFieldMobile"
                 id="header-search-field-mobile"
+                :placeholder="searchPlaceholder"
               />
               <div class="input-group-append">
                 <button class="btn btn-primary px-2" type="submit">
@@ -221,7 +223,8 @@ export default {
     navbarmenu: Array,
     hasListen: Boolean,
     hasLogin: Boolean,
-    isLoggedIn: Boolean
+    isLoggedIn: Boolean,
+    searchPlaceholder: String
   },
   data() {
     return {
