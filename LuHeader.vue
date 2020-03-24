@@ -240,6 +240,7 @@ export default {
   methods: {
     switchLocale() {
       this.$root.$i18n.locale = this.$root.$i18n.locale == "sv" ? "en" : "sv";
+      localStorage.setItem('language', this.$root.$i18n.locale)
     },
     listen() {
       // function imported from browsealoud. Why such generic name :(

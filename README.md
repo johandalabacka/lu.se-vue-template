@@ -77,6 +77,7 @@ The other components are used by them and you don't need to import them.
 
 This is the header of the page containing logo, search field, language switcher.
 Optional menus one on the top and one below logo and search field.
+Language switcher sets the key language in local storage to *sv* or *en*.
 
 #### props
 
