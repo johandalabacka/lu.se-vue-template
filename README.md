@@ -88,7 +88,7 @@ navbarmenu | menu below header. If not set, will the menu not show| undefined
 mobilemenu | menu shown on mobile narrow pages | false
 hasListen | should page use browsealoud | false
 hasLogin | A login/logout button is added. Goes to /login or /logout | false
-isLoggedIn | Is user logged in (show login or logout) | false
+isLoggedIn | Is user logged in (show login or logout, avatar if string) | false
 searchPlaceholder | Placeholder for search field | undefined
 
 ### events

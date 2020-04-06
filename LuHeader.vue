@@ -36,7 +36,8 @@
                         aria-expanded="false"
                         :aria-label="$t('logout')"
                       >
-                        <i class="fal fa-sign-out"></i>
+                        <i v-if="isLoggedIn === true" class="fal fa-sign-out"></i>
+                        <b-avatar v-else size="sm" variant="primary" :text="avatar" />
                         <br />
                         {{ $t('logout') }}
                       </a>
@@ -116,7 +117,8 @@
                           @click.prevent="$emit('logout')"
                         >
                           <span class="mr-1">
-                            <i class="fal fa-lg fa-sign-out"></i>
+                            <i v-if="isLoggedIn === true" class="fal fa-lg fa-sign-out"></i>
+                            <b-avatar v-else size="1.8em" variant="primary" :text="avatar" />
                           </span>
                           {{ $t('logout') }}
                         </a>
@@ -223,14 +225,22 @@ export default {
     navbarmenu: Array,
     hasListen: Boolean,
     hasLogin: Boolean,
-    isLoggedIn: Boolean,
+    isLoggedIn: [Boolean, String],
     searchPlaceholder: String
   },
   data() {
     return {
       searchField: '',
       searchCollapsed: true
-    };
+    }
+  },
+  computed: {
+    avatar() {
+      if (typeof this.isLoggedIn === 'boolean') {
+        return ''
+      }
+      return this.isLoggedIn.split(' ').map(x => x.charAt(0)).join('').substr(0, 2)
+    }
   },
   components: {
     LuNavbar,
@@ -301,7 +311,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
