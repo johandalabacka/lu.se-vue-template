@@ -9,7 +9,7 @@
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
                 <a href="#" title="Lunds universitet">
                   <img
-                    :src="'/lumall/images/logo/logo_lth_' + $root.$i18n.locale +'@1x.png'"
+                    :src="`${process.env.BASE_URL}/lumall/images/logo/logo_lth_${$root.$i18n.locale}@1x.png`"
                     alt="Lunds universitet"
                     class="mw-100"
                   />

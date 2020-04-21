@@ -3,7 +3,7 @@
     <div class="container py-2">
       <div class="row pt-1">
         <div class="col-12 col-lg-4 mb-5 text-center text-lg-left">
-          <img :src="'/lumall/images/logo/logo_lth_footer_' + $root.$i18n.locale + '@1x.png'"
+          <img :src="`{process.env.BASE_URL}/lumall/images/logo/logo_lth_footer_${}$root.$i18n.locale}@1x.png`"
             
             alt="Lunds universitet" class=" footer-logo">
             <!-- srcset="/lumall/images/logo/logo_lu_footer@1x.png 1x, /lumall/images/logo/logo_lu_footer@2x.png 2x" -->
