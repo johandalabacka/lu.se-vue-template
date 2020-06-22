@@ -13,15 +13,15 @@
     <b-form @submit.prevent="login">
       <b-form-row>
         <b-form-group class="col-12" :label="$t('username')">
-          <b-input ref="username" spellcheck="false" v-model="username" @keydown.enter.native="login"/>
+          <b-input ref="username" autocomplete="username" spellcheck="false" v-model="username" @keydown.enter.native="login"/>
         </b-form-group>
       </b-form-row>
       <b-form-row>
         <b-form-group class="col-12" :label="$t('password')">
-          <b-input type="password" v-model="password" @keydown.enter.native="login"/>
+          <b-input type="password" autocomplete="current-password" v-model="password" @keydown.enter.native="login"/>
         </b-form-group>
       </b-form-row>
-      <b-form-row v-if="options.length > 0">
+      <b-form-row v-if="options && options.length > 0">
         <b-select v-model="username" :options="options"></b-select>
       </b-form-row>
     </b-form>
