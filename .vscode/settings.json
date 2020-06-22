@@ -1,0 +1,17 @@
+{
+    "files.autoSave": "afterDelay",
+    "javascript.format.enable": false,
+    "vetur.format.enable": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.packageManager": "yarn",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+}
