@@ -3,9 +3,8 @@
     <div class="container py-2">
       <div class="row pt-1">
         <div class="col-12 col-lg-4 mb-5 text-center text-lg-left">
-          <img :src="`${baseUrl}lumall/images/logo/logo_lth_footer_${$root.$i18n.locale}@1x.png`"
-            alt="Lunds universitet" class=" footer-logo">
-            <!-- srcset="/lumall/images/logo/logo_lu_footer@1x.png 1x, /lumall/images/logo/logo_lu_footer@2x.png 2x" -->
+          <img v-if="logoSrc" :src="logoSrc"
+            :alt="logoTitle" class=" footer-logo">
         </div>
         <div v-if="contact" class="col-6 col-md-3 offset-md-3 offset-lg-0 col-lg-4 mb-5">
           <h6 class="p font-weight-bold text-uppercase mb-1">{{ $t('contactUs') }}</h6>
@@ -20,12 +19,12 @@
         <div class="col-6 col-md-3 col-lg-4 mb-5">
           <h6 class="p font-weight-bold text-uppercase mb-1">{{ $t('shortCuts') }}</h6>
           <div class="nav nav-list flex-column">
-            <a v-if="$root.$i18n.locale == 'sv'" class="nav-link text-white py-1 px-0" href="#" @click.prevent="switchLocale">Change to English <i
+            <a class="nav-link text-white py-1 px-0" href="#" @click.prevent="switchLocale">{{ $t('changeLanguage') }} <i
                 class="fal fa-globe"></i></a>
-            <a v-else class="nav-link text-white py-1 px-0" href="#" @click.prevent="switchLocale">Byt till svenska <i
-                class="fal fa-globe"></i></a>
-            <a class="nav-link text-white py-1 px-0" href="om.html">Om webbplatsen</a>
-            <a class="nav-link text-white py-1 px-0" href="cookies.html">Om cookies</a>
+            <template v-for="item in shortCuts">
+              <router-link v-if="item.path" :to="item.path"  :key="item.id" class="nav-link text-white py-1 px-0">{{ $t(item.label) }}</router-link>
+              <a v-else  :key="item.id" class="nav-link text-white py-1 px-0" :href="item.url">{{ $t(item.label) }}</a>
+            </template>
           </div>
         </div>
       </div>
@@ -70,12 +69,10 @@ export default {
   name: 'LuFooter',
   props: {
     contact: Object,
-    socialMedia: Object
-  },
-  data () {
-    return {
-      baseUrl: process.env.BASE_URL
-    }
+    socialMedia: Object,
+    logoSrc: String,
+    logoTitle: String,
+    shortCuts: Array
   },
   computed: {
     intlPhone () {
@@ -95,13 +92,15 @@ export default {
   i18n: {
     messages: {
       sv: {
+        changeLanguage: 'Change to English',
         contactUs: 'Kontakta oss',
-        followUsSocialMedia: 'Follow us in social media',
+        followUsSocialMedia: 'Följ oss i sociala medier',
         shortCuts: 'Genvägar'
       },
       en: {
+        changeLanguage: 'Byt till svenska',
         contactUs: 'Contact Us',
-        followUsSocialMedia: 'Följ oss i sociala medier',
+        followUsSocialMedia: 'Follow us in social media',
         shortCuts: 'Shortcuts'
       }
     }

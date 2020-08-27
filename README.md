@@ -12,7 +12,14 @@ App.vue
 ```html
 <template>
   <div>
-    <lu-header :navbarmenu="menu" :topmenu="menu" :mobilemenu="menu" has-listen has-login/>
+    <lu-header
+      :navbarmenu="menu"
+      :topmenu="menu"
+      :mobilemenu="menu"
+      has-listen has-login
+      logo-url="https://www.lth.se"
+      :logo-path="`${baseUrl}lumall/images/logo/logo_lth_${$root.$i18n.locale}@1x.png`"
+      :logo-title="$t('lthFull')"/>
 
     <!-- key is hack to redraw component then locale changes -->
     <lu-bread-crumb :key="$i18n.locale"/>
@@ -29,6 +36,8 @@ App.vue
         twitter: 'https://twitter.com/lthinfo',
         youtube: 'https://www.youtube.com/user/LunduniversityLTH/featured'
         }"/>
+      :logo-path="`${baseUrl}lumall/images/logo/logo_lth_footer_${$root.$i18n.locale}@1x.png`"
+      :logo-title="$t('lthFull')"/>
   </div>
 </template>
 
@@ -41,7 +50,8 @@ export default {
   name: 'App',
   data () {
     return {
-      menu: []
+      menu: [],
+      baseUrl: process.env.BASE_URL
     }
   },
   components: {
@@ -90,6 +100,9 @@ hasListen | should page use browsealoud | false
 hasLogin | A login/logout button is added. Goes to /login or /logout | false
 isLoggedIn | Is user logged in (show login or logout, avatar if string) | false
 searchPlaceholder | Placeholder for search field | undefined
+logoSrc | URL for the image | ""
+logoTitle | title and alt text | ""
+logoUrl | URL then clicking the logo  | ""
 
 ### events
 
@@ -139,6 +152,10 @@ Name|Description|Default value
 ----|-----------|-------------
 contact | Object with the following properties name, box (number), zip, phone and mail | undefined
 socialMedia | object with possible attributes. null if not shown {facebook: "https://facebook...", instagram: ..., linkedin: twitter: ..., youtube: ... } | undefined
+logoSrc | URL for the image | ""
+logoTitle | title and alt text | ""
+shortCuts | menu of shortcuts. Allways contain change language | null
+
 
 ### LuInfobox
 

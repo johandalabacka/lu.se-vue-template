@@ -7,14 +7,12 @@
           <div class="col p-0">
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
-                <a href="#" title="Lunds universitet">
-                  <img
-                    :src="`${baseUrl}lumall/images/logo/logo_lth_${$root.$i18n.locale}@1x.png`"
-                    alt="Lunds universitet"
+                <a :href="logoUrl" :title="logoTitle">
+                  <img v-if="logoSrc"
+                    :src="logoSrc"
+                    :alt="logoTitle"
                     class="mw-100"
                   />
-                  <!--
-                  srcset="/lumall/images/logo/logo_lth@1x.png 1x, /lumall/images/logo/logo_lth@2x.png 2x"-->
                 </a>
               </div>
               <div
@@ -226,13 +224,15 @@ export default {
     hasListen: Boolean,
     hasLogin: Boolean,
     isLoggedIn: [Boolean, String],
-    searchPlaceholder: String
+    searchPlaceholder: String,
+    logoUrl: String,
+    logoTitle: String,
+    logoSrc: String
   },
   data() {
     return {
       searchField: '',
-      searchCollapsed: true,
-      baseUrl: process.env.BASE_URL
+      searchCollapsed: true
     }
   },
   computed: {
