@@ -10,17 +10,20 @@
       </nav>
       <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">
         <lu-nav-mobile-item v-for="item in menu" :key="item.id" :item="item" @link-selected="hide"/>
+        <lu-nav-mobile-item-changeLanguage @link-selected="hide"/>
       </ul>
   </b-modal>
 </template>
 
 <script>
 import LuNavMobileItem from './LuNavMobileItem'
+import LuNavMobileItemChangeLanguage from './LuNavMobileItemChangeLanguage'
 
 export default {
-  name: 'LuNavMobile2.vue',
+  name: 'LuNavMobile.vue',
   components: {
-    LuNavMobileItem
+    LuNavMobileItem,
+    LuNavMobileItemChangeLanguage
   },
   props: {
     menu: Array
