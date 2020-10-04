@@ -5,10 +5,10 @@
       <div class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
          :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded">
         <span v-show="! expanded" class="collapse-show">
-          <i class="fal fa-plus-circle"></i>
+          <fa-icon class="fa-lg" :icon="['fal', 'plus-circle']" />
         </span>
         <span v-show="expanded" class="collapse-hide">
-          <i class="fal fa-minus-circle"></i>
+           <fa-icon class="fa-lg" :icon="['fal', 'minus-circle']" />
         </span>
       </div>
     </div>

@@ -48,7 +48,7 @@
                         aria-expanded="false"
                         :aria-label="$t('login')"
                       >
-                        <i class="fal fa-sign-in"></i>
+                        <fa-icon :icon="['fal', 'sign-in']" />
                         <br />
                         {{ $t('login') }}
                       </a>
@@ -63,7 +63,7 @@
                         aria-expanded="false"
                         :aria-label="$t('showHideSearch')"
                       >
-                        <i class="fal fa-search"></i>
+                        <fa-icon :icon="['fal', 'search']" />
                         <br />
                         {{ $t('search') }}
                       </a>
@@ -77,7 +77,7 @@
                         aria-expanded="false"
                         :aria-label="$t('showMenu')"
                       >
-                        <i class="fal fa-bars"></i>
+                        <fa-icon :icon="['fal', 'bars']" />
                         <br />
                         {{ $t('menu') }}
                       </a>
@@ -99,7 +99,7 @@
                             <div class="input-group-append">
                               <button class="btn btn-primary px-2" type="submit">
                                 <span class="mr-2">{{ $t('search') }}</span>
-                                <i class="fal fa-search"></i>
+                                <fa-icon :icon="['fal', 'search']" />
                               </button>
                             </div>
                           </div>
@@ -127,7 +127,7 @@
                           @click.prevent="$emit('login')"
                         >
                           <span class="mr-1">
-                            <i class="fal fa-lg fa-sign-in"></i>
+                            <fa-icon class="fa-lg" :icon="['fal', 'sign-in']" />
                           </span>
                           {{ $t('login') }}
                         </a>
@@ -140,19 +140,19 @@
                           @click.prevent="switchLocale"
                         >
                           <span class="mr-1">
-                            <i class="fal fa-lg fa-globe"></i>
+                            <fa-icon class="fa-lg" :icon="['fal', 'globe']" />
                           </span> English
                         </a>
                         <a v-else class="nav-link px-0 ml-4" href="#" @click.prevent="switchLocale">
                           <span class="mr-1">
-                            <i class="fal fa-lg fa-globe"></i>
+                            <fa-icon class="fa-lg" :icon="['fal', 'globe']" />
                           </span> Svenska
                         </a>
                       </div>
                       <div v-if="hasListen" class="nav-item">
                         <a class="nav-link px-0 ml-4" href="#" @click.prevent="listen">
                           <span class="mr-1">
-                            <i class="fal fa-lg fa-volume"></i>
+                            <fa-icon class="fa-lg" :icon="['fal', 'volume']" />
                           </span>
                           {{ $t('listen') }}
                         </a>
@@ -166,7 +166,7 @@
                           aria-expanded="false"
                           :aria-label="$t('showMenu')"
                         >
-                          <i class="fal fa-bars"></i>
+                          <fa-icon :icon="['fal', 'bars']" />
                           {{ $t('menu') }}
                         </a>
                       </div>
@@ -194,7 +194,7 @@
               <div class="input-group-append">
                 <button class="btn btn-primary px-2" type="submit">
                   <span class="mr-2">{{ $t('search') }}</span>
-                  <i class="fal fa-search"></i>
+                   <fa-icon :icon="['fal', 'search']" />
                 </button>
               </div>
             </div>

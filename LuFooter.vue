@@ -19,8 +19,9 @@
         <div class="col-6 col-md-3 col-lg-4 mb-5">
           <h6 class="p font-weight-bold text-uppercase mb-1">{{ $t('shortCuts') }}</h6>
           <div class="nav nav-list flex-column">
-            <a class="nav-link text-white py-1 px-0" href="#" @click.prevent="switchLocale">{{ $t('changeLanguage') }} <i
-                class="fal fa-globe"></i></a>
+            <a class="nav-link text-white py-1 px-0" href="#" @click.prevent="switchLocale">{{ $t('changeLanguage') }}
+              <fa-icon :icon="['fal', 'globe']" />
+            </a>
             <template v-for="item in shortCuts">
               <router-link v-if="item.path" :to="item.path"  :key="item.id" class="nav-link text-white py-1 px-0">{{ $t(item.label) }}</router-link>
               <a v-else  :key="item.id" class="nav-link text-white py-1 px-0" :href="item.url">{{ $t(item.label) }}</a>

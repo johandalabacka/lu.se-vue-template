@@ -4,7 +4,7 @@
 <template>
   <li v-if="item.children && item.path" >
     <router-link @click.native="toggleExpanded" :to="item.path"  class="nav-link collapse" :class="[expanded ? 'show' : 'collapsed']">
-      <div class="float-right ml-2"><i class="fal" :class="[expanded ? 'fa-chevron-down' : 'fa-chevron-right']"></i></div>
+      <div class="float-right ml-2"><fa-icon :icon="['fal', expanded ? 'chevron-down' : 'chevron-right']" /></div>
       {{ $t(item.label) }}
     </router-link>
     <ul class="nav-accordion collapse" :class="[expanded ? 'show': '']">

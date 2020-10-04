@@ -5,7 +5,7 @@
         </div>
         <button type="button" class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2" @click="hide"
           aria-controls="mobileMenu" aria-expanded="false" aria-label="Dölj meny">
-          <span aria-hidden="true"><i class="fal fa-times fa-lg"></i></span>
+          <span aria-hidden="true"><fa-icon class="fa-lg" :icon="['fal', 'times']" /></span>
         </button>
       </nav>
       <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">

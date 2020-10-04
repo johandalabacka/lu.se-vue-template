@@ -1,7 +1,7 @@
 <template>
   <li  class="mobile-nav-item">
     <a href="#" @click.prevent="switchLocale" class="nav-link">
-      <i class="fal fa-globe" aria-hidden="true"></i> {{ $t('changeLanguage') }}
+      <fa-icon aria-hidden :icon="['fal', 'globe']" /> {{ $t('changeLanguage') }}
     </a>
   </li>
 </template>

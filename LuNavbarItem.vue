@@ -5,10 +5,10 @@
     </li>
     <li v-else class="nav-item dropdown dropdown-hover">
       <router-link v-if="item.path" :to="item.path" class="nav-link dropdown-toggle px-3">
-        {{ $t(item.label) }}  &nbsp;<i class="fal fa-chevron-down"></i></router-link>
+        {{ $t(item.label) }}  &nbsp;<fa-icon :icon="['fal', 'chevron-down']" /></router-link>
       <a v-else class="nav-link dropdown-toggle px-3" :href="item.url" id="sm-lu-fakulteter"
         aria-haspopup="true">
-        {{ $(item.label) }} &nbsp;<i class="fal fa-chevron-down"></i>
+        {{ $(item.label) }} &nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
       </a>
       <div class="dropdown-menu dropdown-menu-right text-primary" aria-labelledby="sm-lu-fakulteter">
         <lu-dropdown-item v-for="subItem in item.children" :key="subItem.id" :item="subItem"/>
