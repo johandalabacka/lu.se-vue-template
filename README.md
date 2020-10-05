@@ -42,6 +42,8 @@ App.vue
 </template>
 
 <script>
+import '@lu.se/vue-template/icons'
+import '@lu.se/vue-template/iconsSocialMedia'
 import {LuHeader, LuBreadCrumb, LuMain, LuFooter} from '@lu.se/vue-template'
 
 import menu from './menu.js'
@@ -236,7 +238,7 @@ yarn add '@lu.se/vue-template' or
 npm add '@lu.se/vue-template'
 
 ### Install lu-template
-Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall and put it in the same folder as index.html (public)
+Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall and put it in the same folder as index.html (public). Remove
 
 ### index.html
 
@@ -261,8 +263,6 @@ Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall 
 
 <body>
   <div id="app"></div>
-
-  <script src="/lumall/scripts/fontawesome.js" defer></script>
 </body>
 </html>
 

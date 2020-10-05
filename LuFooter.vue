@@ -35,27 +35,27 @@
           <ul class="nav nav-social mt-3 nmx-2 justify-content-center justify-content-lg-start">
             <li v-if="socialMedia.facebook" class="nav-item mx-2">
               <a class="nav-link text-white p-0" :href="socialMedia.facebook"><span
-                  class="sr-only">Facebook </span><i class="fab fa-facebook-square  fa-2x"></i>
+                  class="sr-only">Facebook </span><fa-icon class="fa-2x" :icon="['fab', 'facebook-square']" />
               </a>
             </li>
             <li v-if="socialMedia.instagram" class="nav-item mx-2">
               <a class="nav-link text-white p-0" :href="socialMedia.instagram"><span
-                  class="sr-only">Instagram </span><i class="fab fa-instagram  fa-2x"></i>
+                  class="sr-only">Instagram </span><fa-icon class="fa-2x" :icon="['fab', 'instagram']" />
               </a>
             </li>
             <li v-if="socialMedia.linkedin" class="nav-item mx-2">
               <a class="nav-link text-white p-0" :href="socialMedia.linkedin"><span
-                  class="sr-only">LinkedIn </span><i class="fab fa-linkedin  fa-2x"></i>
+                  class="sr-only">LinkedIn </span><fa-icon class="fa-2x" :icon="['fab', 'linkedin']" />
               </a>
             </li>
             <li v-if="socialMedia.twitter" class="nav-item mx-2">
               <a class="nav-link text-white p-0" :href="socialMedia.twitter"><span class="sr-only">Twitter
-                </span><i class="fab fa-twitter-square  fa-2x"></i>
+                </span><fa-icon class="fa-2x" :icon="['fab', 'twitter-square']" />
               </a>
             </li>
             <li v-if="socialMedia.youtube" class="nav-item mx-2">
               <a class="nav-link text-white p-0" :href="socialMedia.youtube"><span
-                  class="sr-only">Youtube </span><i class="fab fa-youtube-square  fa-2x"></i>
+                  class="sr-only">Youtube </span><fa-icon class="fa-2x" :icon="['fab', 'youtube-square']" />
               </a>
             </li>
           </ul>

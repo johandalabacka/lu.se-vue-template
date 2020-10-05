@@ -1,6 +1,6 @@
 {
   "name": "@lu.se/vue-template",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Components for LU template",
   "license": "MIT",
   "author": {
@@ -16,7 +16,11 @@
     "url": "https://github.com/johandalabacka/lu.se-vue-template"
   },
   "dependencies": {
-    "vue": "^2.6.10",
+    "@fortawesome/fontawesome-free-brands": "^5.1.0-3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.31",
+    "@fortawesome/pro-light-svg-icons": "^5.15.0",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
+    "vue": "^2.6.11",
     "vue-router": "^3.1.1",
     "vue-i18n": "^8.14.0",
     "bootstrap-vue": "^2.16.0"
