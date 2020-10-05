@@ -14,6 +14,7 @@
       <b-form-row>
         <b-form-group class="col-12" :label="$t('username')">
           <b-input ref="username" autocomplete="username" spellcheck="false" v-model="username" @keydown.enter.native="login"/>
+          <small>{{ $t('login_text')}}</small>
         </b-form-group>
       </b-form-row>
       <b-form-row>
@@ -59,19 +60,27 @@ export default {
     },
     login(event) {
       event.preventDefault()
-      this.$emit('login', { username: this.username, password: this.password })
+      let username = this.username.trim().toLowerCase()
+      const index = username.indexOf('@')
+      if (index !== -1) {
+        username = username.substring(0, index)
+      }
+      console.log(username)
+      this.$emit('login', { username, password: this.password })
     }
   },
   i18n: {
     messages: {
       sv: {
         login: 'Logga in',
+        login_text: 'Använd ditt lucat-konto',
         username: 'Användarnamn',
         password: 'Lösenord',
         login_failed: 'Inloggningen misslyckades'
       },
       en: {
         login: 'Login',
+        login_text: 'Use your Lucat account',
         username: 'Username',
         password: 'Password',
         login_failed: 'Inloggningen misslyckades'
