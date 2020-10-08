@@ -70,7 +70,7 @@ export default {
       this.$emit('login', { username, password: this.password })
     },
     cancelLogin() {
-      this.$emit('cancel-login')
+      this.$emit('cancel')
     }
   },
   i18n: {
