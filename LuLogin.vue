@@ -7,9 +7,11 @@
     @shown="shown"
     @hidden="hidden"
     @ok="login"
+    @cancel="cancelLogin"
+    @close="cancelLogin"
   >
     <template v-slot:modal-title>{{ $t('login') }}</template>
-    <b-alert :show="loginFailed" variant="warning">{{ $t('login_failed') }}</b-alert>
+    <b-alert :show="!!loginFailed" variant="warning">{{ loginFailed === true ? $t('login_failed') : loginFailed }}</b-alert>
     <b-form @submit.prevent="login">
       <b-form-row>
         <b-form-group class="col-12" :label="$t('username')">
@@ -32,14 +34,13 @@
 <script>
 export default {
   props: {
-    loginFailed: Boolean,
+    loginFailed: [Boolean, String],
     options: Array
   },
   data() {
     return {
       username: '',
-      password: '',
-      login_failed: ''
+      password: ''
     };
   },
   methods: {
@@ -67,6 +68,9 @@ export default {
       }
       console.log(username)
       this.$emit('login', { username, password: this.password })
+    },
+    cancelLogin() {
+      this.$emit('cancel-login')
     }
   },
   i18n: {

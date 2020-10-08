@@ -99,7 +99,7 @@ topmenu | menu on top of the page. If not set, will the menu not show| undefined
 navbarmenu | menu below header. If not set, will the menu not show| undefined
 mobilemenu | menu shown on mobile narrow pages | false
 hasListen | should page use browsealoud | false
-hasLogin | A login/logout button is added. Goes to /login or /logout | false
+hasLogin | A login/logout button is added | false
 isLoggedIn | Is user logged in (show login or logout, avatar if string) | false
 searchPlaceholder | Placeholder for search field | undefined
 logoSrc | URL for the image | ""
@@ -110,7 +110,7 @@ logoUrl | URL then clicking the logo  | ""
 
 Name|Payload|Description
 ----|-----------|-------------
-@login | {username: 'xxx', password: 'xxx'} | User has tried logging in
+@login | -- | User has clicked log in
 @logout | -- | User has clicked log out
 @search | "search string" | User has made a search
 
@@ -184,6 +184,23 @@ A spinner
 Name|Description|Default value
 ----|-----------|-------------
 text | text to show | undefined
+
+### LuLogin
+
+A login modal.
+
+#### props
+
+Name|Description|Default value
+----|-----------|-------------
+login-failed | false: show no message, true - show standard message, string - show the string | false
+
+### events
+
+Name|Payload|Description
+----|-----------|-------------
+@login | {username: 'xxx', password: 'xxx'} | User has tried logging in
+@cancel | -- | User has clicked cancel or closed dialog
 
 ## Menu example
 
