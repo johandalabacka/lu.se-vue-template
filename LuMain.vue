@@ -8,7 +8,7 @@
           <div v-if="pageManagerMail" class="row">
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
-                {{ $t('pageManager')}}: <a :href="pageManagerMail">{{ pageManagerMail }}</a>
+                {{ $t('pageManager')}}: <a :href="`mailto:${pageManagerMail}`">{{ pageManagerMail }}</a>
                 &nbsp;|&nbsp; <strong>{{ lastUpdated }}</strong>
               </div>
             </div>
@@ -20,7 +20,7 @@
         <div v-if="pageManagerMail" class="row">
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
-                {{ $t('pageManager')}}: <a :href="pageManagerMail">{{ pageManagerMail }}</a>
+                {{ $t('pageManager')}}: <a :href="`mailto:${pageManagerMail}`">{{ pageManagerMail }}</a>
                 &nbsp;|&nbsp; <strong>{{ lastUpdated }}</strong>
               </div>
             </div>
