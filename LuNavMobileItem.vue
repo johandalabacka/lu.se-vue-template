@@ -1,7 +1,8 @@
 <template>
-  <li v-if="item.children && item.path" class="mobile-nav-item">
+  <li v-if="item.children" class="mobile-nav-item">
     <div class="mobile-nav-container">
-      <router-link :to="item.path"  class="nav-link" data-dismiss="modal">{{ $t(item.label) }}</router-link>
+      <router-link v-if="item.path" :to="item.path"  class="nav-link" data-dismiss="modal">{{ $t(item.label) }}</router-link>
+      <a v-else href="#" @click.prevent="toggleExpanded" class="nav-link">{{ $t(item.label) }}</a>
       <div class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
          :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded">
         <span v-show="! expanded" class="collapse-show">
