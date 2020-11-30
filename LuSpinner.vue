@@ -1,6 +1,6 @@
 <template>
     <div class="spinner text-center">
-      <p class="text-primary"><i class="fal fa-circle-notch fa-2x fa-spin"></i></p>
+      <p class="text-primary"><fa-icon class="fa-2x fa-spin" :icon="['fal', 'circle-notch']" /></p>
       <p class="font-weight-bold">{{ text }}</p>
     </div>
 </template>
