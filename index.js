@@ -6,6 +6,7 @@ import LuFooter from './LuFooter'
 import LuInfobox from './LuInfobox'
 import LuSpinner from './LuSpinner'
 import LuLogin from './LuLogin'
+import LuToTop from './LuToTop'
 
 export {
     LuHeader,
@@ -15,5 +16,6 @@ export {
     LuFooter,
     LuInfobox,
     LuSpinner,
-    LuLogin
+    LuLogin,
+    LuToTop
 }

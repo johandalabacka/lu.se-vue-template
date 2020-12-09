@@ -27,6 +27,7 @@ App.vue
     <lu-main :leftmenu="menu" lastUpdated="2019-06-25" pageManagerMail="john.doe@lth.lu.se">
           <router-view/>
     </lu-main>
+    <lu-to-top />
     <lu-footer
       :contact="{name: $t('lthFull'), box: '118', zip: '221 00', phone: '046-222 72 00', mail: 'info@lth.se'}"
       :socialMedia="{
@@ -44,7 +45,7 @@ App.vue
 <script>
 import '@lu.se/vue-template/icons'
 import '@lu.se/vue-template/iconsSocialMedia'
-import {LuHeader, LuBreadCrumb, LuMain, LuFooter} from '@lu.se/vue-template'
+import {LuHeader, LuBreadCrumb, LuMain, LuFooter, LuToTop} from '@lu.se/vue-template'
 
 import menu from './menu.js'
 
@@ -201,6 +202,11 @@ Name|Payload|Description
 ----|-----------|-------------
 @login | {username: 'xxx', password: 'xxx'} | User has tried logging in
 @cancel | -- | User has clicked cancel or closed dialog
+
+### LuToTop
+
+A button which is shown if page is scrolled a bit down (pageYOffset > 500).
+No props or events.
 
 ## Menu example
 
