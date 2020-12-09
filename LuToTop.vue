@@ -61,7 +61,7 @@ export default {
         to_top: 'Hela vägen upp'
       },
       en: {
-        to_top: 'Back top top'
+        to_top: 'Back to top'
       }
     }
   }
