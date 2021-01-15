@@ -10,22 +10,26 @@
     @cancel="cancelLogin"
     @close="cancelLogin"
   >
-    <template v-slot:modal-title>{{ $t('login') }}</template>
-    <b-alert :show="!!loginFailed" variant="warning">{{ loginFailed === true ? $t('login_failed') : loginFailed }}</b-alert>
+    <template #modal-title>
+      {{ $t('login') }}
+    </template>
+    <b-alert :show="!!loginFailed" variant="warning">
+      {{ loginFailed === true ? $t('login_failed') : loginFailed }}
+    </b-alert>
     <b-form @submit.prevent="login">
       <b-form-row>
         <b-form-group class="col-12" :label="$t('username')">
-          <b-input ref="username" autocomplete="username" spellcheck="false" v-model="username" @keydown.enter.native="login"/>
-          <small>{{ $t('login_text')}}</small>
+          <b-input ref="username" v-model="username" autocomplete="username" spellcheck="false" @keydown.enter.native="login" />
+          <small>{{ $t('login_text') }}</small>
         </b-form-group>
       </b-form-row>
       <b-form-row>
         <b-form-group class="col-12" :label="$t('password')">
-          <b-input type="password" autocomplete="current-password" v-model="password" @keydown.enter.native="login"/>
+          <b-input v-model="password" type="password" autocomplete="current-password" @keydown.enter.native="login" />
         </b-form-group>
       </b-form-row>
       <b-form-row v-if="options && options.length > 0">
-        <b-select v-model="username" :options="options"></b-select>
+        <b-select v-model="username" :options="options" />
       </b-form-row>
     </b-form>
   </b-modal>
@@ -34,32 +38,32 @@
 <script>
 export default {
   props: {
-    loginFailed: [Boolean, String],
-    options: Array
+    loginFailed: { type: [Boolean, String], default: false },
+    options: { type: Array, default: null }
   },
-  data() {
+  data () {
     return {
       username: '',
       password: ''
-    };
+    }
   },
   methods: {
-    shown() {
+    shown () {
       this.username = ''
       this.password = ''
       this.$refs.username.focus()
     },
-    show() {
+    show () {
       this.$refs.loginModal.show()
     },
-    hide() {
+    hide () {
       this.$refs.loginModal.hide()
     },
     hidden () {
       this.username = ''
       this.password = ''
     },
-    login(event) {
+    login (event) {
       event.preventDefault()
       let username = this.username.trim().toLowerCase()
       const index = username.indexOf('@')
@@ -69,7 +73,7 @@ export default {
       console.log(username)
       this.$emit('login', { username, password: this.password })
     },
-    cancelLogin() {
+    cancelLogin () {
       this.$emit('cancel')
     }
   },
@@ -91,7 +95,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style>

@@ -2,16 +2,19 @@
 @click.native https://github.com/vuejs/vue-router/issues/800
 -->
 <template>
-  <li v-if="item.children && item.path" >
-    <router-link @click.native="toggleExpanded" :to="item.path"  class="nav-link collapse" :class="[expanded ? 'show' : 'collapsed']">
-      <div class="float-right ml-2"><fa-icon :icon="['fal', expanded ? 'chevron-down' : 'chevron-right']" /></div>
+  <li v-if="item.children && item.path">
+    <router-link :to="item.path" class="nav-link collapse" :class="[expanded ? 'show' : 'collapsed']" @click.native="toggleExpanded">
+      <div class="float-right ml-2">
+        <fa-icon :icon="['fal', expanded ? 'chevron-down' : 'chevron-right']" />
+      </div>
       {{ $t(item.label) }}
     </router-link>
     <ul class="nav-accordion collapse" :class="[expanded ? 'show': '']">
       <lu-left-menu-item
         v-for="subItem in item.children"
         :key="subItem.id" :item="subItem"
-        @link-selected="setExpanded()"/>
+        @link-selected="setExpanded()"
+      />
     </ul>
   </li>
   <li v-else-if="item.path">
@@ -30,7 +33,7 @@
 export default {
   name: 'LuLeftMenuItem',
   props: {
-    item: Object
+    item: { type: Object, required: true }
   },
   data () {
     return {

@@ -1,21 +1,24 @@
 <template>
   <li v-if="item.children" class="mobile-nav-item">
     <div class="mobile-nav-container">
-      <router-link v-if="item.path" :to="item.path"  class="nav-link" data-dismiss="modal">{{ $t(item.label) }}</router-link>
-      <a v-else href="#" @click.prevent="toggleExpanded" class="nav-link">{{ $t(item.label) }}</a>
+      <router-link v-if="item.path" :to="item.path" class="nav-link" data-dismiss="modal">
+        {{ $t(item.label) }}
+      </router-link>
+      <a v-else href="#" class="nav-link" @click.prevent="toggleExpanded">{{ $t(item.label) }}</a>
       <div class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
-         :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded">
+           :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded"
+      >
         <span v-show="! expanded" class="collapse-show">
           <fa-icon class="fa-lg" :icon="['fal', 'plus-circle']" />
         </span>
         <span v-show="expanded" class="collapse-hide">
-           <fa-icon class="fa-lg" :icon="['fal', 'minus-circle']" />
+          <fa-icon class="fa-lg" :icon="['fal', 'minus-circle']" />
         </span>
       </div>
     </div>
     <transition name="slide">
-      <ul v-show="expanded" class="mobile-nav collapse show" :id="'sm-' + item.id">
-        <lu-nav-mobile-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" @link-selected="childSelected"/>
+      <ul v-show="expanded" :id="'sm-' + item.id" class="mobile-nav collapse show">
+        <lu-nav-mobile-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" @link-selected="childSelected" />
       </ul>
     </transition>
   </li>
@@ -35,7 +38,7 @@
 export default {
   name: 'LuNavMobileItem',
   props: {
-    item: Object
+    item: { type: Object, required: true }
   },
   data () {
     return {

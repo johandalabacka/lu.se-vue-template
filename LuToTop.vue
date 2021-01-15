@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <button v-show="show" @click.stop="onClick" class="btn px-2" type="button" id="btn--back-to-top" style="display: inline-block;">
+    <button v-show="show" id="btn--back-to-top" class="btn px-2" type="button" style="display: inline-block;" @click.stop="onClick">
       <fa-icon class="fa-2x align-middle mr-2" :icon="['fas', 'chevron-circle-up']" />
       <span>{{ $t('to_top') }}</span>
     </button>
@@ -16,6 +16,34 @@ export default {
       listenerAdded: false
     }
   },
+  mounted () {
+    if (this.listenerAdded) {
+      return
+    }
+    window.addEventListener('scroll', this.onScroll)
+    this.listenerAdded = true
+  },
+  activated () {
+    if (this.listenerAdded) {
+      return
+    }
+    window.addEventListener('scroll', this.onScroll)
+    this.listenerAdded = true
+  },
+  deactivated () {
+    if (!this.listenerAdded) {
+      return
+    }
+    window.removeEventListener('scroll', this.onScroll)
+    this.listenerAdded = false
+  },
+  destroyed () {
+    if (!this.listenerAdded) {
+      return
+    }
+    window.removeEventListener('scroll', this.onScroll)
+    this.listenerAdded = false // Not really needed
+  },
   methods: {
     onClick () {
       console.log('click')
@@ -26,34 +54,6 @@ export default {
       this.show = window.pageYOffset > 500
       // console.log(window.pageYOffset, window.innerHeight)
     }
-  },
-  mounted () {
-    if (this.listenerAdded) {
-      return
-    }
-    window.addEventListener('scroll', this.onScroll);
-    this.listenerAdded = true;
-  },
-  activated () {
-    if (this.listenerAdded) {
-      return
-    }
-    window.addEventListener('scroll', this.onScroll);
-    this.listenerAdded = true;
-  },
-  deactivated () {
-    if (! this.listenerAdded) {
-      return
-    }
-    window.removeEventListener('scroll', this.onScroll);
-    this.listenerAdded = false
-  },
-  destroyed () {
-    if (! this.listenerAdded) {
-      return
-    }
-    window.removeEventListener('scroll', this.onScroll);
-    this.listenerAdded = false // Not really needed
   },
   i18n: {
     messages: {

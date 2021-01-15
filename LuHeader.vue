@@ -1,6 +1,6 @@
 <template>
   <header class="header nav-undecorated">
-    <lu-navbar v-if="navbarmenu" :menu="navbarmenu"></lu-navbar>
+    <lu-navbar v-if="navbarmenu" :menu="navbarmenu" />
     <div class="border-bottom">
       <div class="container-fluid mw-xl">
         <div class="row m-0 py-3 py-lg-5">
@@ -9,10 +9,10 @@
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
                 <a :href="logoUrl" :title="logoTitle">
                   <img v-if="logoSrc"
-                    :src="logoSrc"
-                    :alt="logoTitle"
-                    class="mw-100"
-                  />
+                       :src="logoSrc"
+                       :alt="logoTitle"
+                       class="mw-100"
+                  >
                 </a>
               </div>
               <div
@@ -29,27 +29,27 @@
                         v-if="isLoggedIn"
                         class="ml-2 p-1 d-block nav-undecorated"
                         href="#"
-                        @click.prevent="$emit('logout')"
                         aria-controls="header-logout"
                         aria-expanded="false"
                         :aria-label="$t('logout')"
+                        @click.prevent="$emit('logout')"
                       >
-                        <i v-if="isLoggedIn === true" class="fal fa-sign-out"></i>
+                        <i v-if="isLoggedIn === true" class="fal fa-sign-out" />
                         <b-avatar v-else size="sm" variant="primary" :text="avatar" />
-                        <br />
+                        <br>
                         {{ $t('logout') }}
                       </a>
                       <a
                         v-else
                         class="ml-2 p-1 d-block nav-undecorated"
                         href="#"
-                        @click.prevent="$emit('login')"
                         aria-controls="header-login"
                         aria-expanded="false"
                         :aria-label="$t('login')"
+                        @click.prevent="$emit('login')"
                       >
                         <fa-icon :icon="['fal', 'sign-in']" />
-                        <br />
+                        <br>
                         {{ $t('login') }}
                       </a>
                     </div>
@@ -57,14 +57,14 @@
                       <a
                         class="ml-2 p-1 d-block nav-undecorated"
                         href="#"
-                        @click.prevent="toggleSearch"
                         data-toggle="collapse"
                         aria-controls="header-search-form"
                         aria-expanded="false"
                         :aria-label="$t('showHideSearch')"
+                        @click.prevent="toggleSearch"
                       >
                         <fa-icon :icon="['fal', 'search']" />
-                        <br />
+                        <br>
                         {{ $t('search') }}
                       </a>
                     </div>
@@ -72,13 +72,13 @@
                       <a
                         class="ml-2 p-1 d-block nav-undecorated"
                         href="#"
-                        @click.prevent="showNavMobile"
                         aria-controls="nav-mobile"
                         aria-expanded="false"
                         :aria-label="$t('showMenu')"
+                        @click.prevent="showNavMobile"
                       >
                         <fa-icon :icon="['fal', 'bars']" />
-                        <br />
+                        <br>
                         {{ $t('menu') }}
                       </a>
                     </div>
@@ -86,16 +86,16 @@
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
                     <nav class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
                       <div class="nav-item flex-xl-grow-1">
-                        <form @submit.prevent="search" class="form-inline pr-xl-3">
+                        <form class="form-inline pr-xl-3" @submit.prevent="search">
                           <div class="input-group input-group-round input-group-sm w-100 flex">
                             <input
-                              type="search"
-                              v-model="searchField"
-                              class="form-control form-control-sm border-right-0"
-                              ref="headerSearchField"
                               id="header-search-field"
+                              ref="headerSearchField"
+                              v-model="searchField"
+                              type="search"
+                              class="form-control form-control-sm border-right-0"
                               :placeholder="searchPlaceholder"
-                            />
+                            >
                             <div class="input-group-append">
                               <button class="btn btn-primary px-2" type="submit">
                                 <span class="mr-2">{{ $t('search') }}</span>
@@ -115,7 +115,7 @@
                           @click.prevent="$emit('logout')"
                         >
                           <span class="mr-1">
-                            <i v-if="isLoggedIn === true" class="fal fa-lg fa-sign-out"></i>
+                            <i v-if="isLoggedIn === true" class="fal fa-lg fa-sign-out" />
                             <b-avatar v-else size="1.8em" variant="primary" :text="avatar" />
                           </span>
                           {{ $t('logout') }}
@@ -161,10 +161,10 @@
                         <a
                           class="nav-link"
                           href="#"
-                          @click.prevent="showNavMobile"
                           aria-controls="nav-mobile"
                           aria-expanded="false"
                           :aria-label="$t('showMenu')"
+                          @click.prevent="showNavMobile"
                         >
                           <fa-icon :icon="['fal', 'bars']" />
                           {{ $t('menu') }}
@@ -173,28 +173,28 @@
                     </nav>
                   </div>
                 </div>
-                <lu-top-menu v-if="topmenu" :menu="topmenu"></lu-top-menu>
+                <lu-top-menu v-if="topmenu" :menu="topmenu" />
               </div>
             </div>
           </div>
         </div>
       </div>
       <transition name="slide">
-        <div v-show="! searchCollapsed" class="header-search-form collapse-lg pb-2 px-2" id="header-search-form" >
-          <form @submit.prevent="search" class="form-inline px-lg-3">
+        <div v-show="! searchCollapsed" id="header-search-form" class="header-search-form collapse-lg pb-2 px-2">
+          <form class="form-inline px-lg-3" @submit.prevent="search">
             <div class="input-group input-group-round input-group-sm w-100 flex">
               <input
-                type="search"
-                v-model="searchField"
-                class="form-control form-control-sm border-right-0"
-                ref="searchFieldMobile"
                 id="header-search-field-mobile"
+                ref="searchFieldMobile"
+                v-model="searchField"
+                type="search"
+                class="form-control form-control-sm border-right-0"
                 :placeholder="searchPlaceholder"
-              />
+              >
               <div class="input-group-append">
                 <button class="btn btn-primary px-2" type="submit">
                   <span class="mr-2">{{ $t('search') }}</span>
-                   <fa-icon :icon="['fal', 'search']" />
+                  <fa-icon :icon="['fal', 'search']" />
                 </button>
               </div>
             </div>
@@ -205,69 +205,86 @@
     <lu-nav-mobile ref="navMobile" :menu="mobilemenu" />
     <div style="display: none">
       <!-- bury the button for browsealoud -->
-      <div id="__ba_launchpad"></div>
+      <div id="__ba_launchpad" />
     </div>
   </header>
 </template>
 
 <script>
-import LuNavbar from "./LuNavbar";
-import LuTopMenu from "./LuTopMenu";
-import LuNavMobile from "./LuNavMobile";
+import LuNavbar from './LuNavbar'
+import LuTopMenu from './LuTopMenu'
+import LuNavMobile from './LuNavMobile'
 
 export default {
-  name: "LuHeader",
+  name: 'LuHeader',
+  components: {
+    LuNavbar,
+    LuTopMenu,
+    LuNavMobile
+  },
   props: {
-    topmenu: Array,
-    mobilemenu: Array,
-    navbarmenu: Array,
+    topmenu: { type: Array, default: null },
+    mobilemenu: { type: Array, default: null },
+    navbarmenu: { type: Array, default: null },
     hasListen: Boolean,
     hasLogin: Boolean,
-    isLoggedIn: [Boolean, String],
-    searchPlaceholder: String,
-    logoUrl: String,
-    logoTitle: String,
-    logoSrc: String
+    isLoggedIn: { type: [Boolean, String], default: false },
+    searchPlaceholder: { type: String, default: '' },
+    logoUrl: { type: String, required: true },
+    logoTitle: { type: String, required: true },
+    logoSrc: { type: String, required: true }
   },
-  data() {
+  data () {
     return {
       searchField: '',
       searchCollapsed: true
     }
   },
   computed: {
-    avatar() {
+    avatar () {
       if (typeof this.isLoggedIn === 'boolean') {
         return ''
       }
       return this.isLoggedIn.split(' ').map(x => x.charAt(0)).join('').substr(0, 2)
     }
   },
-  components: {
-    LuNavbar,
-    LuTopMenu,
-    LuNavMobile
+  watch: {
+    $route (to) {
+      document.title = this.$t(to.name)
+    }
+  },
+  mounted () {
+    if (this.hasListen) {
+      // window._baMode = " "
+      const baScript = document.createElement('script')
+      baScript.setAttribute('src', '//www.browsealoud.com/plus/scripts/ba.js')
+      baScript.async = true
+      document.head.appendChild(baScript)
+    }
+    document.title = this.$t(this.$router.currentRoute.name)
   },
   methods: {
-    switchLocale() {
-      this.$root.$i18n.locale = this.$root.$i18n.locale == "sv" ? "en" : "sv";
+    switchLocale () {
+      this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
+      document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
     },
-    listen() {
+    listen () {
       // function imported from browsealoud. Why such generic name :(
-      toggleBar();
+      // eslint-disable-next-line no-undef
+      toggleBar()
     },
-    showNavMobile() {
-      this.$refs.navMobile.show();
+    showNavMobile () {
+      this.$refs.navMobile.show()
     },
-    toggleSearch() {
-      this.searchCollapsed = ! this.searchCollapsed
-      if (! this.searchCollapsed) {
+    toggleSearch () {
+      this.searchCollapsed = !this.searchCollapsed
+      if (!this.searchCollapsed) {
         // Wait until rendered to set fokus
         this.$nextTick(() => this.$refs.searchFieldMobile.focus())
       }
     },
-    search() {
+    search () {
       if (this.searchField.trim()) {
         this.$emit('search', this.searchField)
         this.$refs.searchFieldMobile.select()
@@ -275,40 +292,25 @@ export default {
       }
     }
   },
-  watch: {
-    $route(to) {
-      document.title = this.$t(to.name);
-    }
-  },
-  mounted() {
-    if (this.hasListen) {
-      // window._baMode = " "
-      const baScript = document.createElement("script");
-      baScript.setAttribute("src", "//www.browsealoud.com/plus/scripts/ba.js");
-      baScript.async = true;
-      document.head.appendChild(baScript);
-    }
-    document.title = this.$t(this.$router.currentRoute.name);
-  },
   i18n: {
     messages: {
       sv: {
-        menu: "Meny",
-        search: "Sök",
-        showHideSearch: "Visa och dölj sökfält",
-        showMenu: "Visa meny",
-        listen: "Lyssna",
-        login: "Logga in",
-        logout: "Logga ut"
+        menu: 'Meny',
+        search: 'Sök',
+        showHideSearch: 'Visa och dölj sökfält',
+        showMenu: 'Visa meny',
+        listen: 'Lyssna',
+        login: 'Logga in',
+        logout: 'Logga ut'
       },
       en: {
-        menu: "Menu",
-        search: "Search",
-        showHideSearch: "Show and hide search field",
-        showMenu: "Show menu",
-        listen: "Listen",
-        login: "Log in",
-        logout: "Log out"
+        menu: 'Menu',
+        search: 'Search',
+        showHideSearch: 'Show and hide search field',
+        showMenu: 'Show menu',
+        listen: 'Listen',
+        login: 'Log in',
+        logout: 'Log out'
       }
     }
   }

@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faBars,
   faChevronDown, faChevronRight,
-  
+
   faGlobe,
   faMinusCircle,
   faPlusCircle,
@@ -14,8 +14,7 @@ import {
   faVolume
 } from '@fortawesome/pro-light-svg-icons'
 
-import {   faChevronCircleUp } from '@fortawesome/pro-solid-svg-icons'
-
+import { faChevronCircleUp } from '@fortawesome/pro-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -31,4 +30,4 @@ library.add(
   faTimes,
   faVolume
 )
-Vue.component('fa-icon', FontAwesomeIcon)
+Vue.component('FaIcon', FontAwesomeIcon)

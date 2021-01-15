@@ -3,9 +3,13 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb m-0 p-0 mb-0 font-size-sm  bg-transparent">
         <li v-for="part in partsButLast" :key="part.path" class="breadcrumb-item text-truncate mb-0">
-          <router-link :to="part.path">{{ part.label }}</router-link>
+          <router-link :to="part.path">
+            {{ part.label }}
+          </router-link>
         </li>
-        <li class="breadcrumb-item text-truncate mb-0 active" aria-current="page">{{  partsLast.label }}</li>
+        <li class="breadcrumb-item text-truncate mb-0 active" aria-current="page">
+          {{ partsLast.label }}
+        </li>
       </ol>
     </nav>
   </div>
@@ -28,7 +32,7 @@ export default {
     },
     partsLast () {
       if (this.parts.length === 0) {
-        return {label: ''}
+        return { label: '' }
       }
       return this.parts[this.parts.length - 1]
     }
@@ -38,9 +42,12 @@ export default {
       this.setPath(to.path)
     }
   },
+  mounted () {
+    this.setPath(this.$route.path)
+  },
   methods: {
     getLabel (path) {
-      let route = this.$router.options.routes.find(r => r.path === path)
+      const route = this.$router.options.routes.find(r => r.path === path)
       if (!route) {
         return path
       }
@@ -50,18 +57,15 @@ export default {
       return route.name
     },
     setPath (path) {
-      let paths = [{path: '/', label: this.getLabel('/')}]
+      const paths = [{ path: '/', label: this.getLabel('/') }]
       let accumulatedPath = ''
       path.split('/').forEach(element => {
         if (element === '') { return }
         accumulatedPath += '/' + element
-        paths.push({path: accumulatedPath, label: this.getLabel(accumulatedPath)})
+        paths.push({ path: accumulatedPath, label: this.getLabel(accumulatedPath) })
       })
       this.parts = paths
     }
-  },
-  mounted () {
-    this.setPath(this.$route.path)
   }
 }
 </script>

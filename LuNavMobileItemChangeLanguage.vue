@@ -1,6 +1,6 @@
 <template>
-  <li  class="mobile-nav-item">
-    <a href="#" @click.prevent="switchLocale" class="nav-link">
+  <li class="mobile-nav-item">
+    <a href="#" class="nav-link" @click.prevent="switchLocale">
       <fa-icon aria-hidden="true" :icon="['fal', 'globe']" /> {{ $t('changeLanguage') }}
     </a>
   </li>
@@ -10,13 +10,14 @@
 export default {
   name: 'LuNavMobileItemChangeLanguage',
   methods: {
-    switchLocale() {
-      this.$root.$i18n.locale = this.$root.$i18n.locale == 'sv' ? 'en' : 'sv';
+    switchLocale () {
+      this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
+      document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
       this.$emit('link-selected')
-    },
+    }
   },
-  i18n: { 
+  i18n: {
     messages: {
       sv: {
         changeLanguage: 'English'

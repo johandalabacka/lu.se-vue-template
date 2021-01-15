@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { 
+import {
   faFacebookSquare,
   faInstagram,
   faLinkedin,
