@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faBars,
   faChevronDown, faChevronRight,
-
+  faCircleNotch,
   faGlobe,
   faMinusCircle,
   faPlusCircle,
@@ -22,6 +22,7 @@ library.add(
   faBars,
   faChevronCircleUp,
   faChevronDown, faChevronRight,
+  faCircleNotch,
   faGlobe,
   faMinusCircle,
   faPlusCircle,
