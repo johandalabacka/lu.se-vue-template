@@ -53,7 +53,7 @@
                         {{ $t('login') }}
                       </a>
                     </div>
-                    <div class="nav-item">
+                    <div v-if="hasSearch" class="nav-item">
                       <a
                         class="ml-2 p-1 d-block nav-undecorated"
                         href="#"
@@ -84,7 +84,7 @@
                     </div>
                   </nav>
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
-                    <nav class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
+                    <nav v-if="hasSearch" class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
                       <div class="nav-item flex-xl-grow-1">
                         <form class="form-inline pr-xl-3" @submit.prevent="search">
                           <div class="input-group input-group-round input-group-sm w-100 flex">
@@ -229,6 +229,7 @@ export default {
     hasListen: Boolean,
     hasLogin: Boolean,
     isLoggedIn: { type: [Boolean, String], default: false },
+    hasSearch: Boolean,
     searchPlaceholder: { type: String, default: '' },
     logoUrl: { type: String, required: true },
     logoTitle: { type: String, required: true },

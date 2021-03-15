@@ -102,6 +102,7 @@ mobilemenu | menu shown on mobile narrow pages | false
 hasListen | should page use browsealoud | false
 hasLogin | A login/logout button is added | false
 isLoggedIn | Is user logged in (show login or logout, avatar if string) | false
+hasSearch | A search field is added | false
 searchPlaceholder | Placeholder for search field | undefined
 logoSrc | URL for the image | ""
 logoTitle | title and alt text | ""
