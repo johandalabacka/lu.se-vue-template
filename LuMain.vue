@@ -2,7 +2,7 @@
   <main class="main">
     <div class="container">
       <div v-if="leftmenu" class="row">
-        <lu-left-menu v-if="leftmenu" :menu="leftmenu" />
+        <lu-left-menu :menu="leftmenu" />
         <div class="col-12 col-xl-9 mb-6 mb-xl-0">
           <slot />
           <div v-if="pageManagerMail" class="row">
@@ -39,7 +39,7 @@ export default {
     LuLeftMenu
   },
   props: {
-    leftmenu: { type: Array, required: true },
+    leftmenu: { type: Array, default: null },
     pageManagerMail: { type: String, required: true },
     lastUpdated: { type: String, required: true }
   },
