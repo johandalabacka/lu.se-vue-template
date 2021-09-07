@@ -1,6 +1,6 @@
 {
   "name": "@lu.se/vue-template",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "description": "Components for LU template",
   "license": "MIT",
   "author": {
@@ -17,24 +17,24 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-brands": "^5.1.0-3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.31",
-    "@fortawesome/pro-light-svg-icons": "^5.15.0",
-    "@fortawesome/pro-solid-svg-icons": "^5.15.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/pro-light-svg-icons": "^5.15.4",
+    "@fortawesome/pro-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "bootstrap-vue": "^2.16.0",
-    "vue": "^2.6.11",
-    "vue-i18n": "^8.14.0",
-    "vue-router": "^3.1.1"
+    "vue": "^2.6.14",
+    "vue-i18n": "^8.25.0",
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.17.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-no-autofix": "^1.0.2",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-no-autofix": "^1.1.2",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-vue": "^7.4.1",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^7.17.0",
     "standard": "^16.0.3"
   }
 }
