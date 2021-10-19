@@ -230,6 +230,7 @@ export default {
     hasLogin: Boolean,
     isLoggedIn: { type: [Boolean, String], default: false },
     hasSearch: Boolean,
+    emptySearch: Boolean,
     searchPlaceholder: { type: String, default: '' },
     logoUrl: { type: String, required: true },
     logoTitle: { type: String, required: true },
@@ -288,8 +289,12 @@ export default {
     search () {
       if (this.searchField.trim()) {
         this.$emit('search', this.searchField)
-        this.$refs.searchFieldMobile.select()
-        this.$refs.headerSearchField.select()
+        if (this.emptySearch) {
+          this.searchField = ''
+        } else {
+          this.$refs.searchFieldMobile.select()
+          this.$refs.headerSearchField.select()
+        }
       }
     }
   },
