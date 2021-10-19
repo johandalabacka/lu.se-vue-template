@@ -36,12 +36,8 @@ export default {
   },
   computed: {
     active () {
-      console.log(this.$route)
       return this.$route.path === this.item.path
     }
-  },
-  mounted () {
-    console.log(this.$route)
   }
 }
 </script>
