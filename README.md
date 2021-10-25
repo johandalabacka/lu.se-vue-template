@@ -108,6 +108,7 @@ searchPlaceholder | Placeholder for search field | undefined
 logoSrc | URL for the image | ""
 logoTitle | title and alt text | ""
 logoUrl | URL then clicking the logo  | ""
+compact | Less padding on height | false
 
 ### events
 
@@ -131,6 +132,7 @@ Name|Description|Default value
 leftmenu | Menu to the left. If not set will the menu not show and content will use the whole width. | undefined
 lastUpdated | Date of last update | undefined
 pageManagerMail | Mail address of page manager | undefined
+compact | Less padding on top | false
 
 #### slots
 

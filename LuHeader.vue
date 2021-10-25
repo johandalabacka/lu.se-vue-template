@@ -3,7 +3,7 @@
     <lu-navbar v-if="navbarmenu" :menu="navbarmenu" />
     <div class="border-bottom">
       <div class="container-fluid mw-xl">
-        <div class="row m-0 py-3 py-lg-5">
+        <div class="row m-0" :class="[compact ? 'py-2' : 'py-3 py-lg-5']">
           <div class="col p-0">
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
@@ -234,7 +234,8 @@ export default {
     searchPlaceholder: { type: String, default: '' },
     logoUrl: { type: String, required: true },
     logoTitle: { type: String, required: true },
-    logoSrc: { type: String, required: true }
+    logoSrc: { type: String, required: true },
+    compact: Boolean
   },
   data () {
     return {

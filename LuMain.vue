@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main class="main" :class="{'mt-2': compact}">
     <div class="container">
       <div v-if="leftmenu" class="row">
         <lu-left-menu :menu="leftmenu" />
@@ -41,7 +41,8 @@ export default {
   props: {
     leftmenu: { type: Array, default: null },
     pageManagerMail: { type: String, required: true },
-    lastUpdated: { type: String, required: true }
+    lastUpdated: { type: String, required: true },
+    compact: Boolean
   },
   data () {
     return {
