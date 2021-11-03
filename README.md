@@ -109,6 +109,7 @@ logoSrc | URL for the image | ""
 logoTitle | title and alt text | ""
 logoUrl | URL then clicking the logo  | ""
 compact | Less padding on height | false
+titlePrefix | All pages title is prefixed titlePrefix \| | "" 
 
 ### events
 

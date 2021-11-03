@@ -40,8 +40,8 @@ export default {
   },
   props: {
     leftmenu: { type: Array, default: null },
-    pageManagerMail: { type: String, required: true },
-    lastUpdated: { type: String, required: true },
+    pageManagerMail: { type: String, default: '' },
+    lastUpdated: { type: String, default: '' },
     compact: Boolean
   },
   data () {
