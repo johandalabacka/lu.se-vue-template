@@ -109,7 +109,6 @@ logoSrc | URL for the image | ""
 logoTitle | title and alt text | ""
 logoUrl | URL then clicking the logo  | ""
 compact | Less padding on height | false
-titlePrefix | All pages title is prefixed titlePrefix \| | "" 
 
 ### events
 
@@ -256,6 +255,7 @@ export default [{
 ```
 
 All items in menu should have a unique id, a label and a path (internal page) or url (external page).
+In router definition if meta.title for a route is defined is it used as title of page instead of route's name.
 
 ## How-to
 

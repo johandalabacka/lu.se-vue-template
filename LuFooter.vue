@@ -108,6 +108,11 @@ export default {
       this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
       document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
+      if (this.$router.currentRoute.meta?.title) {
+        document.title = this.$t(this.$router.currentRoute.meta.title)
+      } else {
+        document.title = this.$t(this.$router.currentRoute.name)
+      }
     }
   },
   i18n: {

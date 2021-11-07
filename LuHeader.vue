@@ -237,8 +237,7 @@ export default {
     logoUrl: { type: String, required: true },
     logoTitle: { type: String, required: true },
     logoSrc: { type: String, required: true },
-    compact: Boolean,
-    titlePrefix: { type: String, default: '' }
+    compact: Boolean
   },
   data () {
     return {
@@ -256,8 +255,8 @@ export default {
   },
   watch: {
     $route (to) {
-      if (this.titlePrefix) {
-        document.title = `${this.$t(this.titlePrefix)} | ${this.$t(to.name)}`
+      if (to.meta?.title) {
+        document.title = this.$t(to.meta.title)
       } else {
         document.title = this.$t(to.name)
       }
@@ -271,8 +270,8 @@ export default {
       baScript.async = true
       document.head.appendChild(baScript)
     }
-    if (this.titlePrefix) {
-      document.title = `${this.$t(this.titlePrefix)} | ${this.$t(this.$router.currentRoute.name)}`
+    if (this.$router.currentRoute.meta?.title) {
+      document.title = this.$t(this.$router.currentRoute.meta.title)
     } else {
       document.title = this.$t(this.$router.currentRoute.name)
     }
