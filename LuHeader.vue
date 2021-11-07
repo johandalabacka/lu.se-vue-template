@@ -35,7 +35,7 @@
                         @click.prevent="$emit('logout')"
                       >
                         <i v-if="isLoggedIn === true" class="fal fa-sign-out" />
-                        <b-avatar v-else size="sm" variant="primary" :text="avatar" />
+                        <lu-avatar v-else small :text="avatar" />
                         <br>
                         {{ $t('logout') }}
                       </a>
@@ -116,7 +116,7 @@
                         >
                           <span class="mr-1">
                             <i v-if="isLoggedIn === true" class="fal fa-lg fa-sign-out" />
-                            <b-avatar v-else size="1.8em" variant="primary" :text="avatar" />
+                            <lu-avatar v-else :text="avatar" />
                           </span>
                           {{ $t('logout') }}
                         </a>
@@ -214,13 +214,15 @@
 import LuNavbar from './LuNavbar'
 import LuTopMenu from './LuTopMenu'
 import LuNavMobile from './LuNavMobile'
+import LuAvatar from './LuAvatar.vue'
 
 export default {
   name: 'LuHeader',
   components: {
     LuNavbar,
     LuTopMenu,
-    LuNavMobile
+    LuNavMobile,
+    LuAvatar
   },
   props: {
     topmenu: { type: Array, default: null },
@@ -276,10 +278,17 @@ export default {
     }
   },
   methods: {
-    switchLocale () {
+    async switchLocale () {
       this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
       document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
+      await this.$nextTick()
+      if (this.titlePrefix) {
+        console.log(`${this.$t(this.titlePrefix)} | ${this.$t(this.$route.name)}`)
+        document.title = `${this.$t(this.titlePrefix)} | ${this.$t(this.$route.name)}`
+      } else {
+        document.title = this.$t(this.$route.name)
+      }
     },
     listen () {
       // function imported from browsealoud. Why such generic name :(
