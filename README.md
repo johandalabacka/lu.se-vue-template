@@ -132,6 +132,7 @@ Name|Description|Default value
 leftmenu | Menu to the left. If not set will the menu not show and content will use the whole width. | undefined
 lastUpdated | Date of last update | undefined
 pageManagerMail | Mail address of page manager | undefined
+pageManagerNotice | Notice under the page manager / date | undefined
 compact | Less padding on top | false
 
 #### slots

@@ -10,6 +10,9 @@
               <div class=" border-top border-dark mt-5 py-3">
                 {{ $t('pageManager') }}: <a :href="`mailto:${pageManagerMail}`">{{ pageManagerMail }}</a>
                 &nbsp;|&nbsp; <strong>{{ lastUpdated }}</strong>
+                <template v-if="pageManagerNotice">
+                  <br><small>{{ pageManagerNotice }}</small>
+                </template>
               </div>
             </div>
           </div>
@@ -22,6 +25,9 @@
             <div class=" border-top border-dark mt-5 py-3">
               {{ $t('pageManager') }}: <a :href="`mailto:${pageManagerMail}`">{{ pageManagerMail }}</a>
               &nbsp;|&nbsp; <strong>{{ lastUpdated }}</strong>
+              <template v-if="pageManagerNotice">
+                <br><small>{{ pageManagerNotice }}</small>
+              </template>
             </div>
           </div>
         </div>
@@ -41,6 +47,7 @@ export default {
   props: {
     leftmenu: { type: Array, default: null },
     pageManagerMail: { type: String, default: '' },
+    pageManagerNotice: { type: String, default: '' },
     lastUpdated: { type: String, default: '' },
     compact: Boolean
   },
