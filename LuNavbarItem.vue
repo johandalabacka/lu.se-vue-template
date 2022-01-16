@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import LuDropdownItem from './LuDropdownItem'
+import LuDropdownItem from './LuDropdownItem.vue'
 
 export default {
   name: 'LuNavbarItem',

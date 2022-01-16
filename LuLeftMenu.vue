@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import LuLeftMenuItem from './LuLeftMenuItem'
+import LuLeftMenuItem from './LuLeftMenuItem.vue'
 
 export default {
   name: 'LuLeftMenu',

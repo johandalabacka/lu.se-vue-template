@@ -1,12 +1,12 @@
-import LuHeader from './LuHeader'
-import LuBreadCrumb from './LuBreadCrumb'
-import LuMain from './LuMain'
-import LuRow from './LuRow'
-import LuFooter from './LuFooter'
-import LuInfobox from './LuInfobox'
-import LuSpinner from './LuSpinner'
-import LuLogin from './LuLogin'
-import LuToTop from './LuToTop'
+import LuHeader from './LuHeader.vue'
+import LuBreadCrumb from './LuBreadCrumb.vue'
+import LuMain from './LuMain.vue'
+import LuRow from './LuRow.vue'
+import LuFooter from './LuFooter.vue'
+import LuInfobox from './LuInfobox.vue'
+import LuSpinner from './LuSpinner.vue'
+import LuLogin from './LuLogin.vue'
+import LuToTop from './LuToTop.vue'
 
 export {
   LuHeader,

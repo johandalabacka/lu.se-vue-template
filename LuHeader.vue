@@ -211,9 +211,9 @@
 </template>
 
 <script>
-import LuNavbar from './LuNavbar'
-import LuTopMenu from './LuTopMenu'
-import LuNavMobile from './LuNavMobile'
+import LuNavbar from './LuNavbar.vue'
+import LuTopMenu from './LuTopMenu.vue'
+import LuNavMobile from './LuNavMobile.vue'
 
 export default {
   name: 'LuHeader',

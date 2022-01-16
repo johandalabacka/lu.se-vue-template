@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import LuNavbarItem from './LuNavbarItem'
+import LuNavbarItem from './LuNavbarItem.vue'
 export default {
   name: 'LuNavbar',
   components: {

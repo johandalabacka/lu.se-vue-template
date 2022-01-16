@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import LuTopMenuItem from './LuTopMenuItem'
+import LuTopMenuItem from './LuTopMenuItem.vue'
 
 export default {
   name: 'LuTopMenu',

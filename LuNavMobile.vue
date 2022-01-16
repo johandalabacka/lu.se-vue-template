@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import LuNavMobileItem from './LuNavMobileItem'
-import LuNavMobileItemChangeLanguage from './LuNavMobileItemChangeLanguage'
+import LuNavMobileItem from './LuNavMobileItem.vue'
+import LuNavMobileItemChangeLanguage from './LuNavMobileItemChangeLanguage.vue'
 
 export default {
   name: 'LuNavMobile',
