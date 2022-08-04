@@ -9,12 +9,13 @@
     <router-link v-if="item.path" :to="item.path" class="nav-link dropdown-toggle px-3">
       {{ $t(item.label) }}  &nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
     </router-link>
-    <a v-else class="nav-link dropdown-toggle px-3" :href="item.url"
-       aria-haspopup="true"
+    <a
+      v-else class="nav-link dropdown-toggle px-3" :href="item.url"
+      aria-haspopup="true"
     >
       {{ $t(item.label) }} &nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
     </a>
-    <div class="dropdown-menu dropdown-menu-right text-primary" aria-labelledby="sm-lu-fakulteter">
+    <div class="dropdown-menu dropdown-menu-right text-primary">
       <lu-dropdown-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" />
     </div>
   </li>

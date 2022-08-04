@@ -5,7 +5,6 @@ import LuRow from './LuRow.vue'
 import LuFooter from './LuFooter.vue'
 import LuInfobox from './LuInfobox.vue'
 import LuSpinner from './LuSpinner.vue'
-import LuLogin from './LuLogin.vue'
 import LuToTop from './LuToTop.vue'
 
 export {
@@ -16,6 +15,5 @@ export {
   LuFooter,
   LuInfobox,
   LuSpinner,
-  LuLogin,
   LuToTop
 }

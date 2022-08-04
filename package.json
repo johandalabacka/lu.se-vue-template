@@ -1,13 +1,19 @@
 {
   "name": "@lu.se/vue-template",
-  "version": "1.14.1",
+  "version": "2.0.0",
   "description": "Components for LU template",
   "license": "MIT",
+  "type": "module",
   "author": {
     "name": "Johan Dahl",
     "email": "johan.dahl@lth.lu.se"
   },
   "private": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -17,24 +23,27 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-brands": "^5.1.0-3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/pro-light-svg-icons": "^5.15.4",
-    "@fortawesome/pro-solid-svg-icons": "^5.15.4",
-    "@fortawesome/vue-fontawesome": "^2.0.0",
-    "bootstrap-vue": "^2.21.0",
-    "vue": "^2.6.14",
-    "vue-i18n": "^8.25.0",
-    "vue-router": "^3.5.2"
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/pro-light-svg-icons": "^6.1.2",
+    "@fortawesome/pro-solid-svg-icons": "^6.1.2",
+    "@fortawesome/vue-fontawesome": "^3",
+    "@popperjs/core": "^2.11.5",
+    "bootstrap": "^5.2.0",
+    "vue": "^3.2.37",
+    "vue-i18n": "^9.2.0",
+    "vue-router": "^4.1.3"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-no-autofix": "^1.1.2",
+    "@babel/core": "^7.18.10",
+    "@babel/eslint-parser": "^7.18.9",
+    "eslint": "^8.21.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin": "^1.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-no-autofix": "^1.2.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^7.17.0",
-    "standard": "^16.0.3"
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "standard": "^17.0.0"
   }
 }

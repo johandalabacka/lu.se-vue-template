@@ -16,10 +16,6 @@ export default {
   },
   props: {
     menu: { type: Array, required: true }
-  },
-  data () {
-    return {
-    }
   }
 }
 </script>

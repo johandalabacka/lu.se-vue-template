@@ -3,7 +3,7 @@
 -->
 <template>
   <li v-if="item.children && item.path">
-    <router-link :to="item.path" class="nav-link collapse" :class="[expanded ? 'show' : 'collapsed']" @click.native="toggleExpanded">
+    <router-link :to="item.path" class="nav-link collapse" :class="[expanded ? 'show' : 'collapsed']" @click="toggleExpanded">
       <div class="float-right ml-2">
         <fa-icon :icon="['fal', expanded ? 'chevron-down' : 'chevron-right']" />
       </div>
@@ -13,12 +13,12 @@
       <lu-left-menu-item
         v-for="subItem in item.children"
         :key="subItem.id" :item="subItem"
-        @link-selected="setExpanded()"
+        @link-selected="childLinkSelected"
       />
     </ul>
   </li>
   <li v-else-if="item.path">
-    <router-link :to="item.path" class="nav-link">
+    <router-link :to="item.path" class="nav-link" @click="$emit('link-selected')">
       {{ $t(item.label) }}
     </router-link>
   </li>
@@ -35,6 +35,7 @@ export default {
   props: {
     item: { type: Object, required: true }
   },
+  emits: ['link-selected'],
   data () {
     return {
       expanded: false
@@ -48,11 +49,17 @@ export default {
       }
     }
   },
+  mounted () {
+    if (this.$route.path === this.item.path) {
+      this.$emit('link-selected')
+    }
+  },
   methods: {
     toggleExpanded () {
       this.expanded = !this.expanded
     },
-    setExpanded () {
+    childLinkSelected () {
+      this.$emit('link-selected')
       this.expanded = true
     }
   }

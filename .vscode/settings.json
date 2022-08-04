@@ -2,6 +2,9 @@
     "files.autoSave": "afterDelay",
     "javascript.format.enable": false,
     "vetur.format.enable": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": false,
     "eslint.alwaysShowStatus": true,
     "eslint.packageManager": "yarn",
     "eslint.validate": [
@@ -14,4 +17,6 @@
     },
     "editor.tabSize": 2,
     "files.eol": "\n",
+    "mocha.coverage.enable": false,
+    "prettier.enable": false
 }

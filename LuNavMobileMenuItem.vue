@@ -1,12 +1,13 @@
 <template>
   <li v-if="item.children" class="mobile-nav-item">
     <div class="mobile-nav-container">
-      <router-link v-if="item.path" :to="item.path" class="nav-link" data-dismiss="modal">
+      <router-link v-if="item.path" :to="item.path" class="nav-link" @click="$emit('link-selected')">
         {{ $t(item.label) }}
       </router-link>
       <a v-else href="#" class="nav-link" @click.prevent="toggleExpanded">{{ $t(item.label) }}</a>
-      <div class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
-           :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded"
+      <div
+        class="mobile-nav-toggle" :class="[expanded ? '' : 'collapsed']" :data-target="'#sm-' + item.id"
+        :aria-expanded="expanded" :aria-controls="'sm-' + item.id" @click="toggleExpanded"
       >
         <span v-show="! expanded" class="collapse-show">
           <fa-icon class="fa-lg" :icon="['fal', 'plus-circle']" />
@@ -16,14 +17,14 @@
         </span>
       </div>
     </div>
-    <transition name="slide">
+    <Transition name="expand">
       <ul v-show="expanded" :id="'sm-' + item.id" class="mobile-nav collapse show">
-        <lu-nav-mobile-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" @link-selected="childSelected" />
+        <lu-nav-mobile-menu-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" @link-activated="childLinkActivated" @link-selected="childLinkSelected" />
       </ul>
-    </transition>
+    </Transition>
   </li>
   <li v-else-if="item.path" class="mobile-nav-item">
-    <router-link :to="item.path" class="nav-link" data-dismiss="modal">
+    <router-link :to="item.path" class="nav-link" @click="$emit('link-selected')">
       {{ $t(item.label) }}
     </router-link>
   </li>
@@ -36,10 +37,11 @@
 
 <script>
 export default {
-  name: 'LuNavMobileItem',
+  name: 'LuNavMobileMenuItem',
   props: {
     item: { type: Object, required: true }
   },
+  emits: ['link-activated', 'link-selected'],
   data () {
     return {
       expanded: false
@@ -47,43 +49,49 @@ export default {
   },
   watch: {
     '$route' (to) {
-      // If link is selected emit link-selected to parent
-      if (to.path === this.item.path) {
-        this.$emit('link-selected')
+      if (this.$route.path === this.item.path) {
+        this.$emit('link-activated')
       }
+    }
+  },
+  mounted () {
+    if (this.$route.path === this.item.path) {
+      this.$emit('link-activated')
     }
   },
   methods: {
     toggleExpanded () {
       this.expanded = !this.expanded
     },
-    childSelected () {
-      this.expanded = true
+    childLinkSelected () {
       // Resend event upwards
       this.$emit('link-selected')
+    },
+    childLinkActivated () {
+      this.expanded = true
+      // Resend event upwards
+      this.$emit('link-activated')
     }
   }
 }
 </script>
 
 <style scoped>
-.slide-enter-active {
-   transition-duration: 0.5s;
-   transition-timing-function: ease-in;
+.expand-enter-active,
+.expand-leave-active {
+  transition: all 0.3s;
+  overflow: hidden;
 }
 
-.slide-leave-active {
-   transition-duration: 0.5s;
-   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+.expand-enter-to,
+.expand-leave-from
+{
+  max-height: 500px;
 }
 
-.slide-enter-to, .slide-leave {
-   max-height: 500px;
-   overflow: hidden;
+.expand-enter-from,
+.expand-leave-to {
+  max-height: 0px;
 }
 
-.slide-enter, .slide-leave-to {
-   overflow: hidden;
-   max-height: 0;
-}
 </style>

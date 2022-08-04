@@ -37,7 +37,7 @@ export default {
     window.removeEventListener('scroll', this.onScroll)
     this.listenerAdded = false
   },
-  destroyed () {
+  unmounted () {
     if (!this.listenerAdded) {
       return
     }
@@ -46,13 +46,10 @@ export default {
   },
   methods: {
     onClick () {
-      console.log('click')
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     },
     onScroll (e) {
-      // console.log(e)
       this.show = window.pageYOffset > 500
-      // console.log(window.pageYOffset, window.innerHeight)
     }
   },
   i18n: {

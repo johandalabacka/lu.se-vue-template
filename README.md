@@ -191,23 +191,6 @@ Name|Description|Default value
 ----|-----------|-------------
 text | text to show | undefined
 
-### LuLogin
-
-A login modal.
-
-#### props
-
-Name|Description|Default value
-----|-----------|-------------
-login-failed | false: show no message, true - show standard message, string - show the string | false
-
-### events
-
-Name|Payload|Description
-----|-----------|-------------
-@login | {username: 'xxx', password: 'xxx'} | User has tried logging in
-@cancel | -- | User has clicked cancel or closed dialog
-
 ### LuToTop
 
 A button which is shown if page is scrolled a bit down (pageYOffset > 500).
@@ -267,7 +250,7 @@ yarn add '@lu.se/vue-template' or
 npm add '@lu.se/vue-template'
 
 ### Install lu-template
-Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall and put it in the same folder as index.html (public). Remove
+Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall and put it in the public folder.
 
 ### index.html
 
@@ -292,6 +275,8 @@ Download https://samwebb.lu.se/bundle.zip unpack it and rename folder to lumall 
 
 <body>
   <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
 </body>
 </html>
 

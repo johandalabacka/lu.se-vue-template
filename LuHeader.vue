@@ -8,10 +8,11 @@
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
                 <a :href="logoUrl" :title="logoTitle">
-                  <img v-if="logoSrc"
-                       :src="logoSrc"
-                       :alt="logoTitle"
-                       class="mw-100"
+                  <img
+                    v-if="logoSrc"
+                    :src="logoSrc"
+                    :alt="logoTitle"
+                    class="mw-100"
                   >
                 </a>
               </div>
@@ -75,7 +76,7 @@
                         aria-controls="nav-mobile"
                         aria-expanded="false"
                         :aria-label="$t('showMenu')"
-                        @click.prevent="showNavMobile"
+                        @click.prevent="showNavMobileMenu"
                       >
                         <fa-icon :icon="['fal', 'bars']" />
                         <br>
@@ -164,7 +165,7 @@
                           aria-controls="nav-mobile"
                           aria-expanded="false"
                           :aria-label="$t('showMenu')"
-                          @click.prevent="showNavMobile"
+                          @click.prevent="showNavMobileMenu"
                         >
                           <fa-icon :icon="['fal', 'bars']" />
                           {{ $t('menu') }}
@@ -202,7 +203,7 @@
         </div>
       </transition>
     </div>
-    <lu-nav-mobile ref="navMobile" :menu="mobilemenu" />
+    <lu-nav-mobile-menu ref="navMobileMenu" :menu="mobilemenu" />
     <div style="display: none">
       <!-- bury the button for browsealoud -->
       <div id="__ba_launchpad" />
@@ -211,16 +212,18 @@
 </template>
 
 <script>
+import BAvatar from './BAvatar.vue'
 import LuNavbar from './LuNavbar.vue'
 import LuTopMenu from './LuTopMenu.vue'
-import LuNavMobile from './LuNavMobile.vue'
+import LuNavMobileMenu from './LuNavMobileMenu.vue'
 
 export default {
   name: 'LuHeader',
   components: {
+    BAvatar,
     LuNavbar,
     LuTopMenu,
-    LuNavMobile
+    LuNavMobileMenu
   },
   props: {
     topmenu: { type: Array, default: null },
@@ -237,6 +240,7 @@ export default {
     logoSrc: { type: String, required: true },
     compact: Boolean
   },
+  emits: ['login', 'logout', 'search'],
   data () {
     return {
       searchField: '',
@@ -268,10 +272,11 @@ export default {
       baScript.async = true
       document.head.appendChild(baScript)
     }
-    if (this.$router.currentRoute.meta?.title) {
-      document.title = this.$t(this.$router.currentRoute.meta.title)
-    } else {
-      document.title = this.$t(this.$router.currentRoute.name)
+
+    if (this.$route.meta?.title) {
+      document.title = this.$t(this.$route.meta.title)
+    } else if (this.$route.name) {
+      document.title = this.$t(this.$route.name)
     }
   },
   methods: {
@@ -279,14 +284,19 @@ export default {
       this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
       document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
+      if (this.$router.currentRoute.value.meta?.title) {
+        document.title = this.$t(this.$router.currentRoute.value.meta.title)
+      } else if (this.$router.currentRoute.value.name) {
+        document.title = this.$t(this.$router.currentRoute.value.name)
+      }
     },
     listen () {
       // function imported from browsealoud. Why such generic name :(
       // eslint-disable-next-line no-undef
-      toggleBar()
+      globalThis.toggleBar()
     },
-    showNavMobile () {
-      this.$refs.navMobile.show()
+    showNavMobileMenu () {
+      this.$refs.navMobileMenu.show()
     },
     toggleSearch () {
       this.searchCollapsed = !this.searchCollapsed

@@ -3,8 +3,9 @@
     <div class="container py-2">
       <div class="row pt-1">
         <div class="col-12 col-lg-4 mb-5 text-center text-lg-left">
-          <img v-if="logoSrc" :src="logoSrc"
-               :alt="logoTitle" class=" footer-logo"
+          <img
+            v-if="logoSrc" :src="logoSrc"
+            :alt="logoTitle" class=" footer-logo"
           >
         </div>
         <div v-if="contact" class="col-6 col-md-3 offset-md-3 offset-lg-0 col-lg-4 mb-5">
@@ -35,7 +36,7 @@
               <router-link v-if="item.path" :key="item.id" :to="item.path" class="nav-link text-white py-1 px-0">
                 {{ $t(item.label) }}
               </router-link>
-              <a v-else :key="item.id" class="nav-link text-white py-1 px-0" :href="item.url">{{ $t(item.label) }}</a>
+              <a v-else :key="`${item.id}-else`" class="nav-link text-white py-1 px-0" :href="item.url">{{ $t(item.label) }}</a>
             </template>
           </div>
         </div>
@@ -108,10 +109,10 @@ export default {
       this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
       document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
-      if (this.$router.currentRoute.meta?.title) {
-        document.title = this.$t(this.$router.currentRoute.meta.title)
-      } else {
-        document.title = this.$t(this.$router.currentRoute.name)
+      if (this.$route.meta?.title) {
+        document.title = this.$t(this.$route.meta.title)
+      } else if (this.$route.name) {
+        document.title = this.$t(this.$route.name)
       }
     }
   },

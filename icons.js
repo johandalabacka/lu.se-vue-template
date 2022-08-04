@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faBars,
@@ -31,4 +29,3 @@ library.add(
   faTimes,
   faVolume
 )
-Vue.component('FaIcon', FontAwesomeIcon)

@@ -8,7 +8,8 @@
 
 <script>
 export default {
-  name: 'LuNavMobileItemChangeLanguage',
+  name: 'LuNavMobileMenuItemChangeLanguage',
+  emits: ['link-selected'],
   methods: {
     switchLocale () {
       this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
