@@ -16,7 +16,7 @@ App.vue
       :navbarmenu="menu"
       :topmenu="menu"
       :mobilemenu="menu"
-      has-listen has-login
+      has-login
       logo-url="https://www.lth.se"
       :logo-path="`${baseUrl}lumall/images/logo/logo_lth_${$root.$i18n.locale}@1x.png`"
       :logo-title="$t('lthFull')"/>
@@ -99,7 +99,6 @@ Name|Description|Default value
 topmenu | menu on top of the page. If not set, will the menu not show| undefined
 navbarmenu | menu below header. If not set, will the menu not show| undefined
 mobilemenu | menu shown on mobile narrow pages | false
-hasListen | should page use browsealoud | false
 hasLogin | A login/logout button is added | false
 isLoggedIn | Is user logged in (show login or logout, avatar if string) | false
 hasSearch | A search field is added | false

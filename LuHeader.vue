@@ -150,14 +150,6 @@
                           </span> Svenska
                         </a>
                       </div>
-                      <div v-if="hasListen" class="nav-item">
-                        <a class="nav-link px-0 ms-4" href="#" @click.prevent="listen">
-                          <span class="me-1">
-                            <fa-icon class="fa-lg" :icon="['fal', 'volume']" />
-                          </span>
-                          {{ $t('listen') }}
-                        </a>
-                      </div>
                       <div class="nav-item d-none d-lg-block d-xl-none border-start ms-3 ps-3">
                         <a
                           class="nav-link"
@@ -229,7 +221,6 @@ export default {
     topmenu: { type: Array, default: null },
     mobilemenu: { type: Array, default: null },
     navbarmenu: { type: Array, default: null },
-    hasListen: Boolean,
     hasLogin: Boolean,
     isLoggedIn: { type: [Boolean, String], default: false },
     hasSearch: Boolean,
@@ -265,14 +256,6 @@ export default {
     }
   },
   mounted () {
-    if (this.hasListen) {
-      // window._baMode = " "
-      const baScript = document.createElement('script')
-      baScript.setAttribute('src', '//www.browsealoud.com/plus/scripts/ba.js')
-      baScript.async = true
-      document.head.appendChild(baScript)
-    }
-
     if (this.$route.meta?.title) {
       document.title = this.$t(this.$route.meta.title)
     } else if (this.$route.name) {
@@ -289,11 +272,6 @@ export default {
       } else if (this.$router.currentRoute.value.name) {
         document.title = this.$t(this.$router.currentRoute.value.name)
       }
-    },
-    listen () {
-      // function imported from browsealoud. Why such generic name :(
-      // eslint-disable-next-line no-undef
-      globalThis.toggleBar()
     },
     showNavMobileMenu () {
       this.$refs.navMobileMenu.show()

@@ -1,6 +1,6 @@
 {
   "name": "@lu.se/vue-template",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Components for LU template",
   "license": "MIT",
   "type": "module",
