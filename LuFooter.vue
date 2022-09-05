@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="container py-2">
       <div class="row pt-1">
-        <div class="col-12 col-lg-4 mb-5 text-center text-lg-left">
+        <div class="col-12 col-lg-4 mb-5 text-center text-lg-start">
           <img
             v-if="logoSrc" :src="logoSrc"
             :alt="logoTitle" class=" footer-logo"
@@ -43,7 +43,7 @@
       </div>
       <div v-if="socialMedia" class="row mb-5">
         <div class="col-12 col-lg-4 offset-lg-4">
-          <h6 class="p font-weight-bold text-uppercase mb-1 text-center text-lg-left">
+          <h6 class="p font-weight-bold text-uppercase mb-1 text-center text-lg-start">
             {{ $t('followUsSocialMedia') }}
           </h6>
           <ul class="nav nav-social mt-3 nmx-2 justify-content-center justify-content-lg-start">

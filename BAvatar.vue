@@ -39,6 +39,8 @@ export default {
     overflow: visible;
     position: relative;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    background-color: var(--bs-primary);
+    color: white;
 }
 
 </style>

@@ -28,7 +28,7 @@
                     <div v-if="hasLogin" class="nav-item">
                       <a
                         v-if="isLoggedIn"
-                        class="ml-2 p-1 d-block nav-undecorated"
+                        class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
                         aria-controls="header-logout"
                         aria-expanded="false"
@@ -42,7 +42,7 @@
                       </a>
                       <a
                         v-else
-                        class="ml-2 p-1 d-block nav-undecorated"
+                        class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
                         aria-controls="header-login"
                         aria-expanded="false"
@@ -56,7 +56,7 @@
                     </div>
                     <div v-if="hasSearch" class="nav-item">
                       <a
-                        class="ml-2 p-1 d-block nav-undecorated"
+                        class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
                         data-toggle="collapse"
                         aria-controls="header-search-form"
@@ -71,7 +71,7 @@
                     </div>
                     <div class="nav-item">
                       <a
-                        class="ml-2 p-1 d-block nav-undecorated"
+                        class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
                         aria-controls="nav-mobile"
                         aria-expanded="false"
@@ -87,19 +87,19 @@
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
                     <nav v-if="hasSearch" class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
                       <div class="nav-item flex-xl-grow-1">
-                        <form class="form-inline pr-xl-3" @submit.prevent="search">
+                        <form class="form-inline pe-xl-3" @submit.prevent="search">
                           <div class="input-group input-group-round input-group-sm w-100 flex">
                             <input
                               id="header-search-field"
                               ref="headerSearchField"
                               v-model="searchField"
                               type="search"
-                              class="form-control form-control-sm border-right-0"
+                              class="form-control form-control-sm border-end-0"
                               :placeholder="searchPlaceholder"
                             >
                             <div class="input-group-append">
                               <button class="btn btn-primary px-2" type="submit">
-                                <span class="mr-2">{{ $t('search') }}</span>
+                                <span class="me-2">{{ $t('search') }}</span>
                                 <fa-icon :icon="['fal', 'search']" />
                               </button>
                             </div>
@@ -111,11 +111,11 @@
                       <div v-if="hasLogin" class="nav-item d-none d-lg-block">
                         <a
                           v-if="isLoggedIn"
-                          class="nav-link px-0 ml-4"
+                          class="nav-link px-0 ms-4"
                           href="#"
                           @click.prevent="$emit('logout')"
                         >
-                          <span class="mr-1">
+                          <span class="me-1">
                             <i v-if="isLoggedIn === true" class="fal fa-lg fa-sign-out" />
                             <b-avatar v-else size="1.8em" variant="primary" :text="avatar" />
                           </span>
@@ -123,11 +123,11 @@
                         </a>
                         <a
                           v-else
-                          class="nav-link px-0 ml-4"
+                          class="nav-link px-0 ms-4"
                           href="#"
                           @click.prevent="$emit('login')"
                         >
-                          <span class="mr-1">
+                          <span class="me-1">
                             <fa-icon class="fa-lg" :icon="['fal', 'sign-in']" />
                           </span>
                           {{ $t('login') }}
@@ -136,29 +136,29 @@
                       <div class="nav-item d-none d-lg-block">
                         <a
                           v-if="$root.$i18n.locale == 'sv'"
-                          class="nav-link px-0 ml-4"
+                          class="nav-link px-0 ms-4"
                           href="#"
                           @click.prevent="switchLocale"
                         >
-                          <span class="mr-1">
+                          <span class="me-1">
                             <fa-icon class="fa-lg" :icon="['fal', 'globe']" />
                           </span> English
                         </a>
-                        <a v-else class="nav-link px-0 ml-4" href="#" @click.prevent="switchLocale">
-                          <span class="mr-1">
+                        <a v-else class="nav-link px-0 ms-4" href="#" @click.prevent="switchLocale">
+                          <span class="me-1">
                             <fa-icon class="fa-lg" :icon="['fal', 'globe']" />
                           </span> Svenska
                         </a>
                       </div>
                       <div v-if="hasListen" class="nav-item">
-                        <a class="nav-link px-0 ml-4" href="#" @click.prevent="listen">
-                          <span class="mr-1">
+                        <a class="nav-link px-0 ms-4" href="#" @click.prevent="listen">
+                          <span class="me-1">
                             <fa-icon class="fa-lg" :icon="['fal', 'volume']" />
                           </span>
                           {{ $t('listen') }}
                         </a>
                       </div>
-                      <div class="nav-item d-none d-lg-block d-xl-none border-left ml-3 pl-3">
+                      <div class="nav-item d-none d-lg-block d-xl-none border-start ms-3 ps-3">
                         <a
                           class="nav-link"
                           href="#"
@@ -189,12 +189,12 @@
                 ref="searchFieldMobile"
                 v-model="searchField"
                 type="search"
-                class="form-control form-control-sm border-right-0"
+                class="form-control form-control-sm border-end-0"
                 :placeholder="searchPlaceholder"
               >
               <div class="input-group-append">
                 <button class="btn btn-primary px-2" type="submit">
-                  <span class="mr-2">{{ $t('search') }}</span>
+                  <span class="me-2">{{ $t('search') }}</span>
                   <fa-icon :icon="['fal', 'search']" />
                 </button>
               </div>
