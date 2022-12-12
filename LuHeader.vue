@@ -35,8 +35,9 @@
                         :aria-label="$t('logout')"
                         @click.prevent="$emit('logout')"
                       >
-                        <i v-if="isLoggedIn === true" class="fal fa-sign-out" />
-                        <b-avatar v-else size="sm" variant="primary" :text="avatar" />
+                        
+                        <b-avatar v-if="avatar" size="sm" variant="primary" :text="avatar" />
+                        <fa-icon v-else :icon="['fal', 'sign-out']" />
                         <br>
                         {{ $t('logout') }}
                       </a>
@@ -116,8 +117,8 @@
                           @click.prevent="$emit('logout')"
                         >
                           <span class="me-1">
-                            <i v-if="isLoggedIn === true" class="fal fa-lg fa-sign-out" />
-                            <b-avatar v-else size="1.8em" variant="primary" :text="avatar" />
+                            <b-avatar v-if="avatar" size="1.8em" variant="primary" :text="avatar" />
+                            <fa-icon v-else class="fa-lg" :icon="['fal', 'sign-out']" />
                           </span>
                           {{ $t('logout') }}
                         </a>
@@ -222,7 +223,8 @@ export default {
     mobilemenu: { type: Array, default: null },
     navbarmenu: { type: Array, default: null },
     hasLogin: Boolean,
-    isLoggedIn: { type: [Boolean, String], default: false },
+    isLoggedIn: Boolean,
+    avatar: { type: String, default: '' },
     hasSearch: Boolean,
     emptySearch: Boolean,
     searchPlaceholder: { type: String, default: '' },
@@ -236,14 +238,6 @@ export default {
     return {
       searchField: '',
       searchCollapsed: true
-    }
-  },
-  computed: {
-    avatar () {
-      if (typeof this.isLoggedIn === 'boolean') {
-        return ''
-      }
-      return this.isLoggedIn.split(' ').map(x => x.charAt(0)).join('').substr(0, 2)
     }
   },
   watch: {

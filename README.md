@@ -100,7 +100,8 @@ topmenu | menu on top of the page. If not set, will the menu not show| undefined
 navbarmenu | menu below header. If not set, will the menu not show| undefined
 mobilemenu | menu shown on mobile narrow pages | false
 hasLogin | A login/logout button is added | false
-isLoggedIn | Is user logged in (show login or logout, avatar if string) | false
+isLoggedIn | Is user logged in (show login or logout) | false
+avatar | show first two letters of string instead of logout icon
 hasSearch | A search field is added | false
 emptySearch | Search field is emptied after search | false
 searchPlaceholder | Placeholder for search field | undefined

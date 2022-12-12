@@ -8,6 +8,7 @@ import {
   faPlusCircle,
   faSearch,
   faSignIn,
+  faSignOut,
   faTimes,
   faVolume
 } from '@fortawesome/pro-light-svg-icons'
@@ -26,6 +27,7 @@ library.add(
   faPlusCircle,
   faSearch,
   faSignIn,
+  faSignOut,
   faTimes,
   faVolume
 )
