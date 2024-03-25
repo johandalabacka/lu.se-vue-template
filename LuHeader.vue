@@ -35,7 +35,6 @@
                         :aria-label="$t('logout')"
                         @click.prevent="$emit('logout')"
                       >
-                        
                         <b-avatar v-if="avatar" size="sm" variant="primary" :text="avatar" />
                         <fa-icon v-else :icon="['fal', 'sign-out']" />
                         <br>
