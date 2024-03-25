@@ -15,8 +15,6 @@ import {
 
 import { faChevronCircleUp } from '@fortawesome/pro-solid-svg-icons'
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 library.add(
   faBars,
   faChevronCircleUp,
