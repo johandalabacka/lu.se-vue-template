@@ -6,14 +6,13 @@
     "editor.formatOnType": false,
     "editor.formatOnSave": false,
     "eslint.alwaysShowStatus": true,
-    "eslint.packageManager": "yarn",
     "eslint.validate": [
         "javascript",
         "javascriptreact",
         "vue"
     ],
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     "editor.tabSize": 2,
     "files.eol": "\n",
