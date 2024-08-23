@@ -28,6 +28,7 @@ module.exports = {
     'vue/no-v-html': 'off'
   },
   parserOptions: {
-    parser: '@babel/eslint-parser'
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false
   }
 }
