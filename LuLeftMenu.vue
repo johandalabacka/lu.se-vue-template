@@ -1,7 +1,7 @@
 <template>
   <div class="d-none d-xl-block col-xl-3 collapse">
     <ul class="nav-accordion nav-collapse nav-undecorated">
-      <lu-left-menu-item v-for="item in menu" :key="item.id" :item="item" />
+      <LuLeftMenuItem v-for="item in menu" :key="item.id" :item="item" />
     </ul>
   </div>
 </template>

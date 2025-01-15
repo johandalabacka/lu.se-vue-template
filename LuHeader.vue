@@ -1,6 +1,6 @@
 <template>
   <header class="header nav-undecorated">
-    <lu-navbar v-if="navbarmenu" :menu="navbarmenu" />
+    <LuNavbar v-if="navbarmenu" :menu="navbarmenu" />
     <div class="border-bottom">
       <div class="container-fluid mw-xl">
         <div class="row m-0" :class="[compact ? 'py-2' : 'py-3 py-lg-5']">
@@ -35,7 +35,7 @@
                         :aria-label="$t('logout')"
                         @click.prevent="$emit('logout')"
                       >
-                        <b-avatar v-if="avatar" size="sm" variant="primary" :text="avatar" />
+                        <BAvatar v-if="avatar" size="sm" variant="primary" :text="avatar" />
                         <fa-icon v-else :icon="['fal', 'sign-out']" />
                         <br>
                         {{ $t('logout') }}
@@ -116,7 +116,7 @@
                           @click.prevent="$emit('logout')"
                         >
                           <span class="me-1">
-                            <b-avatar v-if="avatar" size="1.8em" variant="primary" :text="avatar" />
+                            <BAvatar v-if="avatar" size="1.8em" variant="primary" :text="avatar" />
                             <fa-icon v-else class="fa-lg" :icon="['fal', 'sign-out']" />
                           </span>
                           {{ $t('logout') }}
@@ -166,7 +166,7 @@
                     </nav>
                   </div>
                 </div>
-                <lu-top-menu v-if="topmenu" :menu="topmenu" />
+                <LuTopMenu v-if="topmenu" :menu="topmenu" />
               </div>
             </div>
           </div>
@@ -195,7 +195,7 @@
         </div>
       </transition>
     </div>
-    <lu-nav-mobile-menu ref="navMobileMenu" :menu="mobilemenu" />
+    <LuNavMobileMenu ref="navMobileMenu" :menu="mobilemenu" />
     <div style="display: none">
       <!-- bury the button for browsealoud -->
       <div id="__ba_launchpad" />

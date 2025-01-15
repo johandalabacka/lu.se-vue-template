@@ -2,7 +2,7 @@
   <main class="main" :class="{'mt-2': compact}">
     <div class="container">
       <div v-if="leftmenu" class="row">
-        <lu-left-menu :menu="leftmenu" />
+        <LuLeftMenu :menu="leftmenu" />
         <div class="col-12 col-xl-9 mb-6 mb-xl-0">
           <slot />
           <div v-if="pageManagerMail" class="row">

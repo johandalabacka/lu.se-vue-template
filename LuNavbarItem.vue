@@ -16,7 +16,7 @@
       {{ $t(item.label) }} &nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
     </a>
     <div class="dropdown-menu dropdown-menu-end text-primary">
-      <lu-dropdown-item v-for="subItem in item.children" :key="subItem.id" :item="subItem" />
+      <LuDropdownItem v-for="subItem in item.children" :key="subItem.id" :item="subItem" />
     </div>
   </li>
 </template>

@@ -11,7 +11,7 @@
       aria-haspopup="true"
     >{{ $t(item.label) }}</a>
     <div class="dropdown-menu font-size-base" :class="[lastItem ? 'dropdown-menu-right' : '']" aria-labelledby="dropdown-studera">
-      <lu-dropdown-item v-for="subMenuItem in item.children" :key="subMenuItem.id" :item="subMenuItem" />
+      <LuDropdownItem v-for="subMenuItem in item.children" :key="subMenuItem.id" :item="subMenuItem" />
     </div>
   </li>
   <li v-else class="nav-item" :class="{active: active}">

@@ -23,8 +23,8 @@
             </button>
           </nav>
           <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">
-            <lu-nav-mobile-menu-item v-for="item in menu" :key="item.id" :item="item" @link-selected="hide" />
-            <lu-nav-mobile-menu-item-changeLanguage @link-selected="hide" />
+            <LuNavMobileMenuItem v-for="item in menu" :key="item.id" :item="item" @link-selected="hide" />
+            <LuNavMobileMenuItemChangeLanguage @link-selected="hide" />
           </ul>
         </div>
       </div>
