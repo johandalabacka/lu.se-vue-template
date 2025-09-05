@@ -10,7 +10,7 @@
       v-else :href="item.url" class="nav-link text-nowrap dropdown-toggle"
       aria-haspopup="true"
     >{{ $t(item.label) }}</a>
-    <div class="dropdown-menu font-size-base" :class="[lastItem ? 'dropdown-menu-right' : '']" aria-labelledby="dropdown-studera">
+    <div class="dropdown-menu font-size-base" :class="[lastItem ? 'dropdown-menu-end' : '']" aria-labelledby="dropdown-studera">
       <LuDropdownItem v-for="subMenuItem in item.children" :key="subMenuItem.id" :item="subMenuItem" />
     </div>
   </li>
