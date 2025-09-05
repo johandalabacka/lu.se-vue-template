@@ -10,7 +10,7 @@ import {
   faSignIn,
   faSignOut,
   faTimes,
-  faVolume
+  faVolume,
 } from '@fortawesome/pro-light-svg-icons'
 
 import { faChevronCircleUp } from '@fortawesome/pro-solid-svg-icons'
@@ -27,5 +27,5 @@ library.add(
   faSignIn,
   faSignOut,
   faTimes,
-  faVolume
+  faVolume,
 )

@@ -1,7 +1,14 @@
 <template>
   <li class="mobile-nav-item">
-    <a href="#" class="nav-link" @click.prevent="switchLocale">
-      <fa-icon aria-hidden="true" :icon="['fal', 'globe']" /> {{ $t('changeLanguage') }}
+    <a
+      href="#"
+      class="nav-link"
+      @click.prevent="switchLocale"
+    >
+      <fa-icon
+        aria-hidden="true"
+        :icon="['fal', 'globe']"
+      /> {{ $t('changeLanguage') }}
     </a>
   </li>
 </template>
@@ -16,18 +23,18 @@ export default {
       document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
       localStorage.setItem('language', this.$root.$i18n.locale)
       this.$emit('link-selected')
-    }
+    },
   },
   i18n: {
     messages: {
       sv: {
-        changeLanguage: 'English'
+        changeLanguage: 'English',
       },
       en: {
-        changeLanguage: 'Svenska'
-      }
-    }
-  }
+        changeLanguage: 'Svenska',
+      },
+    },
+  },
 }
 </script>
 

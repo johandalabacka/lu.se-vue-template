@@ -1,27 +1,54 @@
 <template>
-  <li v-if="item.children" class="nav-item dropdown dropdown-hover" :class="{active: active}">
+  <li
+    v-if="item.children"
+    class="nav-item dropdown dropdown-hover"
+    :class="{active: active}"
+  >
     <router-link
-      v-if="item.path" :to="item.path" class="nav-link text-nowrap dropdown-toggle"
+      v-if="item.path"
+      :to="item.path"
+      class="nav-link text-nowrap dropdown-toggle"
       aria-haspopup="true"
     >
       {{ $t(item.label) }}
     </router-link>
     <a
-      v-else :href="item.url" class="nav-link text-nowrap dropdown-toggle"
+      v-else
+      :href="item.url"
+      class="nav-link text-nowrap dropdown-toggle"
       aria-haspopup="true"
     >{{ $t(item.label) }}</a>
-    <div class="dropdown-menu font-size-base" :class="[lastItem ? 'dropdown-menu-end' : '']" aria-labelledby="dropdown-studera">
-      <LuDropdownItem v-for="subMenuItem in item.children" :key="subMenuItem.id" :item="subMenuItem" />
+    <div
+      class="dropdown-menu font-size-base"
+      :class="[lastItem ? 'dropdown-menu-end' : '']"
+      aria-labelledby="dropdown-studera"
+    >
+      <LuDropdownItem
+        v-for="subMenuItem in item.children"
+        :key="subMenuItem.id"
+        :item="subMenuItem"
+      />
     </div>
   </li>
-  <li v-else class="nav-item" :class="{active: active}">
+  <li
+    v-else
+    class="nav-item"
+    :class="{active: active}"
+  >
     <router-link
-      v-if=" item.path" :to="item.path" class="nav-link text-nowrap"
+      v-if=" item.path"
+      :to="item.path"
+      class="nav-link text-nowrap"
       aria-haspopup="true"
     >
       {{ $t(item.label) }}
     </router-link>
-    <a v-else :href="item.url" class="nav-link text-nowrap" aria-haspopup="true">{{ $t(item.label) }}</a>
+    <a
+      v-else
+      :href="item.url"
+      class="nav-link text-nowrap"
+      aria-haspopup="true"
+    >{{ $t(item.label) }}</a>
   </li>
 </template>
 
@@ -31,16 +58,16 @@ import LuDropdownItem from './LuDropdownItem.vue'
 export default {
   name: 'LuTopMenuItem',
   components: {
-    LuDropdownItem
+    LuDropdownItem,
   },
   props: {
     item: { type: Object, required: true },
-    lastItem: Boolean
+    lastItem: Boolean,
   },
   computed: {
     active () {
       return this.$route.path === this.item.path
-    }
-  }
+    },
+  },
 }
 </script>

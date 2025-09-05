@@ -1,11 +1,20 @@
 <template>
-  <main class="main" :class="{'mt-2': compact}">
+  <main
+    class="main"
+    :class="{'mt-2': compact}"
+  >
     <div class="container">
-      <div v-if="leftmenu" class="row">
+      <div
+        v-if="leftmenu"
+        class="row"
+      >
         <LuLeftMenu :menu="leftmenu" />
         <div class="col-12 col-xl-9 mb-6 mb-xl-0">
           <slot />
-          <div v-if="pageManagerMail" class="row">
+          <div
+            v-if="pageManagerMail"
+            class="row"
+          >
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
                 {{ $t('pageManager') }}: <a :href="`mailto:${pageManagerMail}`">{{ pageManagerMail }}</a>
@@ -20,7 +29,10 @@
       </div>
       <div v-else>
         <slot />
-        <div v-if="pageManagerMail" class="row">
+        <div
+          v-if="pageManagerMail"
+          class="row"
+        >
           <div class="col-12 col-lg-8">
             <div class=" border-top border-dark mt-5 py-3">
               {{ $t('pageManager') }}: <a :href="`mailto:${pageManagerMail}`">{{ pageManagerMail }}</a>
@@ -42,14 +54,14 @@ import LuLeftMenu from './LuLeftMenu.vue'
 export default {
   name: 'LuMain',
   components: {
-    LuLeftMenu
+    LuLeftMenu,
   },
   props: {
     leftmenu: { type: Array, default: null },
     pageManagerMail: { type: String, default: '' },
     pageManagerNotice: { type: String, default: '' },
     lastUpdated: { type: String, default: '' },
-    compact: Boolean
+    compact: Boolean,
   },
   data () {
     return {
@@ -58,12 +70,12 @@ export default {
   i18n: {
     messages: {
       sv: {
-        pageManager: 'Sidansvarig'
+        pageManager: 'Sidansvarig',
       },
       en: {
-        pageManager: 'Page Manager'
-      }
-    }
-  }
+        pageManager: 'Page Manager',
+      },
+    },
+  },
 }
 </script>

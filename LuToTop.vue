@@ -1,7 +1,17 @@
 <template>
   <transition name="fade">
-    <button v-show="show" id="btn--back-to-top" class="btn px-2" type="button" style="display: inline-block;" @click.stop="onClick">
-      <fa-icon class="fa-2x align-middle me-2" :icon="['fas', 'chevron-circle-up']" />
+    <button
+      v-show="show"
+      id="btn--back-to-top"
+      class="btn px-2"
+      type="button"
+      style="display: inline-block;"
+      @click.stop="onClick"
+    >
+      <fa-icon
+        class="fa-2x align-middle me-2"
+        :icon="['fas', 'chevron-circle-up']"
+      />
       <span>{{ $t('to_top') }}</span>
     </button>
   </transition>
@@ -13,7 +23,7 @@ export default {
   data () {
     return {
       show: false,
-      listenerAdded: false
+      listenerAdded: false,
     }
   },
   mounted () {
@@ -50,18 +60,18 @@ export default {
     },
     onScroll (e) {
       this.show = window.pageYOffset > 500
-    }
+    },
   },
   i18n: {
     messages: {
       sv: {
-        to_top: 'Hela vägen upp'
+        to_top: 'Hela vägen upp',
       },
       en: {
-        to_top: 'Back to top'
-      }
-    }
-  }
+        to_top: 'Back to top',
+      },
+    },
+  },
 }
 </script>
 

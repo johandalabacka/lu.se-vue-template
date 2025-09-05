@@ -8,8 +8,8 @@
 export default {
   name: 'BAvatar',
   props: {
-    text: { type: String, default: '' }
-  }
+    text: { type: String, default: '' },
+  },
 }
 </script>
 

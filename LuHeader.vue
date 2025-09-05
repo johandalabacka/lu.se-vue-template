@@ -1,13 +1,22 @@
 <template>
   <header class="header nav-undecorated">
-    <LuNavbar v-if="navbarmenu" :menu="navbarmenu" />
+    <LuNavbar
+      v-if="navbarmenu"
+      :menu="navbarmenu"
+    />
     <div class="border-bottom">
       <div class="container-fluid mw-xl">
-        <div class="row m-0" :class="[compact ? 'py-2' : 'py-3 py-lg-5']">
+        <div
+          class="row m-0"
+          :class="[compact ? 'py-2' : 'py-3 py-lg-5']"
+        >
           <div class="col p-0">
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
-                <a :href="logoUrl" :title="logoTitle">
+                <a
+                  :href="logoUrl"
+                  :title="logoTitle"
+                >
                   <img
                     v-if="logoSrc"
                     :src="logoSrc"
@@ -25,7 +34,10 @@
                   <nav
                     class="nav text-center h-100 h-lg-auto align-items-center d-lg-none flex-nowrap"
                   >
-                    <div v-if="hasLogin" class="nav-item">
+                    <div
+                      v-if="hasLogin"
+                      class="nav-item"
+                    >
                       <a
                         v-if="isLoggedIn"
                         class="ms-2 p-1 d-block nav-undecorated"
@@ -35,8 +47,16 @@
                         :aria-label="$t('logout')"
                         @click.prevent="$emit('logout')"
                       >
-                        <BAvatar v-if="avatar" size="sm" variant="primary" :text="avatar" />
-                        <fa-icon v-else :icon="['fal', 'sign-out']" />
+                        <BAvatar
+                          v-if="avatar"
+                          size="sm"
+                          variant="primary"
+                          :text="avatar"
+                        />
+                        <fa-icon
+                          v-else
+                          :icon="['fal', 'sign-out']"
+                        />
                         <br>
                         {{ $t('logout') }}
                       </a>
@@ -54,7 +74,10 @@
                         {{ $t('login') }}
                       </a>
                     </div>
-                    <div v-if="hasSearch" class="nav-item">
+                    <div
+                      v-if="hasSearch"
+                      class="nav-item"
+                    >
                       <a
                         class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
@@ -85,9 +108,15 @@
                     </div>
                   </nav>
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
-                    <nav v-if="hasSearch" class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0">
+                    <nav
+                      v-if="hasSearch"
+                      class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0"
+                    >
                       <div class="nav-item flex-xl-grow-1">
-                        <form class="form-inline pe-xl-3" @submit.prevent="search">
+                        <form
+                          class="form-inline pe-xl-3"
+                          @submit.prevent="search"
+                        >
                           <div class="input-group input-group-round input-group-sm w-100 flex">
                             <input
                               id="header-search-field"
@@ -98,7 +127,10 @@
                               :placeholder="searchPlaceholder"
                             >
                             <div class="input-group-append">
-                              <button class="btn btn-primary px-2" type="submit">
+                              <button
+                                class="btn btn-primary px-2"
+                                type="submit"
+                              >
                                 <span class="me-2">{{ $t('search') }}</span>
                                 <fa-icon :icon="['fal', 'search']" />
                               </button>
@@ -108,7 +140,10 @@
                       </div>
                     </nav>
                     <nav class="nav align-items-center justify-content-end">
-                      <div v-if="hasLogin" class="nav-item d-none d-lg-block">
+                      <div
+                        v-if="hasLogin"
+                        class="nav-item d-none d-lg-block"
+                      >
                         <a
                           v-if="isLoggedIn"
                           class="nav-link px-0 ms-4"
@@ -116,8 +151,17 @@
                           @click.prevent="$emit('logout')"
                         >
                           <span class="me-1">
-                            <BAvatar v-if="avatar" size="1.8em" variant="primary" :text="avatar" />
-                            <fa-icon v-else class="fa-lg" :icon="['fal', 'sign-out']" />
+                            <BAvatar
+                              v-if="avatar"
+                              size="1.8em"
+                              variant="primary"
+                              :text="avatar"
+                            />
+                            <fa-icon
+                              v-else
+                              class="fa-lg"
+                              :icon="['fal', 'sign-out']"
+                            />
                           </span>
                           {{ $t('logout') }}
                         </a>
@@ -128,7 +172,10 @@
                           @click.prevent="$emit('login')"
                         >
                           <span class="me-1">
-                            <fa-icon class="fa-lg" :icon="['fal', 'sign-in']" />
+                            <fa-icon
+                              class="fa-lg"
+                              :icon="['fal', 'sign-in']"
+                            />
                           </span>
                           {{ $t('login') }}
                         </a>
@@ -141,12 +188,23 @@
                           @click.prevent="switchLocale"
                         >
                           <span class="me-1">
-                            <fa-icon class="fa-lg" :icon="['fal', 'globe']" />
+                            <fa-icon
+                              class="fa-lg"
+                              :icon="['fal', 'globe']"
+                            />
                           </span> English
                         </a>
-                        <a v-else class="nav-link px-0 ms-4" href="#" @click.prevent="switchLocale">
+                        <a
+                          v-else
+                          class="nav-link px-0 ms-4"
+                          href="#"
+                          @click.prevent="switchLocale"
+                        >
                           <span class="me-1">
-                            <fa-icon class="fa-lg" :icon="['fal', 'globe']" />
+                            <fa-icon
+                              class="fa-lg"
+                              :icon="['fal', 'globe']"
+                            />
                           </span> Svenska
                         </a>
                       </div>
@@ -166,15 +224,25 @@
                     </nav>
                   </div>
                 </div>
-                <LuTopMenu v-if="topmenu" :menu="topmenu" />
+                <LuTopMenu
+                  v-if="topmenu"
+                  :menu="topmenu"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
       <transition name="slide">
-        <div v-show="! searchCollapsed" id="header-search-form" class="header-search-form collapse-lg pb-2 px-2">
-          <form class="form-inline px-lg-3" @submit.prevent="search">
+        <div
+          v-show="! searchCollapsed"
+          id="header-search-form"
+          class="header-search-form collapse-lg pb-2 px-2"
+        >
+          <form
+            class="form-inline px-lg-3"
+            @submit.prevent="search"
+          >
             <div class="input-group input-group-round input-group-sm w-100 flex">
               <input
                 id="header-search-field-mobile"
@@ -185,7 +253,10 @@
                 :placeholder="searchPlaceholder"
               >
               <div class="input-group-append">
-                <button class="btn btn-primary px-2" type="submit">
+                <button
+                  class="btn btn-primary px-2"
+                  type="submit"
+                >
                   <span class="me-2">{{ $t('search') }}</span>
                   <fa-icon :icon="['fal', 'search']" />
                 </button>
@@ -195,7 +266,10 @@
         </div>
       </transition>
     </div>
-    <LuNavMobileMenu ref="navMobileMenu" :menu="mobilemenu" />
+    <LuNavMobileMenu
+      ref="navMobileMenu"
+      :menu="mobilemenu"
+    />
     <div style="display: none">
       <!-- bury the button for browsealoud -->
       <div id="__ba_launchpad" />
@@ -215,7 +289,7 @@ export default {
     BAvatar,
     LuNavbar,
     LuTopMenu,
-    LuNavMobileMenu
+    LuNavMobileMenu,
   },
   props: {
     topmenu: { type: Array, default: null },
@@ -230,13 +304,13 @@ export default {
     logoUrl: { type: String, required: true },
     logoTitle: { type: String, required: true },
     logoSrc: { type: String, required: true },
-    compact: Boolean
+    compact: Boolean,
   },
   emits: ['login', 'logout', 'search'],
   data () {
     return {
       searchField: '',
-      searchCollapsed: true
+      searchCollapsed: true,
     }
   },
   watch: {
@@ -246,7 +320,7 @@ export default {
       } else {
         document.title = this.$t(to.name)
       }
-    }
+    },
   },
   mounted () {
     if (this.$route.meta?.title) {
@@ -286,7 +360,7 @@ export default {
           this.$refs.headerSearchField.select()
         }
       }
-    }
+    },
   },
   i18n: {
     messages: {
@@ -297,7 +371,7 @@ export default {
         showMenu: 'Visa meny',
         listen: 'Lyssna',
         login: 'Logga in',
-        logout: 'Logga ut'
+        logout: 'Logga ut',
       },
       en: {
         menu: 'Menu',
@@ -306,10 +380,10 @@ export default {
         showMenu: 'Show menu',
         listen: 'Listen',
         login: 'Log in',
-        logout: 'Log out'
-      }
-    }
-  }
+        logout: 'Log out',
+      },
+    },
+  },
 }
 </script>
 

@@ -15,5 +15,5 @@ export {
   LuFooter,
   LuInfobox,
   LuSpinner,
-  LuToTop
+  LuToTop,
 }

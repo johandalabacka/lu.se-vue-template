@@ -15,7 +15,7 @@
 export default {
   name: 'LuInfobox',
   props: {
-    title: { type: String, required: true }
-  }
+    title: { type: String, required: true },
+  },
 }
 </script>

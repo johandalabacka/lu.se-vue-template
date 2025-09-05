@@ -5,7 +5,7 @@ import {
   faInstagram,
   faLinkedin,
   faTwitterSquare,
-  faYoutubeSquare
+  faYoutubeSquare,
 } from '@fortawesome/fontawesome-free-brands'
 
 library.add(
@@ -13,5 +13,5 @@ library.add(
   faInstagram,
   faLinkedin,
   faTwitterSquare,
-  faYoutubeSquare
+  faYoutubeSquare,
 )

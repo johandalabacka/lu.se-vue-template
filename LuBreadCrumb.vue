@@ -2,12 +2,19 @@
   <div class="container pt-2 pt-lg-3 ">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb m-0 p-0 mb-0 font-size-sm  bg-transparent">
-        <li v-for="part in partsButLast" :key="part.path" class="breadcrumb-item text-truncate mb-0">
+        <li
+          v-for="part in partsButLast"
+          :key="part.path"
+          class="breadcrumb-item text-truncate mb-0"
+        >
           <router-link :to="part.path">
             {{ part.label }}
           </router-link>
         </li>
-        <li class="breadcrumb-item text-truncate mb-0 active" aria-current="page">
+        <li
+          class="breadcrumb-item text-truncate mb-0 active"
+          aria-current="page"
+        >
           {{ partsLast.label }}
         </li>
       </ol>
@@ -20,7 +27,7 @@ export default {
   name: 'LuBreadCrumb',
   data () {
     return {
-      parts: []
+      parts: [],
     }
   },
   computed: {
@@ -35,12 +42,12 @@ export default {
         return { label: '' }
       }
       return this.parts[this.parts.length - 1]
-    }
+    },
   },
   watch: {
     '$route' (to) {
       this.setPath(to.path)
-    }
+    },
   },
   mounted () {
     this.setPath(this.$route.path)
@@ -65,7 +72,7 @@ export default {
         paths.push({ path: accumulatedPath, label: this.getLabel(accumulatedPath) })
       })
       this.parts = paths
-    }
-  }
+    },
+  },
 }
 </script>
