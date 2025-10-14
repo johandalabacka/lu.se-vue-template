@@ -3,7 +3,7 @@
     <div class="pimcore_area_infobox pimcore_area_content">
       <div class="bg-sky-50 mb-6 p-5">
         <p class="h3 mt-0 mb-3">
-          {{ title }}
+          {{ props.title }}
         </p>
         <slot />
       </div>
@@ -11,11 +11,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LuInfobox',
-  props: {
-    title: { type: String, required: true },
-  },
-}
+<script setup>
+const props = defineProps({
+  title: { type: String, required: true },
+})
 </script>

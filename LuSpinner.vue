@@ -7,16 +7,13 @@
       />
     </p>
     <p class="font-weight-bold">
-      {{ text }}
+      {{ props.text }}
     </p>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LuSpinner',
-  props: {
-    text: { type: String, default: '' },
-  },
-}
+<script setup>
+const props = defineProps({
+  text: { type: String, default: '' },
+})
 </script>

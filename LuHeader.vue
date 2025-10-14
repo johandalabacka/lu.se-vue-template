@@ -1,26 +1,26 @@
 <template>
   <header class="header nav-undecorated">
     <LuNavbar
-      v-if="navbarmenu"
-      :menu="navbarmenu"
+      v-if="props.navbarmenu"
+      :menu="props.navbarmenu"
     />
     <div class="border-bottom">
       <div class="container-fluid mw-xl">
         <div
           class="row m-0"
-          :class="[compact ? 'py-2' : 'py-3 py-lg-5']"
+          :class="[props.compact ? 'py-2' : 'py-3 py-lg-5']"
         >
           <div class="col p-0">
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
                 <a
-                  :href="logoUrl"
-                  :title="logoTitle"
+                  :href="props.logoUrl"
+                  :title="props.logoTitle"
                 >
                   <img
-                    v-if="logoSrc"
-                    :src="logoSrc"
-                    :alt="logoTitle"
+                    v-if="props.logoSrc"
+                    :src="props.logoSrc"
+                    :alt="props.logoTitle"
                     class="mw-100"
                   >
                 </a>
@@ -35,30 +35,30 @@
                     class="nav text-center h-100 h-lg-auto align-items-center d-lg-none flex-nowrap"
                   >
                     <div
-                      v-if="hasLogin"
+                      v-if="props.hasLogin"
                       class="nav-item"
                     >
                       <a
-                        v-if="isLoggedIn"
+                        v-if="props.isLoggedIn"
                         class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
                         aria-controls="header-logout"
                         aria-expanded="false"
-                        :aria-label="$t('logout')"
-                        @click.prevent="$emit('logout')"
+                        :aria-label="t('logout')"
+                        @click.prevent="emit('logout')"
                       >
                         <BAvatar
-                          v-if="avatar"
+                          v-if="props.avatar"
                           size="sm"
                           variant="primary"
-                          :text="avatar"
+                          :text="props.avatar"
                         />
                         <fa-icon
                           v-else
                           :icon="['fal', 'sign-out']"
                         />
                         <br>
-                        {{ $t('logout') }}
+                        {{ t('logout') }}
                       </a>
                       <a
                         v-else
@@ -66,16 +66,16 @@
                         href="#"
                         aria-controls="header-login"
                         aria-expanded="false"
-                        :aria-label="$t('login')"
-                        @click.prevent="$emit('login')"
+                        :aria-label="t('login')"
+                        @click.prevent="emit('login')"
                       >
                         <fa-icon :icon="['fal', 'sign-in']" />
                         <br>
-                        {{ $t('login') }}
+                        {{ t('login') }}
                       </a>
                     </div>
                     <div
-                      v-if="hasSearch"
+                      v-if="props.hasSearch"
                       class="nav-item"
                     >
                       <a
@@ -84,12 +84,12 @@
                         data-toggle="collapse"
                         aria-controls="header-search-form"
                         aria-expanded="false"
-                        :aria-label="$t('showHideSearch')"
+                        :aria-label="t('showHideSearch')"
                         @click.prevent="toggleSearch"
                       >
                         <fa-icon :icon="['fal', 'search']" />
                         <br>
-                        {{ $t('search') }}
+                        {{ t('search') }}
                       </a>
                     </div>
                     <div class="nav-item">
@@ -98,18 +98,18 @@
                         href="#"
                         aria-controls="nav-mobile"
                         aria-expanded="false"
-                        :aria-label="$t('showMenu')"
+                        :aria-label="t('showMenu')"
                         @click.prevent="showNavMobileMenu"
                       >
                         <fa-icon :icon="['fal', 'bars']" />
                         <br>
-                        {{ $t('menu') }}
+                        {{ t('menu') }}
                       </a>
                     </div>
                   </nav>
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
                     <nav
-                      v-if="hasSearch"
+                      v-if="props.hasSearch"
                       class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0"
                     >
                       <div class="nav-item flex-xl-grow-1">
@@ -124,14 +124,14 @@
                               v-model="searchField"
                               type="search"
                               class="form-control form-control-sm border-end-0"
-                              :placeholder="searchPlaceholder"
+                              :placeholder="props.searchPlaceholder"
                             >
                             <div class="input-group-append">
                               <button
                                 class="btn btn-primary px-2"
                                 type="submit"
                               >
-                                <span class="me-2">{{ $t('search') }}</span>
+                                <span class="me-2">{{ t('search') }}</span>
                                 <fa-icon :icon="['fal', 'search']" />
                               </button>
                             </div>
@@ -141,21 +141,21 @@
                     </nav>
                     <nav class="nav align-items-center justify-content-end">
                       <div
-                        v-if="hasLogin"
+                        v-if="props.hasLogin"
                         class="nav-item d-none d-lg-block"
                       >
                         <a
-                          v-if="isLoggedIn"
+                          v-if="props.isLoggedIn"
                           class="nav-link px-0 ms-4"
                           href="#"
-                          @click.prevent="$emit('logout')"
+                          @click.prevent="emit('logout')"
                         >
                           <span class="me-1">
                             <BAvatar
-                              v-if="avatar"
+                              v-if="props.avatar"
                               size="1.8em"
                               variant="primary"
-                              :text="avatar"
+                              :text="props.avatar"
                             />
                             <fa-icon
                               v-else
@@ -163,13 +163,13 @@
                               :icon="['fal', 'sign-out']"
                             />
                           </span>
-                          {{ $t('logout') }}
+                          {{ t('logout') }}
                         </a>
                         <a
                           v-else
                           class="nav-link px-0 ms-4"
                           href="#"
-                          @click.prevent="$emit('login')"
+                          @click.prevent="emit('login')"
                         >
                           <span class="me-1">
                             <fa-icon
@@ -177,12 +177,12 @@
                               :icon="['fal', 'sign-in']"
                             />
                           </span>
-                          {{ $t('login') }}
+                          {{ t('login') }}
                         </a>
                       </div>
                       <div class="nav-item d-none d-lg-block">
                         <a
-                          v-if="$root.$i18n.locale == 'sv'"
+                          v-if="isSwedish"
                           class="nav-link px-0 ms-4"
                           href="#"
                           @click.prevent="switchLocale"
@@ -214,19 +214,19 @@
                           href="#"
                           aria-controls="nav-mobile"
                           aria-expanded="false"
-                          :aria-label="$t('showMenu')"
+                          :aria-label="t('showMenu')"
                           @click.prevent="showNavMobileMenu"
                         >
                           <fa-icon :icon="['fal', 'bars']" />
-                          {{ $t('menu') }}
+                          {{ t('menu') }}
                         </a>
                       </div>
                     </nav>
                   </div>
                 </div>
                 <LuTopMenu
-                  v-if="topmenu"
-                  :menu="topmenu"
+                  v-if="props.topmenu"
+                  :menu="props.topmenu"
                 />
               </div>
             </div>
@@ -250,14 +250,14 @@
                 v-model="searchField"
                 type="search"
                 class="form-control form-control-sm border-end-0"
-                :placeholder="searchPlaceholder"
+                :placeholder="props.searchPlaceholder"
               >
               <div class="input-group-append">
                 <button
                   class="btn btn-primary px-2"
                   type="submit"
                 >
-                  <span class="me-2">{{ $t('search') }}</span>
+                  <span class="me-2">{{ t('search') }}</span>
                   <fa-icon :icon="['fal', 'search']" />
                 </button>
               </div>
@@ -268,7 +268,7 @@
     </div>
     <LuNavMobileMenu
       ref="navMobileMenu"
-      :menu="mobilemenu"
+      :menu="props.mobilemenu"
     />
     <div style="display: none">
       <!-- bury the button for browsealoud -->
@@ -277,113 +277,128 @@
   </header>
 </template>
 
-<script>
+<script setup>
+import { computed, nextTick, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
 import BAvatar from './BAvatar.vue'
 import LuNavbar from './LuNavbar.vue'
 import LuTopMenu from './LuTopMenu.vue'
 import LuNavMobileMenu from './LuNavMobileMenu.vue'
 
-export default {
-  name: 'LuHeader',
-  components: {
-    BAvatar,
-    LuNavbar,
-    LuTopMenu,
-    LuNavMobileMenu,
-  },
-  props: {
-    topmenu: { type: Array, default: null },
-    mobilemenu: { type: Array, default: null },
-    navbarmenu: { type: Array, default: null },
-    hasLogin: Boolean,
-    isLoggedIn: Boolean,
-    avatar: { type: String, default: '' },
-    hasSearch: Boolean,
-    emptySearch: Boolean,
-    searchPlaceholder: { type: String, default: '' },
-    logoUrl: { type: String, required: true },
-    logoTitle: { type: String, required: true },
-    logoSrc: { type: String, required: true },
-    compact: Boolean,
-  },
-  emits: ['login', 'logout', 'search'],
-  data () {
-    return {
-      searchField: '',
-      searchCollapsed: true,
-    }
-  },
-  watch: {
-    $route (to) {
-      if (to.meta?.title) {
-        document.title = this.$t(to.meta.title)
-      } else {
-        document.title = this.$t(to.name)
-      }
+const props = defineProps({
+  topmenu: { type: Array, default: null },
+  mobilemenu: { type: Array, default: null },
+  navbarmenu: { type: Array, default: null },
+  hasLogin: Boolean,
+  isLoggedIn: Boolean,
+  avatar: { type: String, default: '' },
+  hasSearch: Boolean,
+  emptySearch: Boolean,
+  searchPlaceholder: { type: String, default: '' },
+  logoUrl: { type: String, required: true },
+  logoTitle: { type: String, required: true },
+  logoSrc: { type: String, required: true },
+  compact: Boolean,
+})
+
+const emit = defineEmits(['login', 'logout', 'search'])
+
+const route = useRoute()
+const router = useRouter()
+
+const globalI18n = useI18n({ useScope: 'global' })
+
+const { t } = useI18n({
+  useScope: 'local',
+  messages: {
+    sv: {
+      menu: 'Meny',
+      search: 'Sök',
+      showHideSearch: 'Visa och dölj sökfält',
+      showMenu: 'Visa meny',
+      listen: 'Lyssna',
+      login: 'Logga in',
+      logout: 'Logga ut',
+    },
+    en: {
+      menu: 'Menu',
+      search: 'Search',
+      showHideSearch: 'Show and hide search field',
+      showMenu: 'Show menu',
+      listen: 'Listen',
+      login: 'Log in',
+      logout: 'Log out',
     },
   },
-  mounted () {
-    if (this.$route.meta?.title) {
-      document.title = this.$t(this.$route.meta.title)
-    } else if (this.$route.name) {
-      document.title = this.$t(this.$route.name)
-    }
+})
+
+const searchField = ref('')
+const searchCollapsed = ref(true)
+
+const navMobileMenu = ref(null)
+const searchFieldMobile = ref(null)
+const headerSearchField = ref(null)
+
+const isSwedish = computed(() => globalI18n.locale.value === 'sv')
+
+const updateDocumentTitle = () => {
+  const current = router.currentRoute.value
+  const metaTitle = typeof current.meta?.title === 'string' ? current.meta.title : null
+  if (metaTitle) {
+    document.title = globalI18n.t(metaTitle)
+    return
+  }
+  const routeName = current.name
+  if (typeof routeName === 'string') {
+    document.title = globalI18n.t(routeName)
+  }
+}
+
+watch(
+  () => route.fullPath,
+  () => {
+    updateDocumentTitle()
   },
-  methods: {
-    switchLocale () {
-      this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
-      document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
-      localStorage.setItem('language', this.$root.$i18n.locale)
-      if (this.$router.currentRoute.value.meta?.title) {
-        document.title = this.$t(this.$router.currentRoute.value.meta.title)
-      } else if (this.$router.currentRoute.value.name) {
-        document.title = this.$t(this.$router.currentRoute.value.name)
-      }
-    },
-    showNavMobileMenu () {
-      this.$refs.navMobileMenu.show()
-    },
-    toggleSearch () {
-      this.searchCollapsed = !this.searchCollapsed
-      if (!this.searchCollapsed) {
-        // Wait until rendered to set fokus
-        this.$nextTick(() => this.$refs.searchFieldMobile.focus())
-      }
-    },
-    search () {
-      if (this.searchField.trim()) {
-        this.$emit('search', this.searchField)
-        if (this.emptySearch) {
-          this.searchField = ''
-        } else {
-          this.$refs.searchFieldMobile.select()
-          this.$refs.headerSearchField.select()
-        }
-      }
-    },
-  },
-  i18n: {
-    messages: {
-      sv: {
-        menu: 'Meny',
-        search: 'Sök',
-        showHideSearch: 'Visa och dölj sökfält',
-        showMenu: 'Visa meny',
-        listen: 'Lyssna',
-        login: 'Logga in',
-        logout: 'Logga ut',
-      },
-      en: {
-        menu: 'Menu',
-        search: 'Search',
-        showHideSearch: 'Show and hide search field',
-        showMenu: 'Show menu',
-        listen: 'Listen',
-        login: 'Log in',
-        logout: 'Log out',
-      },
-    },
-  },
+  { immediate: true },
+)
+
+const switchLocale = () => {
+  const nextLocale = isSwedish.value ? 'en' : 'sv'
+  globalI18n.locale.value = nextLocale
+  document.documentElement.lang = nextLocale
+  localStorage.setItem('language', nextLocale)
+  updateDocumentTitle()
+}
+
+const showNavMobileMenu = () => {
+  navMobileMenu.value?.show()
+}
+
+const toggleSearch = () => {
+  searchCollapsed.value = !searchCollapsed.value
+  if (!searchCollapsed.value) {
+    nextTick(() => {
+      searchFieldMobile.value?.focus()
+    })
+  }
+}
+
+const search = () => {
+  const value = searchField.value.trim()
+  if (!value) {
+    return
+  }
+  emit('search', value)
+  if (props.emptySearch) {
+    searchField.value = ''
+    return
+  }
+  nextTick(() => {
+    searchFieldMobile.value?.select()
+    headerSearchField.value?.select()
+  })
 }
 </script>
 

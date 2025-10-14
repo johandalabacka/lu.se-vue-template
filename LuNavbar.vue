@@ -8,7 +8,7 @@
         >
           <ul class="navbar-nav flex-row ms-auto">
             <LuNavbarItem
-              v-for="item in menu"
+              v-for="item in props.menu"
               :key="item.id"
               :item="item"
             />
@@ -19,19 +19,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import LuNavbarItem from './LuNavbarItem.vue'
-export default {
-  name: 'LuNavbar',
-  components: {
-    LuNavbarItem,
-  },
-  props: {
-    menu: { type: Array, required: true },
-  },
-  data () {
-    return {
-    }
-  },
-}
+
+const props = defineProps({
+  menu: { type: Array, required: true },
+})
 </script>

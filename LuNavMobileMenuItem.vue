@@ -1,33 +1,33 @@
 <template>
   <li
-    v-if="item.children"
+    v-if="props.item.children"
     class="mobile-nav-item"
   >
     <div class="mobile-nav-container">
       <router-link
-        v-if="item.path"
-        :to="item.path"
+        v-if="props.item.path"
+        :to="props.item.path"
         class="nav-link"
-        @click="$emit('link-selected')"
+        @click="emit('link-selected')"
       >
-        {{ $t(item.label) }}
+        {{ t(props.item.label) }}
       </router-link>
       <a
         v-else
         href="#"
         class="nav-link"
         @click.prevent="toggleExpanded"
-      >{{ $t(item.label) }}</a>
+      >{{ t(props.item.label) }}</a>
       <div
         class="mobile-nav-toggle"
         :class="[expanded ? '' : 'collapsed']"
-        :data-target="'#sm-' + item.id"
+        :data-target="'#sm-' + props.item.id"
         :aria-expanded="expanded"
-        :aria-controls="'sm-' + item.id"
+        :aria-controls="'sm-' + props.item.id"
         @click="toggleExpanded"
       >
         <span
-          v-show="! expanded"
+          v-show="!expanded"
           class="collapse-show"
         >
           <fa-icon
@@ -49,11 +49,11 @@
     <Transition name="expand">
       <ul
         v-show="expanded"
-        :id="'sm-' + item.id"
+        :id="'sm-' + props.item.id"
         class="mobile-nav collapse show"
       >
         <lu-nav-mobile-menu-item
-          v-for="subItem in item.children"
+          v-for="subItem in props.item.children"
           :key="subItem.id"
           :item="subItem"
           @link-activated="childLinkActivated"
@@ -63,15 +63,15 @@
     </Transition>
   </li>
   <li
-    v-else-if="item.path"
+    v-else-if="props.item.path"
     class="mobile-nav-item"
   >
     <router-link
-      :to="item.path"
+      :to="props.item.path"
       class="nav-link"
-      @click="$emit('link-selected')"
+      @click="emit('link-selected')"
     >
-      {{ $t(item.label) }}
+      {{ t(props.item.id) }}
     </router-link>
   </li>
   <li
@@ -79,53 +79,54 @@
     class="mobile-nav-item"
   >
     <a
-      :href="item.url"
+      :href="props.item.url"
       class="nav-link"
     >
-      {{ $t(item.label) }}
+      {{ t(props.item.label) }}
     </a>
   </li>
 </template>
 
-<script>
-export default {
-  name: 'LuNavMobileMenuItem',
-  props: {
-    item: { type: Object, required: true },
-  },
-  emits: ['link-activated', 'link-selected'],
-  data () {
-    return {
-      expanded: false,
-    }
-  },
-  watch: {
-    '$route' (to) {
-      if (this.$route.path === this.item.path) {
-        this.$emit('link-activated')
-      }
-    },
-  },
-  mounted () {
-    if (this.$route.path === this.item.path) {
-      this.$emit('link-activated')
-    }
-  },
-  methods: {
-    toggleExpanded () {
-      this.expanded = !this.expanded
-    },
-    childLinkSelected () {
-      // Resend event upwards
-      this.$emit('link-selected')
-    },
-    childLinkActivated () {
-      this.expanded = true
-      // Resend event upwards
-      this.$emit('link-activated')
-    },
-  },
+<script setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const props = defineProps({
+  item: { type: Object, required: true },
+})
+
+const emit = defineEmits(['link-activated', 'link-selected'])
+
+const { t } = useI18n()
+const route = useRoute()
+const expanded = ref(false)
+
+const toggleExpanded = () => {
+  expanded.value = !expanded.value
 }
+
+const childLinkSelected = () => {
+  emit('link-selected')
+}
+
+const childLinkActivated = () => {
+  expanded.value = true
+  emit('link-activated')
+}
+
+watch(
+  () => route.path,
+  () => {
+    if (!props.item.path) {
+      return
+    }
+    if (route.path === props.item.path) {
+      emit('link-activated')
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <style scoped>

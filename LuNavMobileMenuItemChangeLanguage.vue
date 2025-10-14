@@ -8,33 +8,36 @@
       <fa-icon
         aria-hidden="true"
         :icon="['fal', 'globe']"
-      /> {{ $t('changeLanguage') }}
+      /> {{ t('changeLanguage') }}
     </a>
   </li>
 </template>
 
-<script>
-export default {
-  name: 'LuNavMobileMenuItemChangeLanguage',
-  emits: ['link-selected'],
-  methods: {
-    switchLocale () {
-      this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
-      document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
-      localStorage.setItem('language', this.$root.$i18n.locale)
-      this.$emit('link-selected')
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+const emit = defineEmits(['link-selected'])
+
+const globalI18n = useI18n({ useScope: 'global' })
+
+const { t } = useI18n({
+  useScope: 'local',
+  messages: {
+    sv: {
+      changeLanguage: 'English',
+    },
+    en: {
+      changeLanguage: 'Svenska',
     },
   },
-  i18n: {
-    messages: {
-      sv: {
-        changeLanguage: 'English',
-      },
-      en: {
-        changeLanguage: 'Svenska',
-      },
-    },
-  },
+})
+
+const switchLocale = () => {
+  const nextLocale = globalI18n.locale.value === 'sv' ? 'en' : 'sv'
+  globalI18n.locale.value = nextLocale
+  document.documentElement.lang = nextLocale
+  localStorage.setItem('language', nextLocale)
+  emit('link-selected')
 }
 </script>
 

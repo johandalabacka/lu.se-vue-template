@@ -1,16 +1,13 @@
 <template>
   <span class="b-avatar b-avatar-sm badge-primary rounded-circle">
-    <span class="b-avatar-text">{{ text }}<span />
+    <span class="b-avatar-text">{{ props.text }}<span />
     </span></span>
 </template>
 
-<script>
-export default {
-  name: 'BAvatar',
-  props: {
-    text: { type: String, default: '' },
-  },
-}
+<script setup>
+const props = defineProps({
+  text: { type: String, default: '' },
+})
 </script>
 
 <style scoped>

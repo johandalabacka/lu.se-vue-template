@@ -22,57 +22,59 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LuBreadCrumb',
-  data () {
-    return {
-      parts: [],
-    }
-  },
-  computed: {
-    partsButLast () {
-      if (this.parts.length === 0) {
-        return []
-      }
-      return this.parts.slice(0, -1)
-    },
-    partsLast () {
-      if (this.parts.length === 0) {
-        return { label: '' }
-      }
-      return this.parts[this.parts.length - 1]
-    },
-  },
-  watch: {
-    '$route' (to) {
-      this.setPath(to.path)
-    },
-  },
-  mounted () {
-    this.setPath(this.$route.path)
-  },
-  methods: {
-    getLabel (path) {
-      const route = this.$router.options.routes.find(r => r.path === path)
-      if (!route) {
-        return path
-      }
-      if (this.$t !== undefined) {
-        return this.$t(route.name)
-      }
-      return route.name
-    },
-    setPath (path) {
-      const paths = [{ path: '/', label: this.getLabel('/') }]
-      let accumulatedPath = ''
-      path.split('/').forEach(element => {
-        if (element === '') { return }
-        accumulatedPath += '/' + element
-        paths.push({ path: accumulatedPath, label: this.getLabel(accumulatedPath) })
-      })
-      this.parts = paths
-    },
-  },
+<script setup>
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const route = useRoute()
+const router = useRouter()
+const { t } = useI18n({ useScope: 'global' })
+
+const parts = ref([])
+
+const partsButLast = computed(() => {
+  if (!parts.value.length) {
+    return []
+  }
+  return parts.value.slice(0, -1)
+})
+
+const partsLast = computed(() => {
+  if (!parts.value.length) {
+    return { label: '' }
+  }
+  return parts.value[parts.value.length - 1]
+})
+
+const getLabel = (path) => {
+  const matchingRoute = router.getRoutes().find(r => r.path === path)
+  if (!matchingRoute) {
+    return path
+  }
+  const routeName = matchingRoute.name
+  if (typeof routeName === 'string') {
+    return t(routeName)
+  }
+  return path
 }
+
+const setPath = (path) => {
+  const paths = [{ path: '/', label: getLabel('/') }]
+  let accumulatedPath = ''
+  path.split('/').forEach(segment => {
+    if (!segment) { return }
+    accumulatedPath += `/${segment}`
+    paths.push({ path: accumulatedPath, label: getLabel(accumulatedPath) })
+  })
+  parts.value = paths
+}
+
+watch(
+  () => route.path,
+  (path) => {
+    setPath(path)
+  },
+  { immediate: true },
+)
 </script>

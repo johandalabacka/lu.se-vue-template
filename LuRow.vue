@@ -11,8 +11,5 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LuRow',
-}
+<script setup>
 </script>

@@ -6,73 +6,64 @@
       class="btn px-2"
       type="button"
       style="display: inline-block;"
-      @click.stop="onClick"
+      @click.stop="handleClick"
     >
       <fa-icon
         class="fa-2x align-middle me-2"
         :icon="['fas', 'chevron-circle-up']"
       />
-      <span>{{ $t('to_top') }}</span>
+      <span>{{ t('to_top') }}</span>
     </button>
   </transition>
 </template>
 
-<script>
-export default {
-  name: 'LuToTop',
-  data () {
-    return {
-      show: false,
-      listenerAdded: false,
-    }
-  },
-  mounted () {
-    if (this.listenerAdded) {
-      return
-    }
-    window.addEventListener('scroll', this.onScroll)
-    this.listenerAdded = true
-  },
-  activated () {
-    if (this.listenerAdded) {
-      return
-    }
-    window.addEventListener('scroll', this.onScroll)
-    this.listenerAdded = true
-  },
-  deactivated () {
-    if (!this.listenerAdded) {
-      return
-    }
-    window.removeEventListener('scroll', this.onScroll)
-    this.listenerAdded = false
-  },
-  unmounted () {
-    if (!this.listenerAdded) {
-      return
-    }
-    window.removeEventListener('scroll', this.onScroll)
-    this.listenerAdded = false // Not really needed
-  },
-  methods: {
-    onClick () {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+<script setup>
+import { ref, onMounted, onUnmounted, onActivated, onDeactivated } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  useScope: 'local',
+  messages: {
+    sv: {
+      to_top: 'Hela vägen upp',
     },
-    onScroll (e) {
-      this.show = window.pageYOffset > 500
+    en: {
+      to_top: 'Back to top',
     },
   },
-  i18n: {
-    messages: {
-      sv: {
-        to_top: 'Hela vägen upp',
-      },
-      en: {
-        to_top: 'Back to top',
-      },
-    },
-  },
+})
+
+const show = ref(false)
+const listenerAdded = ref(false)
+
+const handleScroll = () => {
+  show.value = window.pageYOffset > 500
 }
+
+const addScrollListener = () => {
+  if (listenerAdded.value) {
+    return
+  }
+  window.addEventListener('scroll', handleScroll)
+  listenerAdded.value = true
+}
+
+const removeScrollListener = () => {
+  if (!listenerAdded.value) {
+    return
+  }
+  window.removeEventListener('scroll', handleScroll)
+  listenerAdded.value = false
+}
+
+const handleClick = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+}
+
+onMounted(addScrollListener)
+onActivated(addScrollListener)
+onDeactivated(removeScrollListener)
+onUnmounted(removeScrollListener)
 </script>
 
 <style scoped>

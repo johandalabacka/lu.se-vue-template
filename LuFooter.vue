@@ -4,32 +4,32 @@
       <div class="row pt-1">
         <div class="col-12 col-lg-4 mb-5 text-center text-lg-start">
           <img
-            v-if="logoSrc"
-            :src="logoSrc"
-            :alt="logoTitle"
-            class=" footer-logo"
+            v-if="props.logoSrc"
+            :src="props.logoSrc"
+            :alt="props.logoTitle"
+            class="footer-logo"
           >
         </div>
         <div
-          v-if="contact"
+          v-if="props.contact"
           class="col-6 col-md-3 offset-md-3 offset-lg-0 col-lg-4 mb-5"
         >
           <h6 class="p font-weight-bold text-uppercase mb-1">
-            {{ $t('contactUs') }}
+            {{ t('contactUs') }}
           </h6>
-          <p v-if="$root.$i18n.locale == 'sv'">
-            {{ contact.name }}<br>Box {{ contact.box }}<br>{{ contact.zip }} LUND<br>{{ contact.phone }}<br>
+          <p v-if="isSwedish">
+            {{ props.contact.name }}<br>Box {{ props.contact.box }}<br>{{ props.contact.zip }} LUND<br>{{ props.contact.phone }}<br>
             <a
-              :href="'mailto:' + contact.mail"
+              :href="'mailto:' + props.contact.mail"
               class="text-white"
-            >{{ contact.mail }}</a>
+            >{{ props.contact.mail }}</a>
           </p>
           <p v-else>
-            {{ contact.name }}<br>P.O Box {{ contact.box }}<br>SE-{{ contact.zip }} LUND, Sweden<br>{{ intlPhone }}<br>
+            {{ props.contact.name }}<br>P.O Box {{ props.contact.box }}<br>SE-{{ props.contact.zip }} LUND, Sweden<br>{{ intlPhone }}<br>
             <a
-              :href="'mailto:' + contact.mail"
+              :href="'mailto:' + props.contact.mail"
               class="text-white"
-            >{{ contact.mail }}</a>
+            >{{ props.contact.mail }}</a>
           </p>
         </div>
         <div
@@ -40,51 +40,51 @@
         </div>
         <div class="col-6 col-md-3 col-lg-4 mb-5">
           <h6 class="p font-weight-bold text-uppercase mb-1">
-            {{ $t('shortCuts') }}
+            {{ t('shortCuts') }}
           </h6>
           <div class="nav nav-list flex-column">
             <a
               class="nav-link text-white py-1 px-0"
               href="#"
               @click.prevent="switchLocale"
-            >{{ $t('changeLanguage') }}
+            >{{ t('changeLanguage') }}
               <fa-icon :icon="['fal', 'globe']" />
             </a>
-            <template v-for="item in shortCuts">
+            <template v-for="item in props.shortCuts">
               <router-link
                 v-if="item.path"
                 :key="item.id"
                 :to="item.path"
                 class="nav-link text-white py-1 px-0"
               >
-                {{ $t(item.label) }}
+                {{ t(item.label) }}
               </router-link>
               <a
                 v-else
                 :key="`${item.id}-else`"
                 class="nav-link text-white py-1 px-0"
                 :href="item.url"
-              >{{ $t(item.label) }}</a>
+              >{{ t(item.label) }}</a>
             </template>
           </div>
         </div>
       </div>
       <div
-        v-if="socialMedia"
+        v-if="props.socialMedia"
         class="row mb-5"
       >
         <div class="col-12 col-lg-4 offset-lg-4">
           <h6 class="p font-weight-bold text-uppercase mb-1 text-center text-lg-start">
-            {{ $t('followUsSocialMedia') }}
+            {{ t('followUsSocialMedia') }}
           </h6>
           <ul class="nav nav-social mt-3 nmx-2 justify-content-center justify-content-lg-start">
             <li
-              v-if="socialMedia.facebook"
+              v-if="props.socialMedia.facebook"
               class="nav-item mx-2"
             >
               <a
                 class="nav-link text-white p-0"
-                :href="socialMedia.facebook"
+                :href="props.socialMedia.facebook"
               ><span
                 class="sr-only"
               >Facebook </span><fa-icon
@@ -94,12 +94,12 @@
               </a>
             </li>
             <li
-              v-if="socialMedia.instagram"
+              v-if="props.socialMedia.instagram"
               class="nav-item mx-2"
             >
               <a
                 class="nav-link text-white p-0"
-                :href="socialMedia.instagram"
+                :href="props.socialMedia.instagram"
               ><span
                 class="sr-only"
               >Instagram </span><fa-icon
@@ -109,12 +109,12 @@
               </a>
             </li>
             <li
-              v-if="socialMedia.linkedin"
+              v-if="props.socialMedia.linkedin"
               class="nav-item mx-2"
             >
               <a
                 class="nav-link text-white p-0"
-                :href="socialMedia.linkedin"
+                :href="props.socialMedia.linkedin"
               ><span
                 class="sr-only"
               >LinkedIn </span><fa-icon
@@ -124,12 +124,12 @@
               </a>
             </li>
             <li
-              v-if="socialMedia.twitter"
+              v-if="props.socialMedia.twitter"
               class="nav-item mx-2"
             >
               <a
                 class="nav-link text-white p-0"
-                :href="socialMedia.twitter"
+                :href="props.socialMedia.twitter"
               ><span class="sr-only">Twitter
               </span><fa-icon
                 class="fa-2x"
@@ -138,12 +138,12 @@
               </a>
             </li>
             <li
-              v-if="socialMedia.youtube"
+              v-if="props.socialMedia.youtube"
               class="nav-item mx-2"
             >
               <a
                 class="nav-link text-white p-0"
-                :href="socialMedia.youtube"
+                :href="props.socialMedia.youtube"
               ><span
                 class="sr-only"
               >Youtube </span><fa-icon
@@ -159,54 +159,75 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'LuFooter',
-  props: {
-    contact: { type: Object, default: null },
-    socialMedia: { type: Object, default: null },
-    logoSrc: { type: String, required: true },
-    logoTitle: { type: String, required: true },
-    shortCuts: { type: Array, default: null },
-  },
-  computed: {
-    intlPhone () {
-      if (this.contact.phone) {
-        if (this.$root.$i18n.locale === 'sv') {
-          return this.contact.phone
-        }
-        return '+46' + this.contact.phone.substring(1)
-      }
-      return ''
-    },
-  },
-  methods: {
-    switchLocale () {
-      this.$root.$i18n.locale = this.$root.$i18n.locale === 'sv' ? 'en' : 'sv'
-      document.getElementsByTagName('html')[0].lang = this.$root.$i18n.locale
-      localStorage.setItem('language', this.$root.$i18n.locale)
-      if (this.$route.meta?.title) {
-        document.title = this.$t(this.$route.meta.title)
-      } else if (this.$route.name) {
-        document.title = this.$t(this.$route.name)
-      }
-    },
-  },
-  i18n: {
-    messages: {
-      sv: {
-        changeLanguage: 'Change to English',
-        contactUs: 'Kontakta oss',
-        followUsSocialMedia: 'Följ oss i sociala medier',
-        shortCuts: 'Genvägar',
-      },
-      en: {
-        changeLanguage: 'Byt till svenska',
-        contactUs: 'Contact Us',
-        followUsSocialMedia: 'Follow us in social media',
-        shortCuts: 'Shortcuts',
-      },
-    },
-  },
+<script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const props = defineProps({
+  contact: { type: Object, default: null },
+  socialMedia: { type: Object, default: null },
+  logoSrc: { type: String, required: true },
+  logoTitle: { type: String, required: true },
+  shortCuts: { type: Array, default: null },
+})
+
+const route = useRoute()
+
+const { t, locale, getLocaleMessage } = useI18n({ useScope: 'global' })
+// const { t, te, locale } = useI18n({ useScope: 'global' })
+// const { t: localT, messages: localMessages } = useI18n({ useScope: 'local' })
+// console.log('pkg local_t: ', Object.keys(localT))
+// console.log('pkg localMessages sv: ', localMessages.value['sv'])
+// console.log('pkg global shortCuts: ', te('shortCuts') ? t('shortCuts') : 'NOT FOUND')
+// console.log('pkg local shortCuts: ', localT('shortCuts'))
+console.log('pkg LuFooter getLocaleMessage: ', getLocaleMessage(locale.value))
+console.log('pkg navigator.language: ', navigator.language)
+
+const isSwedish = computed(() => locale.value === 'sv')
+
+const intlPhone = computed(() => {
+  const phone = props.contact?.phone
+  if (!phone) {
+    return ''
+  }
+  return isSwedish.value ? phone : `+46${phone.substring(1)}`
+})
+
+const updateDocumentTitle = () => {
+  const metaTitle = typeof route.meta?.title === 'string' ? route.meta.title : null
+  if (metaTitle) {
+    document.title = t(metaTitle)
+    return
+  }
+  const routeName = route.name
+  if (typeof routeName === 'string') {
+    document.title = t(routeName)
+  }
+}
+
+const switchLocale = () => {
+  const nextLocale = isSwedish.value ? 'en' : 'sv'
+  locale.value = nextLocale
+  document.documentElement.lang = nextLocale
+  localStorage.setItem('language', nextLocale)
+  updateDocumentTitle()
 }
 </script>
+
+<i18n global>
+{
+  "sv": {
+    "changeLanguage": "Change to English",
+    "contactUs": "Kontakta oss",
+    "followUsSocialMedia": "Följ oss i sociala medier",
+    "shortCuts": "Genvägar"
+  },
+  "en": {
+    "changeLanguage": "Byt till svenska",
+    "contactUs": "Contact Us",
+    "followUsSocialMedia": "Follow us in social media",
+    "shortCuts": "Shortcuts"
+  }
+}
+</i18n>

@@ -2,9 +2,9 @@
 @click.native https://github.com/vuejs/vue-router/issues/800
 -->
 <template>
-  <li v-if="item.children && item.path">
+  <li v-if="props.item.children && props.item.path">
     <router-link
-      :to="item.path"
+      :to="props.item.path"
       class="nav-link collapse"
       :class="[expanded ? 'show' : 'collapsed']"
       @click="toggleExpanded"
@@ -12,72 +12,74 @@
       <div class="float-end ml-2">
         <fa-icon :icon="['fal', expanded ? 'chevron-down' : 'chevron-right']" />
       </div>
-      {{ $t(item.label) }}
+      {{ t(props.item.label) }}
     </router-link>
     <ul
       class="nav-accordion collapse"
       :class="[expanded ? 'show': '']"
     >
       <lu-left-menu-item
-        v-for="subItem in item.children"
+        v-for="subItem in props.item.children"
         :key="subItem.id"
         :item="subItem"
         @link-selected="childLinkSelected"
       />
     </ul>
   </li>
-  <li v-else-if="item.path">
+  <li v-else-if="props.item.path">
     <router-link
-      :to="item.path"
+      :to="props.item.path"
       class="nav-link"
-      @click="$emit('link-selected')"
+      @click="emit('link-selected')"
     >
-      {{ $t(item.label) }}
+      {{ t(props.item.label) }}
     </router-link>
   </li>
   <li v-else>
     <a
-      :href="item.url"
+      :href="props.item.url"
       class="nav-link"
     >
-      {{ $t(item.label) }}
+      {{ t(props.item.label) }}
     </a>
   </li>
 </template>
 
-<script>
-export default {
-  name: 'LuLeftMenuItem',
-  props: {
-    item: { type: Object, required: true },
-  },
-  emits: ['link-selected'],
-  data () {
-    return {
-      expanded: false,
-    }
-  },
-  watch: {
-    '$route' (to) {
-      // If link is selected emit link-selected to parent
-      if (to.path === this.item.path) {
-        this.$emit('link-selected')
-      }
-    },
-  },
-  mounted () {
-    if (this.$route.path === this.item.path) {
-      this.$emit('link-selected')
-    }
-  },
-  methods: {
-    toggleExpanded () {
-      this.expanded = !this.expanded
-    },
-    childLinkSelected () {
-      this.$emit('link-selected')
-      this.expanded = true
-    },
-  },
+<script setup>
+import { ref, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const props = defineProps({
+  item: { type: Object, required: true },
+})
+
+const emit = defineEmits(['link-selected'])
+
+const expanded = ref(false)
+
+const route = useRoute()
+const { t } = useI18n({ useScope: 'global' })
+
+const emitIfActive = (path) => {
+  const targetPath = props.item?.path
+  if (targetPath && path === targetPath) {
+    emit('link-selected')
+  }
 }
+
+const toggleExpanded = () => {
+  expanded.value = !expanded.value
+}
+
+const childLinkSelected = () => {
+  emit('link-selected')
+  expanded.value = true
+}
+
+watch(() => route.path, emitIfActive)
+
+onMounted(() => {
+  emitIfActive(route.path)
+})
 </script>

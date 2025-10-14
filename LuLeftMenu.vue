@@ -2,7 +2,7 @@
   <div class="d-none d-xl-block col-xl-3 collapse">
     <ul class="nav-accordion nav-collapse nav-undecorated">
       <LuLeftMenuItem
-        v-for="item in menu"
+        v-for="item in props.menu"
         :key="item.id"
         :item="item"
       />
@@ -10,16 +10,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import LuLeftMenuItem from './LuLeftMenuItem.vue'
 
-export default {
-  name: 'LuLeftMenu',
-  components: {
-    LuLeftMenuItem,
-  },
-  props: {
-    menu: { type: Array, required: true },
-  },
-}
+const props = defineProps({
+  menu: { type: Array, required: true },
+})
+
 </script>

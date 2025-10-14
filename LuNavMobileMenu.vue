@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="modal"
+    ref="modalElement"
     class="modal fade"
     tabindex="-1"
     :aria-hidden="isShowing"
@@ -24,7 +24,7 @@
               class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2"
               aria-controls="mobileMenu"
               aria-expanded="false"
-              :aria-label="$t('lu_nav_mobile_hide_menu')"
+              :aria-label="t('lu_nav_mobile_hide_menu')"
               @click="hide"
             >
               <span aria-hidden="true">
@@ -37,7 +37,7 @@
           </nav>
           <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">
             <LuNavMobileMenuItem
-              v-for="item in menu"
+              v-for="item in props.menu"
               :key="item.id"
               :item="item"
               @link-selected="hide"
@@ -50,51 +50,61 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Modal } from 'bootstrap'
 
 import LuNavMobileMenuItem from './LuNavMobileMenuItem.vue'
 import LuNavMobileMenuItemChangeLanguage from './LuNavMobileMenuItemChangeLanguage.vue'
 
-export default {
-  name: 'LuNavMobileMenu',
-  components: {
-    LuNavMobileMenuItem,
-    LuNavMobileMenuItemChangeLanguage,
-  },
-  props: {
-    menu: { type: Array, required: true },
-  },
-  data () {
-    return {
-      modal: null,
-      isShowing: false,
-    }
-  },
-  i18n: {
-    messages: {
-      sv: {
-        lu_nav_mobile_hide_menu: 'Göm meny',
-      },
-      en: {
-        lu_nav_mobile_hide_menu: 'Hide menu',
-      },
+const props = defineProps({
+  menu: { type: Array, required: true },
+})
+
+const { t } = useI18n({
+  useScope: 'local',
+  messages: {
+    sv: {
+      lu_nav_mobile_hide_menu: 'Göm meny',
+    },
+    en: {
+      lu_nav_mobile_hide_menu: 'Hide menu',
     },
   },
-  methods: {
-    show () {
-      if (!this.modal) {
-        this.modal = Modal.getOrCreateInstance(this.$refs.modal)
-      }
-      this.isShowing = true
-      this.modal.show()
-    },
-    hide () {
-      this.isShowing = false
-      this.modal.hide()
-    },
-  },
+})
+
+const modalElement = ref(null)
+const modalInstance = ref(null)
+const isShowing = ref(false)
+
+const show = () => {
+  if (!modalInstance.value && modalElement.value) {
+    modalInstance.value = Modal.getOrCreateInstance(modalElement.value)
+  }
+  if (!modalInstance.value) {
+    return
+  }
+  isShowing.value = true
+  modalInstance.value.show()
 }
+
+const hide = () => {
+  isShowing.value = false
+  if (!modalInstance.value) {
+    return
+  }
+  modalInstance.value.hide()
+}
+
+onUnmounted(() => {
+  if (modalInstance.value) {
+    modalInstance.value.dispose()
+    modalInstance.value = null
+  }
+})
+
+defineExpose({ show, hide })
 </script>
 
 <style>
