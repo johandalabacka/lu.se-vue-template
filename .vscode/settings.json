@@ -13,6 +13,18 @@
         "source.fixAll.eslint": "explicit"
     },
     "editor.tabSize": 2,
+    "i18n-ally.localesPaths": [
+        "locales"
+    ],
+    "i18n-ally.sourceLanguage": "sv",
+    "i18n-ally.displayLanguage": "sv",
+    "i18n-ally.sortKeys": true,
+    "i18n-ally.keepFulfilled": true,
+    "i18n-ally.enabledParsers": [
+        "js",
+        "json"
+    ],
+    "i18n-ally.keystyle": "nested",
     "files.eol": "\n",
         "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#14ad0c",

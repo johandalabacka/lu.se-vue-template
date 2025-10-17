@@ -24,7 +24,7 @@
               class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2"
               aria-controls="mobileMenu"
               aria-expanded="false"
-              :aria-label="t('lu_nav_mobile_hide_menu')"
+              :aria-label="t('navMobile.hideMenu')"
               @click="hide"
             >
               <span aria-hidden="true">
@@ -62,17 +62,7 @@ const props = defineProps({
   menu: { type: Array, required: true },
 })
 
-const { t } = useI18n({
-  useScope: 'local',
-  messages: {
-    sv: {
-      lu_nav_mobile_hide_menu: 'Göm meny',
-    },
-    en: {
-      lu_nav_mobile_hide_menu: 'Hide menu',
-    },
-  },
-})
+const { t } = useI18n()
 
 const modalElement = ref(null)
 const modalInstance = ref(null)

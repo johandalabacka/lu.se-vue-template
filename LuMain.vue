@@ -3,8 +3,6 @@
     class="main"
     :class="{'mt-2': props.compact}"
   >
-    <!-- <p>{{ t('start') }}</p>
-    <p>{{ t('pageManager') }}</p> -->
     <div class="container">
       <div
         v-if="props.leftmenu"
@@ -19,7 +17,7 @@
           >
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
-                {{ t('pageManager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
+                {{ t('main.pageManager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
                 &nbsp;|&nbsp; <strong>{{ props.lastUpdated }}</strong>
                 <template v-if="props.pageManagerNotice">
                   <br><small>{{ props.pageManagerNotice }}</small>
@@ -37,7 +35,7 @@
         >
           <div class="col-12 col-lg-8">
             <div class=" border-top border-dark mt-5 py-3">
-              {{ t('pageManager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
+              {{ t('main.pageManager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
               &nbsp;|&nbsp; <strong>{{ props.lastUpdated }}</strong>
               <template v-if="props.pageManagerNotice">
                 <br><small>{{ props.pageManagerNotice }}</small>
@@ -63,23 +61,5 @@ const props = defineProps({
   compact: Boolean,
 })
 
-const globalI18n = useI18n({ useScope: 'global' })
-const { t, locale, getLocaleMessage, mergeLocaleMessage, availableLocales } = useI18n({ useScope: 'local' })
-// console.log('pkg LuMain locale: ', locale.value)
-console.log('pkg LuMain getLocaleMessage: ', getLocaleMessage(locale.value))
-for (const locale of availableLocales) {
-  mergeLocaleMessage(locale, globalI18n.getLocaleMessage('sv'))
-}
-console.log('pkg LuMain getLocaleMessage: ', getLocaleMessage(locale.value))
+const { t } = useI18n()
 </script>
-
-<i18n>
-{
-    sv: {
-      pageManager: 'Sidansvarig',
-    },
-    en: {
-      pageManager: 'Page Manager',
-    },
-}
-</i18n>

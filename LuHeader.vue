@@ -44,7 +44,7 @@
                         href="#"
                         aria-controls="header-logout"
                         aria-expanded="false"
-                        :aria-label="t('logout')"
+                        :aria-label="t('header.logout')"
                         @click.prevent="emit('logout')"
                       >
                         <BAvatar
@@ -58,7 +58,7 @@
                           :icon="['fal', 'sign-out']"
                         />
                         <br>
-                        {{ t('logout') }}
+                        {{ t('header.logout') }}
                       </a>
                       <a
                         v-else
@@ -66,12 +66,12 @@
                         href="#"
                         aria-controls="header-login"
                         aria-expanded="false"
-                        :aria-label="t('login')"
+                        :aria-label="t('header.login')"
                         @click.prevent="emit('login')"
                       >
                         <fa-icon :icon="['fal', 'sign-in']" />
                         <br>
-                        {{ t('login') }}
+                        {{ t('header.login') }}
                       </a>
                     </div>
                     <div
@@ -84,12 +84,12 @@
                         data-toggle="collapse"
                         aria-controls="header-search-form"
                         aria-expanded="false"
-                        :aria-label="t('showHideSearch')"
+                        :aria-label="t('header.showHideSearch')"
                         @click.prevent="toggleSearch"
                       >
                         <fa-icon :icon="['fal', 'search']" />
                         <br>
-                        {{ t('search') }}
+                        {{ t('header.search') }}
                       </a>
                     </div>
                     <div class="nav-item">
@@ -98,12 +98,12 @@
                         href="#"
                         aria-controls="nav-mobile"
                         aria-expanded="false"
-                        :aria-label="t('showMenu')"
+                        :aria-label="t('header.showMenu')"
                         @click.prevent="showNavMobileMenu"
                       >
                         <fa-icon :icon="['fal', 'bars']" />
                         <br>
-                        {{ t('menu') }}
+                        {{ t('header.menu') }}
                       </a>
                     </div>
                   </nav>
@@ -131,7 +131,7 @@
                                 class="btn btn-primary px-2"
                                 type="submit"
                               >
-                                <span class="me-2">{{ t('search') }}</span>
+                                <span class="me-2">{{ t('header.search') }}</span>
                                 <fa-icon :icon="['fal', 'search']" />
                               </button>
                             </div>
@@ -163,7 +163,7 @@
                               :icon="['fal', 'sign-out']"
                             />
                           </span>
-                          {{ t('logout') }}
+                          {{ t('header.logout') }}
                         </a>
                         <a
                           v-else
@@ -177,7 +177,7 @@
                               :icon="['fal', 'sign-in']"
                             />
                           </span>
-                          {{ t('login') }}
+                          {{ t('header.login') }}
                         </a>
                       </div>
                       <div class="nav-item d-none d-lg-block">
@@ -214,11 +214,11 @@
                           href="#"
                           aria-controls="nav-mobile"
                           aria-expanded="false"
-                          :aria-label="t('showMenu')"
+                          :aria-label="t('header.showMenu')"
                           @click.prevent="showNavMobileMenu"
                         >
                           <fa-icon :icon="['fal', 'bars']" />
-                          {{ t('menu') }}
+                          {{ t('header.menu') }}
                         </a>
                       </div>
                     </nav>
@@ -257,7 +257,7 @@
                   class="btn btn-primary px-2"
                   type="submit"
                 >
-                  <span class="me-2">{{ t('search') }}</span>
+                  <span class="me-2">{{ t('header.search') }}</span>
                   <fa-icon :icon="['fal', 'search']" />
                 </button>
               </div>
@@ -291,16 +291,16 @@ const props = defineProps({
   topmenu: { type: Array, default: null },
   mobilemenu: { type: Array, default: null },
   navbarmenu: { type: Array, default: null },
-  hasLogin: Boolean,
-  isLoggedIn: Boolean,
+  hasLogin: { type: Boolean, default: false },
+  isLoggedIn: { type: Boolean, default: false },
   avatar: { type: String, default: '' },
-  hasSearch: Boolean,
-  emptySearch: Boolean,
+  hasSearch: { type: Boolean, default: false },
+  emptySearch: { type: Boolean, default: false },
   searchPlaceholder: { type: String, default: '' },
   logoUrl: { type: String, required: true },
   logoTitle: { type: String, required: true },
   logoSrc: { type: String, required: true },
-  compact: Boolean,
+  compact: { type: Boolean, default: false },
 })
 
 const emit = defineEmits(['login', 'logout', 'search'])
@@ -308,31 +308,7 @@ const emit = defineEmits(['login', 'logout', 'search'])
 const route = useRoute()
 const router = useRouter()
 
-const globalI18n = useI18n({ useScope: 'global' })
-
-const { t } = useI18n({
-  useScope: 'local',
-  messages: {
-    sv: {
-      menu: 'Meny',
-      search: 'Sök',
-      showHideSearch: 'Visa och dölj sökfält',
-      showMenu: 'Visa meny',
-      listen: 'Lyssna',
-      login: 'Logga in',
-      logout: 'Logga ut',
-    },
-    en: {
-      menu: 'Menu',
-      search: 'Search',
-      showHideSearch: 'Show and hide search field',
-      showMenu: 'Show menu',
-      listen: 'Listen',
-      login: 'Log in',
-      logout: 'Log out',
-    },
-  },
-})
+const { t, locale } = useI18n()
 
 const searchField = ref('')
 const searchCollapsed = ref(true)
@@ -341,18 +317,18 @@ const navMobileMenu = ref(null)
 const searchFieldMobile = ref(null)
 const headerSearchField = ref(null)
 
-const isSwedish = computed(() => globalI18n.locale.value === 'sv')
+const isSwedish = computed(() => locale.value === 'sv')
 
 const updateDocumentTitle = () => {
   const current = router.currentRoute.value
   const metaTitle = typeof current.meta?.title === 'string' ? current.meta.title : null
   if (metaTitle) {
-    document.title = globalI18n.t(metaTitle)
+    document.title = t(metaTitle)
     return
   }
   const routeName = current.name
   if (typeof routeName === 'string') {
-    document.title = globalI18n.t(routeName)
+    document.title = t(routeName)
   }
 }
 
@@ -366,7 +342,7 @@ watch(
 
 const switchLocale = () => {
   const nextLocale = isSwedish.value ? 'en' : 'sv'
-  globalI18n.locale.value = nextLocale
+  locale.value = nextLocale
   document.documentElement.lang = nextLocale
   localStorage.setItem('language', nextLocale)
   updateDocumentTitle()

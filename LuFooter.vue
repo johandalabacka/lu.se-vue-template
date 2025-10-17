@@ -15,7 +15,7 @@
           class="col-6 col-md-3 offset-md-3 offset-lg-0 col-lg-4 mb-5"
         >
           <h6 class="p font-weight-bold text-uppercase mb-1">
-            {{ t('contactUs') }}
+            {{ t('footer.contactUs') }}
           </h6>
           <p v-if="isSwedish">
             {{ props.contact.name }}<br>Box {{ props.contact.box }}<br>{{ props.contact.zip }} LUND<br>{{ props.contact.phone }}<br>
@@ -40,14 +40,14 @@
         </div>
         <div class="col-6 col-md-3 col-lg-4 mb-5">
           <h6 class="p font-weight-bold text-uppercase mb-1">
-            {{ t('shortCuts') }}
+            {{ t('footer.shortCuts') }}
           </h6>
           <div class="nav nav-list flex-column">
             <a
               class="nav-link text-white py-1 px-0"
               href="#"
               @click.prevent="switchLocale"
-            >{{ t('changeLanguage') }}
+            >{{ t('footer.changeLanguage') }}
               <fa-icon :icon="['fal', 'globe']" />
             </a>
             <template v-for="item in props.shortCuts">
@@ -75,7 +75,7 @@
       >
         <div class="col-12 col-lg-4 offset-lg-4">
           <h6 class="p font-weight-bold text-uppercase mb-1 text-center text-lg-start">
-            {{ t('followUsSocialMedia') }}
+            {{ t('footer.followUsSocialMedia') }}
           </h6>
           <ul class="nav nav-social mt-3 nmx-2 justify-content-center justify-content-lg-start">
             <li
@@ -174,15 +174,9 @@ const props = defineProps({
 
 const route = useRoute()
 
-const { t, locale, getLocaleMessage } = useI18n({ useScope: 'global' })
-// const { t, te, locale } = useI18n({ useScope: 'global' })
-// const { t: localT, messages: localMessages } = useI18n({ useScope: 'local' })
-// console.log('pkg local_t: ', Object.keys(localT))
-// console.log('pkg localMessages sv: ', localMessages.value['sv'])
-// console.log('pkg global shortCuts: ', te('shortCuts') ? t('shortCuts') : 'NOT FOUND')
-// console.log('pkg local shortCuts: ', localT('shortCuts'))
-console.log('pkg LuFooter getLocaleMessage: ', getLocaleMessage(locale.value))
-console.log('pkg navigator.language: ', navigator.language)
+const { t, locale } = useI18n()
+// const { t, locale, messages } = useI18n({ useScope: 'global' })
+// console.log('pkg: ', messages.value)
 
 const isSwedish = computed(() => locale.value === 'sv')
 
@@ -214,20 +208,3 @@ const switchLocale = () => {
   updateDocumentTitle()
 }
 </script>
-
-<i18n global>
-{
-  "sv": {
-    "changeLanguage": "Change to English",
-    "contactUs": "Kontakta oss",
-    "followUsSocialMedia": "Följ oss i sociala medier",
-    "shortCuts": "Genvägar"
-  },
-  "en": {
-    "changeLanguage": "Byt till svenska",
-    "contactUs": "Contact Us",
-    "followUsSocialMedia": "Follow us in social media",
-    "shortCuts": "Shortcuts"
-  }
-}
-</i18n>

@@ -6,6 +6,13 @@ import LuFooter from './LuFooter.vue'
 import LuInfobox from './LuInfobox.vue'
 import LuSpinner from './LuSpinner.vue'
 import LuToTop from './LuToTop.vue'
+import sv from './locales/sv.json'
+import en from './locales/en.json'
+
+const messages = {
+  sv,
+  en,
+}
 
 export {
   LuHeader,
@@ -16,4 +23,5 @@ export {
   LuInfobox,
   LuSpinner,
   LuToTop,
+  messages,
 }

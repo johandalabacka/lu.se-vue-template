@@ -12,7 +12,7 @@
         class="fa-2x align-middle me-2"
         :icon="['fas', 'chevron-circle-up']"
       />
-      <span>{{ t('to_top') }}</span>
+      <span>{{ t('toTop') }}</span>
     </button>
   </transition>
 </template>
@@ -21,17 +21,7 @@
 import { ref, onMounted, onUnmounted, onActivated, onDeactivated } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n({
-  useScope: 'local',
-  messages: {
-    sv: {
-      to_top: 'Hela vägen upp',
-    },
-    en: {
-      to_top: 'Back to top',
-    },
-  },
-})
+const { t } = useI18n()
 
 const show = ref(false)
 const listenerAdded = ref(false)

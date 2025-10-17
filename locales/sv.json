@@ -1,0 +1,28 @@
+{
+  "changeLanguage": "English",
+  "footer": {
+    "changeLanguage": "Change to English",
+    "contactUs": "Kontakta oss",
+    "followUsSocialMedia": "Följ oss i sociala medier",
+    "shortCuts": "Genvägar"
+  },
+  "header": {
+    "listen": "Lyssna",
+    "login": "Logga in",
+    "logout": "Logga ut",
+    "menu": "Meny",
+    "search": "Sök",
+    "showHideSearch": "Visa och dölj sökfält",
+    "showMenu": "Visa meny"
+  },
+  "main": {
+    "pageManager": "Sidansvarig"
+  },
+  "navMobile": {
+    "hideMenu": "Göm meny"
+  },
+  "spinner": {
+    "loading": "Laddar..."
+  },
+  "toTop": "Hela vägen upp"
+}

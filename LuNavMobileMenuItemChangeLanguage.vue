@@ -18,23 +18,11 @@ import { useI18n } from 'vue-i18n'
 
 const emit = defineEmits(['link-selected'])
 
-const globalI18n = useI18n({ useScope: 'global' })
-
-const { t } = useI18n({
-  useScope: 'local',
-  messages: {
-    sv: {
-      changeLanguage: 'English',
-    },
-    en: {
-      changeLanguage: 'Svenska',
-    },
-  },
-})
+const { t, locale } = useI18n()
 
 const switchLocale = () => {
-  const nextLocale = globalI18n.locale.value === 'sv' ? 'en' : 'sv'
-  globalI18n.locale.value = nextLocale
+  const nextLocale = locale.value === 'sv' ? 'en' : 'sv'
+  locale.value = nextLocale
   document.documentElement.lang = nextLocale
   localStorage.setItem('language', nextLocale)
   emit('link-selected')
