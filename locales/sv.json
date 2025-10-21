@@ -1,28 +1,32 @@
 {
-  "changeLanguage": "English",
-  "footer": {
-    "changeLanguage": "Change to English",
-    "contactUs": "Kontakta oss",
-    "followUsSocialMedia": "Följ oss i sociala medier",
-    "shortCuts": "Genvägar"
-  },
-  "header": {
-    "listen": "Lyssna",
-    "login": "Logga in",
-    "logout": "Logga ut",
-    "menu": "Meny",
-    "search": "Sök",
-    "showHideSearch": "Visa och dölj sökfält",
-    "showMenu": "Visa meny"
-  },
-  "main": {
-    "pageManager": "Sidansvarig"
-  },
-  "navMobile": {
-    "hideMenu": "Göm meny"
-  },
-  "spinner": {
-    "loading": "Laddar..."
-  },
-  "toTop": "Hela vägen upp"
+  "luvt": {
+    "change_language": "English",
+    "footer": {
+      "change_language": "Change to English",
+      "contact_us": "Kontakta oss",
+      "follow_us_social_media": "Följ oss i sociala medier",
+      "shortcuts": "Genvägar"
+    },
+    "header": {
+      "listen": "Lyssna",
+      "login": "Logga in",
+      "logout": "Logga ut",
+      "menu": "Meny",
+      "search": "Sök",
+      "show_hide_search": "Visa och dölj sökfält",
+      "show_menu": "Visa meny"
+    },
+    "main": {
+      "page_manager": "Sidansvarig"
+    },
+    "navMobile": {
+    },
+    "navmobile": {
+      "hide_menu": "Göm meny"
+    },
+    "spinner": {
+      "loading": "Laddar..."
+    },
+    "to_top": "Hela vägen upp"
+  }
 }

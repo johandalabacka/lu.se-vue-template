@@ -12,7 +12,7 @@
         class="fa-2x align-middle me-2"
         :icon="['fas', 'chevron-circle-up']"
       />
-      <span>{{ t('toTop') }}</span>
+      <span>{{ t('luvt.to_top') }}</span>
     </button>
   </transition>
 </template>

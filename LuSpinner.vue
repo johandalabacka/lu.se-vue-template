@@ -18,7 +18,7 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 const loadingText = computed(() => {
-  return t('spinner.loading')
+  return t('luvt.spinner.loading')
 })
 const props = defineProps({
   text: { type: String, default: '' },

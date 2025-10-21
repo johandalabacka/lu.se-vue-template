@@ -15,7 +15,7 @@
           class="col-6 col-md-3 offset-md-3 offset-lg-0 col-lg-4 mb-5"
         >
           <h6 class="p font-weight-bold text-uppercase mb-1">
-            {{ t('footer.contactUs') }}
+            {{ t('luvt.footer.contact_us') }}
           </h6>
           <p v-if="isSwedish">
             {{ props.contact.name }}<br>Box {{ props.contact.box }}<br>{{ props.contact.zip }} LUND<br>{{ props.contact.phone }}<br>
@@ -40,14 +40,14 @@
         </div>
         <div class="col-6 col-md-3 col-lg-4 mb-5">
           <h6 class="p font-weight-bold text-uppercase mb-1">
-            {{ t('footer.shortCuts') }}
+            {{ t('luvt.footer.shortcuts') }}
           </h6>
           <div class="nav nav-list flex-column">
             <a
               class="nav-link text-white py-1 px-0"
               href="#"
               @click.prevent="switchLocale"
-            >{{ t('footer.changeLanguage') }}
+            >{{ t('luvt.footer.change_language') }}
               <fa-icon :icon="['fal', 'globe']" />
             </a>
             <template v-for="item in props.shortCuts">
@@ -75,7 +75,7 @@
       >
         <div class="col-12 col-lg-4 offset-lg-4">
           <h6 class="p font-weight-bold text-uppercase mb-1 text-center text-lg-start">
-            {{ t('footer.followUsSocialMedia') }}
+            {{ t('luvt.footer.follow_us_social_media') }}
           </h6>
           <ul class="nav nav-social mt-3 nmx-2 justify-content-center justify-content-lg-start">
             <li

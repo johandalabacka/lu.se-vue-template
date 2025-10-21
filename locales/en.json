@@ -1,28 +1,32 @@
 {
-  "changeLanguage": "Svenska",
-  "footer": {
-    "changeLanguage": "Byt till svenska",
-    "contactUs": "Contact Us",
-    "followUsSocialMedia": "Follow us in social media",
-    "shortCuts": "Shortcuts"
-  },
-  "header": {
-    "listen": "Listen",
-    "login": "Log in",
-    "logout": "Log out",
-    "menu": "Menu",
-    "search": "Search",
-    "showHideSearch": "Show and hide search field",
-    "showMenu": "Show menu"
-  },
-  "main": {
-    "pageManager": "Page Manager"
-  },
-  "navMobile": {
-    "hideMenu": "Hide menu"
-  },
-  "spinner": {
-    "loading": "Loading..."
-  },
-  "toTop": "Back to top"
+  "luvt": {
+    "change_language": "Svenska",
+    "footer": {
+      "change_language": "Byt till svenska",
+      "contact_us": "Contact Us",
+      "follow_us_social_media": "Follow us in social media",
+      "shortcuts": "Shortcuts"
+    },
+    "header": {
+      "listen": "Listen",
+      "login": "Log in",
+      "logout": "Log out",
+      "menu": "Menu",
+      "search": "Search",
+      "show_hide_search": "Show and hide search field",
+      "show_menu": "Show menu"
+    },
+    "main": {
+      "page_manager": "Page Manager"
+    },
+    "navMobile": {
+    },
+    "navmobile": {
+      "hide_menu": "Hide menu"
+    },
+    "spinner": {
+      "loading": "Loading..."
+    },
+    "to_top": "Back to top"
+  }
 }

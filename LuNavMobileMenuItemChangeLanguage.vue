@@ -8,7 +8,7 @@
       <fa-icon
         aria-hidden="true"
         :icon="['fal', 'globe']"
-      /> {{ t('changeLanguage') }}
+      /> {{ t('luvt.change_language') }}
     </a>
   </li>
 </template>

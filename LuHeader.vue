@@ -44,7 +44,7 @@
                         href="#"
                         aria-controls="header-logout"
                         aria-expanded="false"
-                        :aria-label="t('header.logout')"
+                        :aria-label="t('luvt.header.logout')"
                         @click.prevent="emit('logout')"
                       >
                         <BAvatar
@@ -58,7 +58,7 @@
                           :icon="['fal', 'sign-out']"
                         />
                         <br>
-                        {{ t('header.logout') }}
+                        {{ t('luvt.header.logout') }}
                       </a>
                       <a
                         v-else
@@ -66,12 +66,12 @@
                         href="#"
                         aria-controls="header-login"
                         aria-expanded="false"
-                        :aria-label="t('header.login')"
+                        :aria-label="t('luvt.header.login')"
                         @click.prevent="emit('login')"
                       >
                         <fa-icon :icon="['fal', 'sign-in']" />
                         <br>
-                        {{ t('header.login') }}
+                        {{ t('luvt.header.login') }}
                       </a>
                     </div>
                     <div
@@ -84,12 +84,12 @@
                         data-toggle="collapse"
                         aria-controls="header-search-form"
                         aria-expanded="false"
-                        :aria-label="t('header.showHideSearch')"
+                        :aria-label="t('luvt.header.show_hide_search')"
                         @click.prevent="toggleSearch"
                       >
                         <fa-icon :icon="['fal', 'search']" />
                         <br>
-                        {{ t('header.search') }}
+                        {{ t('luvt.header.search') }}
                       </a>
                     </div>
                     <div class="nav-item">
@@ -98,12 +98,12 @@
                         href="#"
                         aria-controls="nav-mobile"
                         aria-expanded="false"
-                        :aria-label="t('header.showMenu')"
+                        :aria-label="t('luvt.header.show_menu')"
                         @click.prevent="showNavMobileMenu"
                       >
                         <fa-icon :icon="['fal', 'bars']" />
                         <br>
-                        {{ t('header.menu') }}
+                        {{ t('luvt.header.menu') }}
                       </a>
                     </div>
                   </nav>
@@ -131,7 +131,7 @@
                                 class="btn btn-primary px-2"
                                 type="submit"
                               >
-                                <span class="me-2">{{ t('header.search') }}</span>
+                                <span class="me-2">{{ t('luvt.header.search') }}</span>
                                 <fa-icon :icon="['fal', 'search']" />
                               </button>
                             </div>
@@ -163,7 +163,7 @@
                               :icon="['fal', 'sign-out']"
                             />
                           </span>
-                          {{ t('header.logout') }}
+                          {{ t('luvt.header.logout') }}
                         </a>
                         <a
                           v-else
@@ -177,7 +177,7 @@
                               :icon="['fal', 'sign-in']"
                             />
                           </span>
-                          {{ t('header.login') }}
+                          {{ t('luvt.header.login') }}
                         </a>
                       </div>
                       <div class="nav-item d-none d-lg-block">
@@ -214,11 +214,11 @@
                           href="#"
                           aria-controls="nav-mobile"
                           aria-expanded="false"
-                          :aria-label="t('header.showMenu')"
+                          :aria-label="t('luvt.header.show_menu')"
                           @click.prevent="showNavMobileMenu"
                         >
                           <fa-icon :icon="['fal', 'bars']" />
-                          {{ t('header.menu') }}
+                          {{ t('luvt.header.menu') }}
                         </a>
                       </div>
                     </nav>
@@ -257,7 +257,7 @@
                   class="btn btn-primary px-2"
                   type="submit"
                 >
-                  <span class="me-2">{{ t('header.search') }}</span>
+                  <span class="me-2">{{ t('luvt.header.search') }}</span>
                   <fa-icon :icon="['fal', 'search']" />
                 </button>
               </div>

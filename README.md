@@ -1,13 +1,15 @@
 # Vue components for LU web template
 
 This is the source for the node module [@lu.se/vue-template](https://www.npmjs.com/package/@lu.se/vue-template)
-For an example using this module see https://github.com/johandalabacka/vue-template-test
+For an example using this module see [johandalabacka/vue-template-test](https://github.com/johandalabacka/vue-template-test).
 
 ![Example page](media/components.png)
 
+> **NOTE (_October 2025_)**: This package was rewritten to use Vue's (and vue-i18n's use of) [Composition API](https://vuejs.org/guide/extras/composition-api-faq.html) in version 3.2.0. If you need to use the [legacy](https://vue-i18n.intlify.dev/guide/migration/breaking11.html) approach with the Options API you need use <=[v3.1.5](https://github.com/johandalabacka/lu.se-vue-template/commit/fa8aa4721cb01db642127f453417bf6eba6129b2).
+
 ## Example
 
-App.vue (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/App.vue))
+`App.vue` (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/App.vue))
 ```html
 <template>
   <LuHeader
@@ -37,7 +39,7 @@ App.vue (from [vue-template-test](https://github.com/johandalabacka/vue-template
     :leftmenu="menu"
     compact
     last-updated="2021-11-30"
-    page-manager-mail="john.doe1@lth.lu.se"
+    :page-manager-mail="t('page_manager')"
     :page-manager-notice="t('mail_only_for_support')"
   >
     <router-view />
@@ -85,11 +87,68 @@ const { t, locale } = useI18n()
 
 ## i18n Setup
 
-All components use vue-i18n for internationalization. The package exports a `messages` object containing all translation strings used by the components. You need to merge these messages with your application's i18n configuration, e.g. like this:
+All components use [vue-i18n](https://vue-i18n.intlify.dev/) for [internationalization](https://www.wikiwand.com/en/articles/Internationalization_and_localization).
+The package's internationalization (i18n) strings need to be merged into your application's vue-i18n instance. 
 
-### Import and Configure
+> **Details**: In order to not pollute your app's set of i18n strings more than necessary, all string keys from this package are prefixed with `luvt` (for _Lund University Vue template_). E.g. the full slug for the header's login string is: `luvt.header.login`.
 
-main.js (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/main.js))
+To merge this package's i18n strings and your application's, there are two ways:
+
+1. Automatically merge through a [Vue plugin](https://vuejs.org/guide/reusability/plugins) defined by this package.
+2. Do the merging manually yourself.
+
+### Approach #1: Vue plugin
+For this approach you basically only need to add two lines:
+
+```js
+import LuTemplate from '@lu.se/vue-template'
+// ...
+app.use(LuTemplate, i18n)
+```
+
+From `main.js` (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/main.js)), a demo app to show how to use this package:
+
+```html
+<script setup>
+import { createApp } from 'vue'
+import App from './App.vue'
+// ...
+import { createI18n } from 'vue-i18n'
+import LuTemplate from '@lu.se/vue-template'
+
+// ...
+
+// Your own translations
+import en from './locales/en.json'
+import sv from './locales/sv.json'
+
+const messages = {
+  sv,
+  en,
+}
+
+const i18n = createI18n({
+  locale: useLocalStorage('language', 'sv').value,
+  fallbackLocale: 'sv',
+  legacy: false,
+  allowComposition: true,
+  mode: 'composition',
+  messages,
+  // ...
+})
+
+const app = createApp(App)
+app.use(i18n)
+app.use(LuTemplate, i18n) // note: needs to come after i18n line
+// ...
+</script>
+```
+
+### Approach #2: manual merging
+
+If you want to have more control the package exports a `messages` object containing all translation strings used by the components. You can then merge these messages with your application's i18n configuration like this:
+
+Using `main.js` (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/main.js)) again as an example:
 ```html
 <script setup>
 import { createApp } from 'vue'
@@ -100,19 +159,18 @@ import { messages as lumallMessages } from '@lu.se/vue-template'
 
 // ...
 
+// Your own translations
 import localeEn from './locales/en.json'
 import localeSv from './locales/sv.json'
 
-// Merge the template messages with your own messages
+// Merge this package's i18n strings with your own:
 const messages = {
   sv: {
     ...lumallMessages.sv,
-    // Your Swedish translations:
-    ...localeSv,
+    ...localeSv, 
   },
   en: {
     ...lumallMessages.en,
-    // Your English translations:
     ...localeEn,
   },
 }
@@ -123,37 +181,42 @@ const i18n = createI18n({
   legacy: false,
   allowComposition: true,
   mode: 'composition',
-  messages, // set locale messages
+  messages,
+  // ...
 })
 
 const app = createApp(App)
 app.use(i18n)
+// note: no need to use the `app.use` statement from approach #1 here
 // ...
 </script>
 ```
 
 ### Translation Keys
 
-There exists translations for [Swedish](./locales/sv.json) and [English](./locales/en.json).
+There exists translations for [Swedish](./locales/sv.json) (sv) and [English](./locales/en.json) (en). The locale specification format used in this package is [ISO 639](https://www.wikiwand.com/en/articles/ISO_639).
 
-The translation keys are generally in this format:
-```
-"<component>.<slug>"
+> _Recap from above_: in order to not pollute your app's set of i18n strings more than necessary, all string keys from this package are prefixed with `luvt` (for _Lund University Vue template_). _\[..\]_
+
+The translation keys are thus generally in this format:
+```xml
+luvt.<component>.<slug>
 ```
 
-E.g. for the LuHeader component:
+E.g. for the [`LuHeader`](./LuHeader.vue) component:
 
 #### Header Component
-- `header.menu` - Menu button label
-- `header.search` - Search button/field label
-- `header.showHideSearch` - Accessibility label for search toggle
+
+- `luvt.header.menu` - Menu button label
+- `luvt.header.search` - Search button/field label
+- `luvt.header.showHideSearch` - Accessibility label for search toggle
 - ...
+
+#### ToTop Component
 
 Some components only have one string and are thus only named with the slug:
 
-#### ToTop Component
-- `toTop` - Back to top button label
-
+- `luvt.to_top` - Back to top button label
 
 ## Components
 
@@ -170,31 +233,31 @@ Language switcher sets the key language in local storage to *sv* or *en*.
 
 Name | Description | Default value
 ----|-----------|-------------
-topmenu | menu on top of the page. If not set, the menu will not show| undefined
-navbarmenu | menu below header. If not set, the menu will not show| undefined
-mobilemenu | menu shown on mobile narrow pages | false
-hasLogin | A login/logout button is added | false
-isLoggedIn | Is user logged in (show login or logout) | false
-avatar | show first two letters of string instead of logout icon | ''
-hasSearch | A search field is added | false
-emptySearch | Search field is emptied after search | false
-searchPlaceholder | Placeholder for search field | ''
-logoSrc | URL for the image | ''
-logoTitle | title and alt text | ''
-logoUrl | URL then clicking the logo  | ''
-compact | Less padding on height | false
+`topmenu` | menu on top of the page. If not set, the menu will not show | undefined
+`navbarmenu` | menu below header. If not set, the menu will not show| undefined
+`mobilemenu` | menu shown on mobile narrow pages | false
+`hasLogin` | A login/logout button is added | false
+`isLoggedIn` | Is user logged in (show login or logout) | false
+`avatar` | show first two letters of string instead of logout icon | ''
+`hasSearch` | A search field is added | false
+`emptySearch` | Search field is emptied after search | false
+`searchPlaceholder` | Placeholder for search field | ''
+`logoSrc` | URL for the image | ''
+`logoTitle` | title and alt text | ''
+`logoUrl` | URL then clicking the logo  | ''
+`compact` | Less padding on height | false
 
 ### events
 
 Name|Payload|Description
 ----|-----------|-------------
-@login | -- | User has clicked log in
-@logout | -- | User has clicked log out
-@search | "search string" | User has made a search
+`@login` | -- | User has clicked log in
+`@logout` | -- | User has clicked log out
+`@search` | "search string" | User has made a search
 
 ### [LuBreadCrumb](./LuBreadCrumb.vue)
 
-Uses router to create a breadcrump of current and all parent pages. This component is optional.
+Uses `router` to create a breadcrump of current and all parent pages. This component is optional.
 It uses no props and takes all information from the router.
 
 ### [LuMain](./LuMain.vue)
@@ -203,17 +266,17 @@ It uses no props and takes all information from the router.
 
 Name | Description | Default value
 ----|-----------|-------------
-leftmenu | Menu to the left. If not set will the menu not show and content will use the whole width. | null
-lastUpdated | Date of last update | ''
-pageManagerMail | Mail address of page manager | ''
-pageManagerNotice | Notice under the page manager / date | ''
-compact | Less padding on top | false
+`leftmenu` | Menu to the left. If not set will the menu not show and content will use the whole width. | null
+`lastUpdated` | Date of last update | ''
+`pageManagerMail` | Mail address of page manager | ''
+`pageManagerNotice` | Notice under the page manager / date | ''
+`compact` | Less padding on top | false
 
 #### slots
 
 Name | Description
 ----|-----------
-default | content of page
+`default` | content of page
 
 ### [LuRow](./LuRow.vue)
 
@@ -223,8 +286,8 @@ A row with space for an optional right column. Is used inside LuMain. You can ha
 
 Name | Description
 ----|-----------
-default | central content
-right-column | content to the right. Goes below default content on smaller screens.
+`default` | central content
+`right-column` | content to the right. Goes below default content on smaller screens.
 
 ### [LuFooter](./LuFooter.vue)
 
@@ -232,11 +295,11 @@ right-column | content to the right. Goes below default content on smaller scre
 
 Name | Description | Default value
 ----|-----------|-------------
-contact | Object with the following properties name, box (number), zip, phone and mail | null
-socialMedia | object with possible attributes. null if not shown {facebook: "https://facebook...", instagram: ..., linkedin: twitter: ..., youtube: ... } | null
-logoSrc | URL for the image | ''
-logoTitle | title and alt text | ''
-shortCuts | menu of shortcuts. Always contains `t('footer.shortCuts')`. | null
+`contact` | Object with the following properties name, box (number), zip, phone and mail | null
+`socialMedia` | object with possible attributes. null if not shown {facebook: "https://facebook...", instagram: ..., linkedin: twitter: ..., youtube: ... } | null
+`logoSrc` | URL for the image | ''
+`logoTitle` | title and alt text | ''
+`shortCuts` | menu of shortcuts. Always contains `t('luvt.footer.shortcuts')`. | null
 
 
 ### [LuInfobox](./LuInfobox.vue)
@@ -247,13 +310,13 @@ A box which is usually inside the right-column slot of a LuRow.
 
 Name | Description | Default value
 ----|-----------|-------------
-title | The title of the box, _required prop_ | undefined
+`title` | The title of the box, _required prop_ | undefined
 
 #### slots
 
 Name | Description
 ----|-----------
-default | content of the box
+`default` | content of the box
 
 ### [LuSpinner](./LuSpinner.vue)
 
@@ -263,16 +326,16 @@ A loading/waiting spinner.
 
 Name | Description | Default value
 ----|-----------|-------------
-text | text to show | `t('spinner.loading')`
+`text` | text to show | `t('luvt.spinner.loading')`
 
 ### [LuToTop](./LuToTop.vue)
 
-A button which is shown if page is scrolled a bit down (pageYOffset > 500).
+A button which is shown if page is scrolled a bit down `(pageYOffset > 500)`.
 No props or events.
 
 ## [Menu](https://github.com/johandalabacka/vue-template-test/tree/master/src/menu.js) example
 
-`path` are vue-router paths and `url` are ordinary `a` href:s.
+`path` are [vue-router](https://router.vuejs.org/) paths and `url` are ordinary `a` href:s.
 
 ```javascript
 export default [{
@@ -335,7 +398,7 @@ npm add '@lu.se/vue-template'
 
 ### Install lu-template
 
-Get a hold of the LU webmall, unpack it and rename the folder to `lumall` and put it in the `public` folder.
+Get a hold of the LU webmall (unfortunately not publically available anymore), unpack it and rename the folder to `lumall` and put it in the `public` folder.
 
 ### [index.html](https://github.com/johandalabacka/vue-template-test/tree/master/index.html)
 

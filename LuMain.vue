@@ -17,7 +17,7 @@
           >
             <div class="col-12 col-lg-8">
               <div class=" border-top border-dark mt-5 py-3">
-                {{ t('main.pageManager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
+                {{ t('luvt.main.page_manager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
                 &nbsp;|&nbsp; <strong>{{ props.lastUpdated }}</strong>
                 <template v-if="props.pageManagerNotice">
                   <br><small>{{ props.pageManagerNotice }}</small>
@@ -35,7 +35,7 @@
         >
           <div class="col-12 col-lg-8">
             <div class=" border-top border-dark mt-5 py-3">
-              {{ t('main.pageManager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
+              {{ t('luvt.main.page_manager') }}: <a :href="`mailto:${props.pageManagerMail}`">{{ props.pageManagerMail }}</a>
               &nbsp;|&nbsp; <strong>{{ props.lastUpdated }}</strong>
               <template v-if="props.pageManagerNotice">
                 <br><small>{{ props.pageManagerNotice }}</small>
@@ -58,7 +58,7 @@ const props = defineProps({
   pageManagerMail: { type: String, default: '' },
   pageManagerNotice: { type: String, default: '' },
   lastUpdated: { type: String, default: '' },
-  compact: Boolean,
+  compact: { type: Boolean, default: false },
 })
 
 const { t } = useI18n()

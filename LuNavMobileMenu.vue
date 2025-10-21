@@ -24,7 +24,7 @@
               class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2"
               aria-controls="mobileMenu"
               aria-expanded="false"
-              :aria-label="t('navMobile.hideMenu')"
+              :aria-label="t('luvt.navmobile.hide_menu')"
               @click="hide"
             >
               <span aria-hidden="true">
