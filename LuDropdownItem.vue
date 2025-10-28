@@ -24,3 +24,16 @@ const props = defineProps({
 
 const { t } = useI18n()
 </script>
+
+<style scoped>
+.text-primary>.dropdown-item.active {
+  color: var(--bs-dropdown-link-active-color) !important;
+}
+.text-primary>.dropdown-item:hover {
+  color: var(--bs-dropdown-link-hover-color) !important;
+}
+.dropdown-item:hover {
+  color: var(--bs-dropdown-link-hover-color) !important;
+  background: var(--bs-dropdown-link-hover-bg) !important;
+}
+</style>

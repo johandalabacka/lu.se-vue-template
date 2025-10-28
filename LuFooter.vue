@@ -69,92 +69,6 @@
           </div>
         </div>
       </div>
-      <div
-        v-if="props.socialMedia"
-        class="row mb-5"
-      >
-        <div class="col-12 col-lg-4 offset-lg-4">
-          <h6 class="p font-weight-bold text-uppercase mb-1 text-center text-lg-start">
-            {{ t('luvt.footer.follow_us_social_media') }}
-          </h6>
-          <ul class="nav nav-social mt-3 nmx-2 justify-content-center justify-content-lg-start">
-            <li
-              v-if="props.socialMedia.facebook"
-              class="nav-item mx-2"
-            >
-              <a
-                class="nav-link text-white p-0"
-                :href="props.socialMedia.facebook"
-              ><span
-                class="sr-only"
-              >Facebook </span><fa-icon
-                class="fa-2x"
-                :icon="['fab', 'facebook-square']"
-              />
-              </a>
-            </li>
-            <li
-              v-if="props.socialMedia.instagram"
-              class="nav-item mx-2"
-            >
-              <a
-                class="nav-link text-white p-0"
-                :href="props.socialMedia.instagram"
-              ><span
-                class="sr-only"
-              >Instagram </span><fa-icon
-                class="fa-2x"
-                :icon="['fab', 'instagram']"
-              />
-              </a>
-            </li>
-            <li
-              v-if="props.socialMedia.linkedin"
-              class="nav-item mx-2"
-            >
-              <a
-                class="nav-link text-white p-0"
-                :href="props.socialMedia.linkedin"
-              ><span
-                class="sr-only"
-              >LinkedIn </span><fa-icon
-                class="fa-2x"
-                :icon="['fab', 'linkedin']"
-              />
-              </a>
-            </li>
-            <li
-              v-if="props.socialMedia.twitter"
-              class="nav-item mx-2"
-            >
-              <a
-                class="nav-link text-white p-0"
-                :href="props.socialMedia.twitter"
-              ><span class="sr-only">Twitter
-              </span><fa-icon
-                class="fa-2x"
-                :icon="['fab', 'twitter-square']"
-              />
-              </a>
-            </li>
-            <li
-              v-if="props.socialMedia.youtube"
-              class="nav-item mx-2"
-            >
-              <a
-                class="nav-link text-white p-0"
-                :href="props.socialMedia.youtube"
-              ><span
-                class="sr-only"
-              >Youtube </span><fa-icon
-                class="fa-2x"
-                :icon="['fab', 'youtube-square']"
-              />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   </footer>
 </template>
@@ -166,7 +80,6 @@ import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
   contact: { type: Object, default: null },
-  socialMedia: { type: Object, default: null },
   logoSrc: { type: String, required: true },
   logoTitle: { type: String, required: true },
   shortCuts: { type: Array, default: null },
@@ -175,8 +88,6 @@ const props = defineProps({
 const route = useRoute()
 
 const { t, locale } = useI18n()
-// const { t, locale, messages } = useI18n({ useScope: 'global' })
-// console.log('pkg: ', messages.value)
 
 const isSwedish = computed(() => locale.value === 'sv')
 

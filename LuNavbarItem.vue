@@ -58,3 +58,10 @@ const props = defineProps({
 
 const { t } = useI18n()
 </script>
+
+<style scoped>
+.nav-item:hover {
+  color: var(--bs-navbar-hover-color) !important;
+  text-decoration: underline;
+}
+</style>
