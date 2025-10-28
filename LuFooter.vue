@@ -188,7 +188,7 @@ const intlPhone = computed(() => {
   return isSwedish.value ? phone : `+46${phone.substring(1)}`
 })
 
-const updateDocumentTitle = () => {
+const updateDocumentTitle = function () {
   const metaTitle = typeof route.meta?.title === 'string' ? route.meta.title : null
   if (metaTitle) {
     document.title = t(metaTitle)
@@ -200,7 +200,7 @@ const updateDocumentTitle = () => {
   }
 }
 
-const switchLocale = () => {
+const switchLocale = function () {
   const nextLocale = isSwedish.value ? 'en' : 'sv'
   locale.value = nextLocale
   document.documentElement.lang = nextLocale

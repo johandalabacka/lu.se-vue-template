@@ -20,7 +20,7 @@ const emit = defineEmits(['link-selected'])
 
 const { t, locale } = useI18n()
 
-const switchLocale = () => {
+const switchLocale = function() {
   const nextLocale = locale.value === 'sv' ? 'en' : 'sv'
   locale.value = nextLocale
   document.documentElement.lang = nextLocale

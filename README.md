@@ -72,11 +72,11 @@ import menuData from './menu.js'
 const baseUrl = import.meta.env.BASE_URL
 const isLoggedIn = ref(false)
 
-const login = () => {
+const login = function() {
   isLoggedIn.value = true
 }
 
-const logout = () => {
+const logout = function() {
   isLoggedIn.value = false
 }
 
@@ -101,9 +101,9 @@ To merge this package's i18n strings and your application's, there are two ways:
 For this approach you basically only need to add two lines:
 
 ```js
-import LuTemplate from '@lu.se/vue-template'
+import luTemplate from '@lu.se/vue-template'
 // ...
-app.use(LuTemplate, i18n)
+app.use(luTemplate, i18n)
 ```
 
 From `main.js` (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/main.js)), a demo app to show how to use this package:
@@ -114,7 +114,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 // ...
 import { createI18n } from 'vue-i18n'
-import LuTemplate from '@lu.se/vue-template'
+import luTemplate from '@lu.se/vue-template'
 
 // ...
 
@@ -139,7 +139,7 @@ const i18n = createI18n({
 
 const app = createApp(App)
 app.use(i18n)
-app.use(LuTemplate, i18n) // note: needs to come after i18n line
+app.use(luTemplate, i18n) // note: needs to come after i18n line
 // ...
 </script>
 ```

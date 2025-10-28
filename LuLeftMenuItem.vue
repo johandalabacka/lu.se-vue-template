@@ -59,7 +59,7 @@ const emit = defineEmits(['link-selected'])
 const expanded = ref(false)
 
 const route = useRoute()
-const { t } = useI18n({ useScope: 'global' })
+const { t } = useI18n()
 
 const emitIfActive = (path) => {
   const targetPath = props.item?.path
@@ -68,11 +68,11 @@ const emitIfActive = (path) => {
   }
 }
 
-const toggleExpanded = () => {
+const toggleExpanded = function () {
   expanded.value = !expanded.value
 }
 
-const childLinkSelected = () => {
+const childLinkSelected = function () {
   emit('link-selected')
   expanded.value = true
 }

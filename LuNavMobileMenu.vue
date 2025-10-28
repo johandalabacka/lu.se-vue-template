@@ -68,7 +68,7 @@ const modalElement = ref(null)
 const modalInstance = ref(null)
 const isShowing = ref(false)
 
-const show = () => {
+const show = function () {
   if (!modalInstance.value && modalElement.value) {
     modalInstance.value = Modal.getOrCreateInstance(modalElement.value)
   }
@@ -79,7 +79,7 @@ const show = () => {
   modalInstance.value.show()
 }
 
-const hide = () => {
+const hide = function () {
   isShowing.value = false
   if (!modalInstance.value) {
     return

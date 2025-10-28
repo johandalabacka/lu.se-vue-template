@@ -69,7 +69,7 @@ const props = defineProps({
 })
 
 const route = useRoute()
-const { t } = useI18n({ useScope: 'global' })
+const { t } = useI18n()
 
 const active = computed(() => {
   const targetPath = props.item?.path

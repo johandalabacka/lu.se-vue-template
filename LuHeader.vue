@@ -319,7 +319,7 @@ const headerSearchField = ref(null)
 
 const isSwedish = computed(() => locale.value === 'sv')
 
-const updateDocumentTitle = () => {
+const updateDocumentTitle = function () {
   const current = router.currentRoute.value
   const metaTitle = typeof current.meta?.title === 'string' ? current.meta.title : null
   if (metaTitle) {
@@ -340,7 +340,7 @@ watch(
   { immediate: true },
 )
 
-const switchLocale = () => {
+const switchLocale = function () {
   const nextLocale = isSwedish.value ? 'en' : 'sv'
   locale.value = nextLocale
   document.documentElement.lang = nextLocale
@@ -348,11 +348,11 @@ const switchLocale = () => {
   updateDocumentTitle()
 }
 
-const showNavMobileMenu = () => {
+const showNavMobileMenu = function () {
   navMobileMenu.value?.show()
 }
 
-const toggleSearch = () => {
+const toggleSearch = function () {
   searchCollapsed.value = !searchCollapsed.value
   if (!searchCollapsed.value) {
     nextTick(() => {
@@ -361,7 +361,7 @@ const toggleSearch = () => {
   }
 }
 
-const search = () => {
+const search = function () {
   const value = searchField.value.trim()
   if (!value) {
     return

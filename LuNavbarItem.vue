@@ -56,5 +56,5 @@ const props = defineProps({
   item: { type: Object, required: true },
 })
 
-const { t } = useI18n({ useScope: 'global' })
+const { t } = useI18n()
 </script>

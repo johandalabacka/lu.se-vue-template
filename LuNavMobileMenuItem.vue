@@ -102,15 +102,15 @@ const { t } = useI18n()
 const route = useRoute()
 const expanded = ref(false)
 
-const toggleExpanded = () => {
+const toggleExpanded = function () {
   expanded.value = !expanded.value
 }
 
-const childLinkSelected = () => {
+const childLinkSelected = function () {
   emit('link-selected')
 }
 
-const childLinkActivated = () => {
+const childLinkActivated = function () {
   expanded.value = true
   emit('link-activated')
 }

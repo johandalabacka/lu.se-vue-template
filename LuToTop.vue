@@ -26,11 +26,11 @@ const { t } = useI18n()
 const show = ref(false)
 const listenerAdded = ref(false)
 
-const handleScroll = () => {
+const handleScroll = function () {
   show.value = window.pageYOffset > 500
 }
 
-const addScrollListener = () => {
+const addScrollListener = function () {
   if (listenerAdded.value) {
     return
   }
@@ -38,7 +38,7 @@ const addScrollListener = () => {
   listenerAdded.value = true
 }
 
-const removeScrollListener = () => {
+const removeScrollListener = function () {
   if (!listenerAdded.value) {
     return
   }
@@ -46,7 +46,7 @@ const removeScrollListener = () => {
   listenerAdded.value = false
 }
 
-const handleClick = () => {
+const handleClick = function () {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 }
 
