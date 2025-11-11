@@ -1,6 +1,6 @@
 # Vue components for LU web template
 
-This is the source for the node module [@lu.se/vue-template](https://www.npmjs.com/package/@lu.se/vue-template)
+This is the source for the node module [@lu.se/vue-template](https://www.npmjs.com/package/@lu.se/vue-template).
 For an example using this module see [johandalabacka/vue-template-test](https://github.com/johandalabacka/vue-template-test).
 
 ![Example page](media/components.png)
@@ -56,7 +56,6 @@ For an example using this module see [johandalabacka/vue-template-test](https://
 <script setup>
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import '@lu.se/vue-template/icons'
 import { LuHeader, LuBreadCrumb, LuMain, LuFooter, LuToTop } from '@lu.se/vue-template/index.js'
 
 import menuData from './menu.js'
@@ -77,19 +76,23 @@ const { t, locale } = useI18n()
 </script>
 ```
 
-## i18n Setup
+## Setup
+
+This package defines a [Vue plugin](https://vuejs.org/guide/reusability/plugins) that "auto-installs" the icons and internationalisation (i18n) strings the package itself needs. You can use that plugin and just define the i18n messages and icons you need for your app. Alternatively you can manually import what is needed. See below for the two approaches.
+
+### i18n
 
 All components use [vue-i18n](https://vue-i18n.intlify.dev/) for [internationalization](https://www.wikiwand.com/en/articles/Internationalization_and_localization).
 The package's internationalization (i18n) strings need to be merged into your application's vue-i18n instance. 
 
 > **Details**: In order to not pollute your app's set of i18n strings more than necessary, all string keys from this package are prefixed with `luvt` (for _Lund University Vue template_). E.g. the full slug for the header's login string is: `luvt.header.login`.
 
-To merge this package's i18n strings and your application's, there are two ways:
+To merge this package's i18n strings and your application's (as well as provide the icons), there are two ways:
 
-1. Automatically merge through a [Vue plugin](https://vuejs.org/guide/reusability/plugins) defined by this package.
+1. Automatically merge through the [Vue plugin](https://vuejs.org/guide/reusability/plugins) defined by this package.
 2. Do the merging manually yourself.
 
-### Approach #1: Vue plugin
+#### Approach #1: Vue plugin
 For this approach you basically only need to add two lines:
 
 ```js
@@ -106,6 +109,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 // ...
 import { createI18n } from 'vue-i18n'
+// Import the self-installing plugin from the LU Vue Template package:
 import luTemplate from '@lu.se/vue-template'
 
 // ...
@@ -131,14 +135,17 @@ const i18n = createI18n({
 
 const app = createApp(App)
 app.use(i18n)
-app.use(luTemplate, i18n) // note: needs to come after i18n line
+// This Vue plugin self-installs all i18n messages and icons the package needs.
+app.use(luTemplate, i18n) // note: needs to come after `app.use(i18n)` line
 // ...
 </script>
 ```
 
-### Approach #2: manual merging
+#### Approach #2: manual merging
 
-If you want to have more control the package exports a `messages` object containing all translation strings used by the components. You can then merge these messages with your application's i18n configuration like this:
+If you want to have more control the package exports a `messages` object containing all translation strings used by the components. You can then merge these messages with your application's i18n configuration like below.
+
+ - **N.B.** that in this case you also need to import the icons for the package as well, included in the following code.
 
 Using `main.js` (from [vue-template-test](https://github.com/johandalabacka/vue-template-test/tree/master/src/main.js)) again as an example:
 ```html
@@ -148,6 +155,26 @@ import App from './App.vue'
 // ...
 import { createI18n } from 'vue-i18n'
 import { messages as lumallMessages } from '@lu.se/vue-template'
+
+// The icons:
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faChevronCircleUp } from '@fortawesome/pro-solid-svg-icons'
+import {
+  faBars,
+  faChevronDoubleDown,
+  faChevronDoubleUp,
+  faChevronDown,
+  faChevronRight,
+  faCircleNotch,
+  faGlobe,
+  faMinusCircle,
+  faPlusCircle,
+  faSearch,
+  faSignIn,
+  faSignOut,
+  faTimes,
+} from '@fortawesome/pro-light-svg-icons'
 
 // ...
 
@@ -177,14 +204,34 @@ const i18n = createI18n({
   // ...
 })
 
+// Also add the icons to the library:
+library.add(
+  faBars,
+  faChevronCircleUp,
+  faChevronDoubleDown,
+  faChevronDoubleUp,
+  faChevronDown,
+  faChevronRight,
+  faCircleNotch,
+  faGlobe,
+  faMinusCircle,
+  faPlusCircle,
+  faSearch,
+  faSignIn,
+  faSignOut,
+  faTimes,
+)
+
 const app = createApp(App)
 app.use(i18n)
 // note: no need to use the `app.use` statement from approach #1 here
+app.component('FaIcon', FontAwesomeIcon)
+// however, you need to include the above line (for the icons)
 // ...
 </script>
 ```
 
-### Translation Keys
+### I18n translation Keys
 
 There exists translations for [Swedish](./locales/sv.json) (sv) and [English](./locales/en.json) (en). The locale specification format used in this package is [ISO 639](https://www.wikiwand.com/en/articles/ISO_639).
 
@@ -375,13 +422,9 @@ export default [{
 All items in menu should have a unique id, a label and a path (internal page) or url (external page).
 In the router definition, if `meta.title` for a route is defined that is used as the title of page instead of the route's name.
 
-## How-to
+## How-to install
 
-To use it in a project
-
-### Install
-
-E.g. with npm:
+To use it in a project, e.g. with npm:
 
 ```bash
 npm add '@lu.se/vue-template'
@@ -391,7 +434,11 @@ npm add '@lu.se/vue-template'
 
 Get a hold of the LU webmall (unfortunately not publically available anymore), unpack it and rename the folder to `lumall` and put it in the `public` folder.
 
-### [index.html](https://github.com/johandalabacka/vue-template-test/tree/master/index.html)
+### Provide key for the FontAwesome Pro icons
+
+Please refer to their documentation [here](https://docs.fontawesome.com/web/use-with/vue#pro-icon-packages) and [here](https://docs.fontawesome.com/web/setup/packages#1-configure-pro-package-access).
+
+### [`index.html`](https://github.com/johandalabacka/vue-template-test/tree/master/index.html)
 
 ```html
 <!DOCTYPE html>
@@ -419,3 +466,5 @@ Get a hold of the LU webmall (unfortunately not publically available anymore), u
 
 </html>
 ```
+
+Then refer to the [Setup](#setup) section above.

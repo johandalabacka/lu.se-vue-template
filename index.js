@@ -9,6 +9,26 @@ import LuToTop from './LuToTop.vue'
 import sv from './locales/sv.json'
 import en from './locales/en.json'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import { faChevronCircleUp } from '@fortawesome/pro-solid-svg-icons'
+import {
+  faChevronDoubleDown,
+  faChevronDoubleUp,
+  faChevronDown,
+  faChevronRight,
+  faBars,
+  faCircleNotch,
+  faGlobe,
+  faMinusCircle,
+  faPlusCircle,
+  faSearch,
+  faSignIn,
+  faSignOut,
+  faTimes,
+} from '@fortawesome/pro-light-svg-icons'
+
 const messages = {
   sv,
   en,
@@ -29,6 +49,24 @@ const luTemplatePlugin = {
   install (app, i18n) {
     const logPrefix = '%c[@lu.se/vue-template] '
     const logStyle = 'font-weight: bold; color: #875E29; font-family: system-ui'
+
+    library.add(
+      faBars,
+      faChevronCircleUp,
+      faChevronDoubleDown,
+      faChevronDoubleUp,
+      faChevronDown,
+      faChevronRight,
+      faCircleNotch,
+      faGlobe,
+      faMinusCircle,
+      faPlusCircle,
+      faSearch,
+      faSignIn,
+      faSignOut,
+      faTimes,
+    )
+    app.component('FaIcon', FontAwesomeIcon)
 
     if (!isI18nInstance(i18n)) {
       console.error(
