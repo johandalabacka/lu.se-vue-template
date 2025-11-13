@@ -115,13 +115,6 @@ const luTemplatePlugin = {
         '] do not exist in the package messages.',
       )
     }
-
-    console.debug(
-      logPrefix,
-      logStyle,
-      'Messages merged',
-      localesOnlyInConsumer.length !== 0 ? '(mostly) successfully' : 'successfully',
-    )
   },
 }
 
