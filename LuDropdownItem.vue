@@ -1,24 +1,24 @@
 <template>
   <router-link
-    v-if="props.item.path"
-    :to="props.item.path"
+    v-if="item.path"
+    :to="item.path"
     class="dropdown-item"
   >
-    {{ t(props.item.id) }}
+    {{ t(item.id) }}
   </router-link>
   <a
     v-else
-    :href="props.item.url"
+    :href="item.url"
     class="dropdown-item"
   >
-    {{ t(props.item.id) }}
+    {{ t(item.id) }}
   </a>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
 
-const props = defineProps({
+defineProps({
   item: { type: Object, required: true },
 })
 

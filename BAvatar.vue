@@ -1,11 +1,11 @@
 <template>
   <span class="b-avatar b-avatar-sm badge-primary rounded-circle">
-    <span class="b-avatar-text">{{ props.text }}<span />
+    <span class="b-avatar-text">{{ text }}<span />
     </span></span>
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   text: { type: String, default: '' },
 })
 </script>

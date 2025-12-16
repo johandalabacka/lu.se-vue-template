@@ -1,26 +1,26 @@
 <template>
   <header class="header nav-undecorated">
     <LuNavbar
-      v-if="props.navbarmenu"
-      :menu="props.navbarmenu"
+      v-if="navbarmenu"
+      :menu="navbarmenu"
     />
     <div class="border-bottom">
       <div class="container-fluid mw-xl">
         <div
           class="row m-0"
-          :class="[props.compact ? 'py-2' : 'py-3 py-lg-5']"
+          :class="[compact ? 'py-2' : 'py-3 py-lg-5']"
         >
           <div class="col p-0">
             <div class="d-flex justify-content-between align-items-center h-100">
               <div class="header-logo header-logo-lu flex-grow-1 flex-lg-grow-0">
                 <a
-                  :href="props.logoUrl"
-                  :title="props.logoTitle"
+                  :href="logoUrl"
+                  :title="logoTitle"
                 >
                   <img
-                    v-if="props.logoSrc"
-                    :src="props.logoSrc"
-                    :alt="props.logoTitle"
+                    v-if="logoSrc"
+                    :src="logoSrc"
+                    :alt="logoTitle"
                     class="mw-100"
                   >
                 </a>
@@ -35,11 +35,11 @@
                     class="nav text-center h-100 h-lg-auto align-items-center d-lg-none flex-nowrap"
                   >
                     <div
-                      v-if="props.hasLogin"
+                      v-if="hasLogin"
                       class="nav-item"
                     >
                       <a
-                        v-if="props.isLoggedIn"
+                        v-if="isLoggedIn"
                         class="ms-2 p-1 d-block nav-undecorated"
                         href="#"
                         aria-controls="header-logout"
@@ -48,10 +48,10 @@
                         @click.prevent="emit('logout')"
                       >
                         <BAvatar
-                          v-if="props.avatar"
+                          v-if="avatar"
                           size="sm"
                           variant="primary"
-                          :text="props.avatar"
+                          :text="avatar"
                         />
                         <fa-icon
                           v-else
@@ -75,7 +75,7 @@
                       </a>
                     </div>
                     <div
-                      v-if="props.hasSearch"
+                      v-if="hasSearch"
                       class="nav-item"
                     >
                       <a
@@ -109,7 +109,7 @@
                   </nav>
                   <div class="d-none d-lg-flex flex-column flex-xl-row w-100 justify-content-end">
                     <nav
-                      v-if="props.hasSearch"
+                      v-if="hasSearch"
                       class="nav align-items-center justify-content-end flex-1 mb-3 mb-xl-0"
                     >
                       <div class="nav-item flex-xl-grow-1">
@@ -124,7 +124,7 @@
                               v-model="searchField"
                               type="search"
                               class="form-control form-control-sm border-end-0"
-                              :placeholder="props.searchPlaceholder"
+                              :placeholder="searchPlaceholder"
                             >
                             <div class="input-group-append">
                               <button
@@ -141,21 +141,21 @@
                     </nav>
                     <nav class="nav align-items-center justify-content-end">
                       <div
-                        v-if="props.hasLogin"
+                        v-if="hasLogin"
                         class="nav-item d-none d-lg-block"
                       >
                         <a
-                          v-if="props.isLoggedIn"
+                          v-if="isLoggedIn"
                           class="nav-link px-0 ms-4"
                           href="#"
                           @click.prevent="emit('logout')"
                         >
                           <span class="me-1">
                             <BAvatar
-                              v-if="props.avatar"
+                              v-if="avatar"
                               size="1.8em"
                               variant="primary"
-                              :text="props.avatar"
+                              :text="avatar"
                             />
                             <fa-icon
                               v-else
@@ -225,8 +225,8 @@
                   </div>
                 </div>
                 <LuTopMenu
-                  v-if="props.topmenu"
-                  :menu="props.topmenu"
+                  v-if="topmenu"
+                  :menu="topmenu"
                 />
               </div>
             </div>
@@ -250,7 +250,7 @@
                 v-model="searchField"
                 type="search"
                 class="form-control form-control-sm border-end-0"
-                :placeholder="props.searchPlaceholder"
+                :placeholder="searchPlaceholder"
               >
               <div class="input-group-append">
                 <button
@@ -268,7 +268,7 @@
     </div>
     <LuNavMobileMenu
       ref="navMobileMenu"
-      :menu="props.mobilemenu"
+      :menu="mobilemenu"
     />
     <div style="display: none">
       <!-- bury the button for browsealoud -->

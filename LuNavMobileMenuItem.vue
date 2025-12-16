@@ -1,29 +1,29 @@
 <template>
   <li
-    v-if="props.item.children"
+    v-if="item.children"
     class="mobile-nav-item"
   >
     <div class="mobile-nav-container">
       <router-link
-        v-if="props.item.path"
-        :to="props.item.path"
+        v-if="item.path"
+        :to="item.path"
         class="nav-link"
         @click="emit('link-selected')"
       >
-        {{ t(props.item.label) }}
+        {{ t(item.label) }}
       </router-link>
       <a
         v-else
         href="#"
         class="nav-link"
         @click.prevent="toggleExpanded"
-      >{{ t(props.item.label) }}</a>
+      >{{ t(item.label) }}</a>
       <div
         class="mobile-nav-toggle"
         :class="[expanded ? '' : 'collapsed']"
-        :data-target="'#sm-' + props.item.id"
+        :data-target="'#sm-' + item.id"
         :aria-expanded="expanded"
-        :aria-controls="'sm-' + props.item.id"
+        :aria-controls="'sm-' + item.id"
         @click="toggleExpanded"
       >
         <span
@@ -63,15 +63,15 @@
     </Transition>
   </li>
   <li
-    v-else-if="props.item.path"
+    v-else-if="item.path"
     class="mobile-nav-item"
   >
     <router-link
-      :to="props.item.path"
+      :to="item.path"
       class="nav-link"
       @click="emit('link-selected')"
     >
-      {{ t(props.item.id) }}
+      {{ t(item.label) }}
     </router-link>
   </li>
   <li
@@ -79,10 +79,10 @@
     class="mobile-nav-item"
   >
     <a
-      :href="props.item.url"
+      :href="item.url"
       class="nav-link"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </a>
   </li>
 </template>

@@ -1,32 +1,32 @@
 <template>
   <li
-    v-if="props.item.children"
+    v-if="item.children"
     class="nav-item dropdown dropdown-hover"
     :class="{ active }"
   >
     <router-link
-      v-if="props.item.path"
-      :to="props.item.path"
+      v-if="item.path"
+      :to="item.path"
       class="nav-link text-nowrap dropdown-toggle"
       aria-haspopup="true"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </router-link>
     <a
       v-else
-      :href="props.item.url"
+      :href="item.url"
       class="nav-link text-nowrap dropdown-toggle"
       aria-haspopup="true"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </a>
     <div
       class="dropdown-menu font-size-base"
-      :class="[props.lastItem ? 'dropdown-menu-end' : '']"
+      :class="[lastItem ? 'dropdown-menu-end' : '']"
       aria-labelledby="dropdown-studera"
     >
       <LuDropdownItem
-        v-for="subMenuItem in props.item.children"
+        v-for="subMenuItem in item.children"
         :key="subMenuItem.id"
         :item="subMenuItem"
       />
@@ -38,20 +38,20 @@
     :class="{ active }"
   >
     <router-link
-      v-if="props.item.path"
-      :to="props.item.path"
+      v-if="item.path"
+      :to="item.path"
       class="nav-link text-nowrap"
       aria-haspopup="true"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </router-link>
     <a
       v-else
-      :href="props.item.url"
+      :href="item.url"
       class="nav-link text-nowrap"
       aria-haspopup="true"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </a>
   </li>
 </template>

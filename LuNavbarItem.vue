@@ -4,18 +4,18 @@
     class="nav-item"
   >
     <router-link
-      v-if="props.item.path"
-      :to="props.item.path"
+      v-if="item.path"
+      :to="item.path"
       class="nav-link px-3"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </router-link>
     <a
       v-else
       class="nav-link px-3"
-      :href="props.item.url"
+      :href="item.url"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </a>
   </li>
   <li
@@ -23,19 +23,19 @@
     class="nav-item dropdown dropdown-hover"
   >
     <router-link
-      v-if="props.item.path"
-      :to="props.item.path"
+      v-if="item.path"
+      :to="item.path"
       class="nav-link dropdown-toggle px-3"
     >
-      {{ t(props.item.label) }}&nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
+      {{ t(item.label) }}&nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
     </router-link>
     <a
       v-else
       class="nav-link dropdown-toggle px-3"
-      :href="props.item.url"
+      :href="item.url"
       aria-haspopup="true"
     >
-      {{ t(props.item.label) }}&nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
+      {{ t(item.label) }}&nbsp;<fa-icon :icon="['fal', 'chevron-down']" />
     </a>
     <div class="dropdown-menu dropdown-menu-end text-primary">
       <LuDropdownItem

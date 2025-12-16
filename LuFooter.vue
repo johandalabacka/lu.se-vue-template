@@ -4,32 +4,32 @@
       <div class="row pt-1">
         <div class="col-12 col-lg-4 mb-5 text-center text-lg-start">
           <img
-            v-if="props.logoSrc"
-            :src="props.logoSrc"
-            :alt="props.logoTitle"
+            v-if="logoSrc"
+            :src="logoSrc"
+            :alt="logoTitle"
             class="footer-logo"
           >
         </div>
         <div
-          v-if="props.contact"
+          v-if="contact"
           class="col-6 col-md-3 offset-md-3 offset-lg-0 col-lg-4 mb-5"
         >
           <h6 class="p font-weight-bold text-uppercase mb-1">
             {{ t('luvt.footer.contact_us') }}
           </h6>
           <p v-if="isSwedish">
-            {{ props.contact.name }}<br>Box {{ props.contact.box }}<br>{{ props.contact.zip }} LUND<br>{{ props.contact.phone }}<br>
+            {{ contact.name }}<br>Box {{ contact.box }}<br>{{ contact.zip }} LUND<br>{{ contact.phone }}<br>
             <a
-              :href="'mailto:' + props.contact.mail"
+              :href="'mailto:' + contact.mail"
               class="text-white"
-            >{{ props.contact.mail }}</a>
+            >{{ contact.mail }}</a>
           </p>
           <p v-else>
-            {{ props.contact.name }}<br>P.O Box {{ props.contact.box }}<br>SE-{{ props.contact.zip }} LUND, Sweden<br>{{ intlPhone }}<br>
+            {{ contact.name }}<br>P.O Box {{ contact.box }}<br>SE-{{ contact.zip }} LUND, Sweden<br>{{ intlPhone }}<br>
             <a
-              :href="'mailto:' + props.contact.mail"
+              :href="'mailto:' + contact.mail"
               class="text-white"
-            >{{ props.contact.mail }}</a>
+            >{{ contact.mail }}</a>
           </p>
         </div>
         <div
@@ -50,7 +50,7 @@
             >{{ t('luvt.footer.change_language') }}
               <fa-icon :icon="['fal', 'globe']" />
             </a>
-            <template v-for="item in props.shortCuts">
+            <template v-for="item in shortCuts">
               <router-link
                 v-if="item.path"
                 :key="item.id"

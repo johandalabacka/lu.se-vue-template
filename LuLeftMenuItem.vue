@@ -2,9 +2,9 @@
 @click.native https://github.com/vuejs/vue-router/issues/800
 -->
 <template>
-  <li v-if="props.item.children && props.item.path">
+  <li v-if="item.children && item.path">
     <router-link
-      :to="props.item.path"
+      :to="item.path"
       class="nav-link collapse"
       :class="[expanded ? 'show' : 'collapsed']"
       @click="toggleExpanded"
@@ -12,35 +12,35 @@
       <div class="float-end ml-2">
         <fa-icon :icon="['fal', expanded ? 'chevron-down' : 'chevron-right']" />
       </div>
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </router-link>
     <ul
       class="nav-accordion collapse"
       :class="[expanded ? 'show': '']"
     >
       <lu-left-menu-item
-        v-for="subItem in props.item.children"
+        v-for="subItem in item.children"
         :key="subItem.id"
         :item="subItem"
         @link-selected="childLinkSelected"
       />
     </ul>
   </li>
-  <li v-else-if="props.item.path">
+  <li v-else-if="item.path">
     <router-link
-      :to="props.item.path"
+      :to="item.path"
       class="nav-link"
       @click="emit('link-selected')"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </router-link>
   </li>
   <li v-else>
     <a
-      :href="props.item.url"
+      :href="item.url"
       class="nav-link"
     >
-      {{ t(props.item.label) }}
+      {{ t(item.label) }}
     </a>
   </li>
 </template>
@@ -61,18 +61,18 @@ const expanded = ref(false)
 const route = useRoute()
 const { t } = useI18n()
 
-const emitIfActive = (path) => {
+function emitIfActive (path) {
   const targetPath = props.item?.path
   if (targetPath && path === targetPath) {
     emit('link-selected')
   }
 }
 
-const toggleExpanded = function () {
+function toggleExpanded () {
   expanded.value = !expanded.value
 }
 
-const childLinkSelected = function () {
+function childLinkSelected () {
   emit('link-selected')
   expanded.value = true
 }

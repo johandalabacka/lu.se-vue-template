@@ -7,7 +7,7 @@
       />
     </p>
     <p class="font-weight-bold">
-      {{ props.text.length > 0 ? props.text : loadingText }}
+      {{ text.length > 0 ? text : loadingText }}
     </p>
   </div>
 </template>
@@ -17,10 +17,12 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+
+defineProps({
+  text: { type: String, default: '' },
+})
+
 const loadingText = computed(() => {
   return t('luvt.spinner.loading')
-})
-const props = defineProps({
-  text: { type: String, default: '' },
 })
 </script>
